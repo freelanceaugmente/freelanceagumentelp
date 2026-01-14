@@ -95,68 +95,68 @@ export async function POST(request: NextRequest) {
 1. Va sur ce profil LinkedIn: ${linkedinUrl}
 2. Analyse le profil complet (expérience, compétences, formation)
 3. Génère 7 slides HTML avec le design EXACT ci-dessous
+4. Envoie le fichier JSON par email à ${notificationEmail}
+
+## RESSOURCES À UTILISER (URLs absolues)
+- Police Mersad: https://freeaugmente.netlify.app/MersadBlack.otf
+- Image Lune: https://freeaugmente.netlify.app/lune_orange.png
+- QR Code: https://freeaugmente.netlify.app/qr_code_orange.png
+
+## CSS OBLIGATOIRE DANS CHAQUE SLIDE
+\`\`\`css
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+@font-face { font-family: 'Mersad'; src: url('https://freeaugmente.netlify.app/MersadBlack.otf') format('opentype'); }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { width: 1280px; min-height: 720px; }
+\`\`\`
 
 ## DESIGN SYSTEM STRICT
 - Dimensions: 1280px x 720px
-- Police titres: font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic
-- Police corps: font-family: 'Inter', sans-serif
+- Police titres: font-family: 'Mersad', sans-serif (pour gros titres)
+- Police sous-titres/corps: font-family: 'Inter', sans-serif
 - Accent: #FF4500 (orange)
 - Fond sombre: #1A1A1A
 - Fond clair: #F5F5F5
-- Texte: #1A1A1A (sur fond clair), #FFFFFF (sur fond sombre)
-- Footer TOUJOURS: "FREELANCEAUGMENTÉ.FR • VISE LA LUNE" à gauche, "0X / 07" à droite
+- Footer: carré orange 8x8px + "FREELANCEAUGMENTÉ.FR • VISE LA LUNE" + "0X / 07"
 
 ## SLIDE 1: COVER (fond #1A1A1A)
-Structure HTML:
-- Titre "Analyse Personnalisée" en #FF4500, font-size: 48px, font-weight: 900, font-style: italic
-- Nom "[Prénom Nom]" en #FF4500, font-size: 42px, font-weight: 900
-- Sous-titre "[Titre professionnel]" en #FF4500, font-size: 18px
-- Description "Découvrez les opportunités de side business adaptées à votre profil" en #888, font-size: 16px
-- Ligne orange (#FF4500) au-dessus du footer
-- Footer: "FreelanceAugmenté.fr • Vise la Lune" à gauche, "Slide 1" à droite
+- Image lune en haut à droite: <img src="https://freeaugmente.netlify.app/lune_orange.png" style="position:absolute;top:40px;right:60px;width:120px">
+- "Analyse Personnalisée" en Mersad, #FF4500, 48px
+- "[Prénom Nom]" en Mersad, #FF4500, 42px
+- "[Titre professionnel]" en Inter, #FF4500, 18px
+- Description en #888888
+- Ligne orange 2px au-dessus du footer
 
 ## SLIDE 2: PILLARS (fond #F5F5F5)
-Structure:
-- Titre "Pourquoi Vous Allez Réussir" en noir, italic, font-size: 36px
-- Badge "LA TRIADE GAGNANTE" en #FF4500, uppercase, font-size: 14px, letter-spacing: 2px
-- 3 CARTES blanches (background: white, border-radius: 8px, box-shadow)
-- Chaque carte a: bordure top colorée (gris/#888, orange/#FF4500, gris/#888), icône SVG dans cercle gris, titre bold, description gris, label uppercase en bas
-- Labels: "VITESSE D'EXÉCUTION", "MÉTHODE ÉPROUVÉE", "VISION PRODUIT"
-- Footer avec carré orange, texte uppercase
+- "Pourquoi Vous Allez Réussir" en Mersad, noir, italic, 36px
+- "LA TRIADE GAGNANTE" badge orange uppercase
+- 3 cartes blanches avec bordure-top colorée, icône cercle, titre bold, description, label uppercase
 
 ## SLIDE 3: TIER 1 (fond #F5F5F5)
-Structure:
-- Titre "Tier 1 - Les 3 Meilleures Applications" en noir, italic, bold, font-size: 32px
-- Badge "COMPATIBILITÉ 90-100%" en #FF4500, uppercase
-- 3 LIGNES d'apps avec: bordure gauche orange 4px, icône, nom app bold, description, colonnes droites "MRR POTENTIEL" (valeur en #FF4500) et "EFFORT MVP" (en gris)
+- "Tier 1 - Les 3 Meilleures Applications" en Mersad noir italic
+- "COMPATIBILITÉ 90-100%" badge #FF4500
+- 3 lignes apps: bordure gauche orange 4px, icône, nom, description, MRR en #FF4500, effort en gris
 
 ## SLIDE 4: TIER 2 (fond #F5F5F5)
-- Même structure que TIER 1
-- Titre "Tier 2 - Les 3 Applications Complémentaires"
-- Badge "COMPATIBILITÉ 70-89%" en #888 (gris)
-- Bordure gauche grise au lieu d'orange
+- Même que Tier 1 mais badge et bordures en #888888
 
 ## SLIDE 5: CARDS (fond #F5F5F5)
-Structure:
-- Titre "Vos 6 Apps Compatibles" en noir, italic, bold
-- Sous-titre "Comment lancer chaque outil dès demain" en gris
-- GRILLE 3x2 de cartes blanches avec bordure gauche orange
-- Chaque carte: Nom app + prix en #FF4500, liste numérotée 1-2-3, section "CIBLE" et "POTENTIEL" en bas
+- "Vos 6 Apps Compatibles" en Mersad
+- Grille 3x2, cartes avec bordure gauche orange, prix en #FF4500, liste 1-2-3, CIBLE/POTENTIEL
 
 ## SLIDE 6: ROADMAP (fond #F5F5F5)
-- Titre "Roadmap 90 Jours" en noir, italic, bold
-- 3 colonnes: Mois 1, Mois 2, Mois 3
-- Chaque mois avec icône, titre, liste de tâches
+- "Roadmap 90 Jours" en Mersad
+- 3 colonnes avec timeline visuelle
 
 ## SLIDE 7: CTA (fond #1A1A1A)
-- Titre "Prêt à Lancer ?" en #FF4500
-- Sous-titre incitatif
-- QR Code ou bouton d'action
+- Image lune
+- "Prêt à Lancer ?" en Mersad #FF4500
+- Image QR: <img src="https://freeaugmente.netlify.app/qr_code_orange.png" style="width:150px">
 
 ## FORMAT JSON FINAL
-{"slides":["<!DOCTYPE html><html>...</html>", "<!DOCTYPE html>...", ...]}
+{"slides":["<!DOCTYPE html><html lang='fr'><head><meta charset='UTF-8'><style>@import url(...)...</style></head><body>...</body></html>", ...]}
 
-Génère les 7 slides HTML complètes et autonomes. Chaque slide DOIT inclure <style> avec Google Fonts Inter.`;
+IMPORTANT: Envoie le fichier JSON par email à ${notificationEmail} une fois généré.`;
 
       try {
         const createResponse = await fetch("https://api.manus.ai/v1/tasks", {

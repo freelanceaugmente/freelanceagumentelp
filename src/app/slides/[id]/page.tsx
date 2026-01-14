@@ -101,12 +101,59 @@ export default function SlidesPage() {
   const handleExportPDF = async () => {
     setIsExporting(true);
     
-    // For now, we'll trigger print dialog which allows saving as PDF
-    if (iframeRef.current?.contentWindow) {
-      iframeRef.current.contentWindow.print();
+    // Create a new window with all slides for printing
+    const printWindow = window.open('', '_blank');
+    if (printWindow && data) {
+      const allSlidesHtml = data.slides.map((slide, index) => {
+        // Inject print styles into each slide
+        const slideWithPrintStyles = slide.replace('</head>', `
+          <style>
+            @media print {
+              * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+              body { background-color: inherit !important; }
+              .slide-container, body { page-break-after: always; }
+            }
+            @page { size: 1280px 720px landscape; margin: 0; }
+          </style>
+        </head>`);
+        return `<div class="slide-page" style="page-break-after: always; width: 1280px; height: 720px; overflow: hidden;">${slideWithPrintStyles}</div>`;
+      }).join('');
+      
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Slides - ${data.userName}</title>
+          <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+            @font-face { font-family: 'Mersad'; src: url('/MersadBlack.otf') format('opentype'); }
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { background: #1A1A1A; }
+            .slide-page { width: 1280px; height: 720px; overflow: hidden; page-break-after: always; }
+            .slide-page iframe { width: 100%; height: 100%; border: none; }
+            @media print {
+              * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+              @page { size: 1280px 720px landscape; margin: 0; }
+              body { background: transparent !important; }
+            }
+          </style>
+        </head>
+        <body>
+          ${data.slides.map((slide, i) => `
+            <div class="slide-page">
+              <iframe srcdoc="${slide.replace(/"/g, '&quot;')}" style="width:1280px;height:720px;border:none;"></iframe>
+            </div>
+          `).join('')}
+          <script>
+            setTimeout(() => { window.print(); }, 1500);
+          </script>
+        </body>
+        </html>
+      `);
+      printWindow.document.close();
     }
     
-    setTimeout(() => setIsExporting(false), 1000);
+    setTimeout(() => setIsExporting(false), 2000);
   };
 
   if (loading) {

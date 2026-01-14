@@ -1,45 +1,71 @@
-"use strict";exports.id=47,exports.ids=[47],exports.modules={6047:(e,s,t)=>{t.r(s),t.d(s,{GET:()=>r,POST:()=>o,slidesStore:()=>l});var a=t(7070),i=t(8547);let l=new Map;async function o(e){try{let{linkedinUrl:s,email:t}=await e.json();if(!s||!s.includes("linkedin.com"))return a.NextResponse.json({error:"URL LinkedIn invalide"},{status:400});if(!t||!t.includes("@"))return a.NextResponse.json({error:"Email invalide"},{status:400});let o=s.split("/"),r=o[o.length-1]||o[o.length-2]||"Utilisateur",n=(0,i.Z)(),p={id:n,linkedinUrl:s,userName:r.charAt(0).toUpperCase()+r.slice(1),userEmail:t,slides:[],createdAt:new Date().toISOString(),status:"pending"};if(l.set(n,p),process.env.MANUS_API_KEY){console.log("\uD83D\uDE80 Creating Manus task for:",p.userName);let e=process.env.WEBHOOK_URL||"",a=`Tu es un expert en analyse de profils LinkedIn et en g\xe9n\xe9ration de pr\xe9sentations HTML.
+"use strict";exports.id=47,exports.ids=[47],exports.modules={6047:(e,s,t)=>{t.r(s),t.d(s,{GET:()=>r,POST:()=>l,slidesStore:()=>o});var a=t(7070),i=t(8547);let o=new Map;async function l(e){try{let{linkedinUrl:s,email:t}=await e.json();if(!s||!s.includes("linkedin.com"))return a.NextResponse.json({error:"URL LinkedIn invalide"},{status:400});if(!t||!t.includes("@"))return a.NextResponse.json({error:"Email invalide"},{status:400});let l=s.split("/"),r=l[l.length-1]||l[l.length-2]||"Utilisateur",n=(0,i.Z)(),p={id:n,linkedinUrl:s,userName:r.charAt(0).toUpperCase()+r.slice(1),userEmail:t,slides:[],createdAt:new Date().toISOString(),status:"pending"};if(o.set(n,p),process.env.MANUS_API_KEY){console.log("\uD83D\uDE80 Creating Manus task for:",p.userName),process.env.WEBHOOK_URL;let e=`Tu es un expert en analyse de profils LinkedIn et en g\xe9n\xe9ration de pr\xe9sentations HTML.
 
-## MISSION CRITIQUE - \xc0 EX\xc9CUTER AUTOMATIQUEMENT
+## MISSION
 1. Va sur ce profil LinkedIn: ${s}
 2. Analyse le profil complet (exp\xe9rience, comp\xe9tences, formation)
-3. G\xe9n\xe8re 7 slides HTML personnalis\xe9es
-4. **EX\xc9CUTE AUTOMATIQUEMENT** l'envoi via webhook ET email - NE PAS JUSTE MONTRER LES COMMANDES
+3. G\xe9n\xe8re 7 slides HTML avec le design EXACT ci-dessous
 
-## ⚠️ LIVRAISON AUTOMATIQUE OBLIGATOIRE
-
-### \xc9tape FINALE 1: Webhook (EX\xc9CUTER IMM\xc9DIATEMENT)
-Tu DOIS ex\xe9cuter cette commande curl AUTOMATIQUEMENT \xe0 la fin de ta t\xe2che:
-\`\`\`bash
-curl -X POST "${e}" -H "Content-Type: application/json" -d @webhook_payload.json
-\`\`\`
-
-Cr\xe9e d'abord le fichier webhook_payload.json avec ce format:
-{"taskId": "${n}", "slides": ["<slide1 HTML>", "<slide2 HTML>", ...], "userName": "[Pr\xe9nom Nom extrait]"}
-
-### \xc9tape FINALE 2: Email (ENVOYER AUTOMATIQUEMENT)
-Envoie AUTOMATIQUEMENT le fichier slides.json par email \xe0: ${t}
-Utilise la fonction d'envoi d'email int\xe9gr\xe9e.
-
-## DESIGN SYSTEM
-- Fond: #1A1A1A, Accent: #FF4500, Texte: #FFFFFF/#CCCCCC
+## DESIGN SYSTEM STRICT
 - Dimensions: 1280px x 720px
-- Police: 'Mersad' pour titres, 'Inter' pour corps
-- Footer: "FreelanceAugment\xe9.fr • Vise la Lune" + num\xe9ro page
+- Police titres: font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic
+- Police corps: font-family: 'Inter', sans-serif
+- Accent: #FF4500 (orange)
+- Fond sombre: #1A1A1A
+- Fond clair: #F5F5F5
+- Texte: #1A1A1A (sur fond clair), #FFFFFF (sur fond sombre)
+- Footer TOUJOURS: "FREELANCEAUGMENT\xc9.FR • VISE LA LUNE" \xe0 gauche, "0X / 07" \xe0 droite
 
-## LES 7 SLIDES HTML \xc0 G\xc9N\xc9RER
-1. COVER - "Analyse pour [Pr\xe9nom Nom]" + titre principal
-2. PILLARS - 3 raisons personnalis\xe9es de r\xe9ussir bas\xe9es sur le profil
-3. TIER1 - 3 apps SaaS adapt\xe9es (90-100% compatibilit\xe9) avec MRR
-4. TIER2 - 3 apps compl\xe9mentaires (70-89%)
-5. CARDS - Grille 3x2 des 6 apps avec d\xe9tails
-6. ROADMAP - Plan 3 mois personnalis\xe9
-7. CTA - Call to action final avec QR code
+## SLIDE 1: COVER (fond #1A1A1A)
+Structure HTML:
+- Titre "Analyse Personnalis\xe9e" en #FF4500, font-size: 48px, font-weight: 900, font-style: italic
+- Nom "[Pr\xe9nom Nom]" en #FF4500, font-size: 42px, font-weight: 900
+- Sous-titre "[Titre professionnel]" en #FF4500, font-size: 18px
+- Description "D\xe9couvrez les opportunit\xe9s de side business adapt\xe9es \xe0 votre profil" en #888, font-size: 16px
+- Ligne orange (#FF4500) au-dessus du footer
+- Footer: "FreelanceAugment\xe9.fr • Vise la Lune" \xe0 gauche, "Slide 1" \xe0 droite
 
-## FORMAT JSON REQUIS
-{"slides":["<!DOCTYPE html><html lang=\\"fr\\"><head>...</head><body>...</body></html>", ...]}
+## SLIDE 2: PILLARS (fond #F5F5F5)
+Structure:
+- Titre "Pourquoi Vous Allez R\xe9ussir" en noir, italic, font-size: 36px
+- Badge "LA TRIADE GAGNANTE" en #FF4500, uppercase, font-size: 14px, letter-spacing: 2px
+- 3 CARTES blanches (background: white, border-radius: 8px, box-shadow)
+- Chaque carte a: bordure top color\xe9e (gris/#888, orange/#FF4500, gris/#888), ic\xf4ne SVG dans cercle gris, titre bold, description gris, label uppercase en bas
+- Labels: "VITESSE D'EX\xc9CUTION", "M\xc9THODE \xc9PROUV\xc9E", "VISION PRODUIT"
+- Footer avec carr\xe9 orange, texte uppercase
 
-🚨 RAPPEL FINAL: Tu DOIS EX\xc9CUTER le curl ET envoyer l'email AUTOMATIQUEMENT. Ne termine pas sans avoir fait ces 2 actions.`;try{let e=await fetch("https://api.manus.ai/v1/tasks",{method:"POST",headers:{"Content-Type":"application/json",API_KEY:process.env.MANUS_API_KEY},body:JSON.stringify({prompt:a,agentProfile:"manus-1.6",mode:"agent",interactive:!1})});if(e.ok){let s=await e.json();console.log("✅ Manus task created:",s.task_id),p.manusTaskId=s.task_id,p.status="processing"}else{let s=await e.text();console.error("❌ Manus API error:",e.status,s),p.status="failed"}}catch(e){console.error("❌ Manus API fetch error:",e),p.status="failed"}}else console.log("⚠️ MANUS_API_KEY not set"),p.status="failed";return l.set(n,p),a.NextResponse.json({id:n,success:!0})}catch(e){return console.error("Generate error:",e),a.NextResponse.json({error:"Erreur lors de la g\xe9n\xe9ration"},{status:500})}}async function r(e){let{searchParams:s}=new URL(e.url),t=s.get("id");if(!t)return a.NextResponse.json({error:"ID manquant"},{status:400});let i=l.get(t);if(!i)return a.NextResponse.json({error:"Donn\xe9es non trouv\xe9es"},{status:404});if("processing"===i.status&&i.manusTaskId&&process.env.MANUS_API_KEY)try{let e=await fetch(`https://api.manus.ai/v1/tasks/${i.manusTaskId}`,{method:"GET",headers:{API_KEY:process.env.MANUS_API_KEY}});if(e.ok){let s=await e.json();if(console.log(`📊 Manus task ${i.manusTaskId} status:`,s.status),"completed"===s.status||"stopped"===s.status){console.log("\uD83D\uDCE6 Full Manus response keys:",Object.keys(s));let e=!1;if(s.output&&Array.isArray(s.output)){for(let t of(console.log("\uD83D\uDCC1 Checking",s.output.length,"output items from Manus"),s.output))if(t.content&&Array.isArray(t.content)){for(let s of t.content){if(s.fileUrl&&(s.fileName?.includes("slides")||s.fileName?.includes("webhook"))){console.log(`📥 Found file: ${s.fileName} at ${s.fileUrl}`);try{let t=await fetch(s.fileUrl);if(t.ok){let a=await t.text();console.log(`📄 File content length: ${a.length}`);try{let t=JSON.parse(a);if(t.slides&&Array.isArray(t.slides)&&t.slides.length>0){i.slides=t.slides,i.status="completed",e=!0,console.log(`✅ Found ${i.slides.length} slides from file ${s.fileName}`);break}}catch(e){console.log(`⚠️ Could not parse ${s.fileName} as JSON`)}}}catch(e){console.log(`❌ Error fetching file: ${e}`)}}if(s.text&&s.text.includes('"slides"')){let t=s.text.match(/\{"slides"\s*:\s*\[[\s\S]*?\]\}/);if(t)try{let s=JSON.parse(t[0]);if(s.slides&&Array.isArray(s.slides)&&s.slides.length>0){i.slides=s.slides,i.status="completed",e=!0,console.log(`✅ Found ${i.slides.length} slides in output text`);break}}catch(e){}}}if(e)break}}if(!e){let t=JSON.stringify(s);console.log("\uD83D\uDCE6 Searching full response, length:",t.length);let a=t.match(/"fileUrl"\s*:\s*"([^"]+)"/g);if(a)for(let s of(console.log(`🔗 Found ${a.length} file URLs`),a)){let t=s.match(/"fileUrl"\s*:\s*"([^"]+)"/);if(t&&t[1]){let s=t[1].replace(/\\/g,"");if(s.includes("slides")||s.includes("webhook")||s.endsWith(".json")){console.log(`📥 Fetching: ${s}`);try{let t=await fetch(s);if(t.ok){let a=await t.text(),l=JSON.parse(a);if(l.slides&&Array.isArray(l.slides)&&l.slides.length>0){i.slides=l.slides,i.status="completed",e=!0,console.log(`✅ Found ${i.slides.length} slides from ${s}`);break}}}catch(e){console.log(`⚠️ Error with ${s}: ${e}`)}}}}}if(!e){let t=JSON.stringify(s).match(/\{"slides"\s*:\s*\[[\s\S]*?\]\s*\}/g);if(t&&t.length>0){let s=t.reduce((e,s)=>e.length>s.length?e:s);try{let t=s.replace(/\\n/g,"\n").replace(/\\"/g,'"').replace(/\\\\/g,"\\"),a=JSON.parse(t);a.slides&&Array.isArray(a.slides)&&a.slides.length>0&&(i.slides=a.slides,i.status="completed",e=!0,console.log("✅ Found slides via pattern matching"))}catch(e){}}}e||(console.log("⚠️ No valid slides found in Manus response, using demo"),i.status="completed",i.slides=n(i.userName)),l.set(t,i)}else"failed"===s.status&&(console.error("❌ Manus task failed"),i.status="failed",i.slides=n(i.userName),l.set(t,i))}}catch(e){console.error("❌ Error checking Manus status:",e)}return a.NextResponse.json(i)}function n(e){return[`<!DOCTYPE html>
+## SLIDE 3: TIER 1 (fond #F5F5F5)
+Structure:
+- Titre "Tier 1 - Les 3 Meilleures Applications" en noir, italic, bold, font-size: 32px
+- Badge "COMPATIBILIT\xc9 90-100%" en #FF4500, uppercase
+- 3 LIGNES d'apps avec: bordure gauche orange 4px, ic\xf4ne, nom app bold, description, colonnes droites "MRR POTENTIEL" (valeur en #FF4500) et "EFFORT MVP" (en gris)
+
+## SLIDE 4: TIER 2 (fond #F5F5F5)
+- M\xeame structure que TIER 1
+- Titre "Tier 2 - Les 3 Applications Compl\xe9mentaires"
+- Badge "COMPATIBILIT\xc9 70-89%" en #888 (gris)
+- Bordure gauche grise au lieu d'orange
+
+## SLIDE 5: CARDS (fond #F5F5F5)
+Structure:
+- Titre "Vos 6 Apps Compatibles" en noir, italic, bold
+- Sous-titre "Comment lancer chaque outil d\xe8s demain" en gris
+- GRILLE 3x2 de cartes blanches avec bordure gauche orange
+- Chaque carte: Nom app + prix en #FF4500, liste num\xe9rot\xe9e 1-2-3, section "CIBLE" et "POTENTIEL" en bas
+
+## SLIDE 6: ROADMAP (fond #F5F5F5)
+- Titre "Roadmap 90 Jours" en noir, italic, bold
+- 3 colonnes: Mois 1, Mois 2, Mois 3
+- Chaque mois avec ic\xf4ne, titre, liste de t\xe2ches
+
+## SLIDE 7: CTA (fond #1A1A1A)
+- Titre "Pr\xeat \xe0 Lancer ?" en #FF4500
+- Sous-titre incitatif
+- QR Code ou bouton d'action
+
+## FORMAT JSON FINAL
+{"slides":["<!DOCTYPE html><html>...</html>", "<!DOCTYPE html>...", ...]}
+
+G\xe9n\xe8re les 7 slides HTML compl\xe8tes et autonomes. Chaque slide DOIT inclure <style> avec Google Fonts Inter.`;try{let s=await fetch("https://api.manus.ai/v1/tasks",{method:"POST",headers:{"Content-Type":"application/json",API_KEY:process.env.MANUS_API_KEY},body:JSON.stringify({prompt:e,agentProfile:"manus-1.6",mode:"agent",interactive:!1})});if(s.ok){let e=await s.json();console.log("✅ Manus task created:",e.task_id),p.manusTaskId=e.task_id,p.status="processing"}else{let e=await s.text();console.error("❌ Manus API error:",s.status,e),p.status="failed"}}catch(e){console.error("❌ Manus API fetch error:",e),p.status="failed"}}else console.log("⚠️ MANUS_API_KEY not set"),p.status="failed";return o.set(n,p),a.NextResponse.json({id:n,success:!0})}catch(e){return console.error("Generate error:",e),a.NextResponse.json({error:"Erreur lors de la g\xe9n\xe9ration"},{status:500})}}async function r(e){let{searchParams:s}=new URL(e.url),t=s.get("id");if(!t)return a.NextResponse.json({error:"ID manquant"},{status:400});let i=o.get(t);if(!i)return a.NextResponse.json({error:"Donn\xe9es non trouv\xe9es"},{status:404});if("processing"===i.status&&i.manusTaskId&&process.env.MANUS_API_KEY)try{let e=await fetch(`https://api.manus.ai/v1/tasks/${i.manusTaskId}`,{method:"GET",headers:{API_KEY:process.env.MANUS_API_KEY}});if(e.ok){let s=await e.json();if(console.log(`📊 Manus task ${i.manusTaskId} status:`,s.status),"completed"===s.status||"stopped"===s.status){console.log("\uD83D\uDCE6 Full Manus response keys:",Object.keys(s));let e=!1;if(s.output&&Array.isArray(s.output)){for(let t of(console.log("\uD83D\uDCC1 Checking",s.output.length,"output items from Manus"),s.output))if(t.content&&Array.isArray(t.content)){for(let s of t.content){if(s.fileUrl&&(s.fileName?.includes("slides")||s.fileName?.includes("webhook"))){console.log(`📥 Found file: ${s.fileName} at ${s.fileUrl}`);try{let t=await fetch(s.fileUrl);if(t.ok){let a=await t.text();console.log(`📄 File content length: ${a.length}`);try{let t=JSON.parse(a);if(t.slides&&Array.isArray(t.slides)&&t.slides.length>0){i.slides=t.slides,i.status="completed",e=!0,console.log(`✅ Found ${i.slides.length} slides from file ${s.fileName}`);break}}catch(e){console.log(`⚠️ Could not parse ${s.fileName} as JSON`)}}}catch(e){console.log(`❌ Error fetching file: ${e}`)}}if(s.text&&s.text.includes('"slides"')){let t=s.text.match(/\{"slides"\s*:\s*\[[\s\S]*?\]\}/);if(t)try{let s=JSON.parse(t[0]);if(s.slides&&Array.isArray(s.slides)&&s.slides.length>0){i.slides=s.slides,i.status="completed",e=!0,console.log(`✅ Found ${i.slides.length} slides in output text`);break}}catch(e){}}}if(e)break}}if(!e){let t=JSON.stringify(s);console.log("\uD83D\uDCE6 Searching full response, length:",t.length);let a=t.match(/"fileUrl"\s*:\s*"([^"]+)"/g);if(a)for(let s of(console.log(`🔗 Found ${a.length} file URLs`),a)){let t=s.match(/"fileUrl"\s*:\s*"([^"]+)"/);if(t&&t[1]){let s=t[1].replace(/\\/g,"");if(s.includes("slides")||s.includes("webhook")||s.endsWith(".json")){console.log(`📥 Fetching: ${s}`);try{let t=await fetch(s);if(t.ok){let a=await t.text(),o=JSON.parse(a);if(o.slides&&Array.isArray(o.slides)&&o.slides.length>0){i.slides=o.slides,i.status="completed",e=!0,console.log(`✅ Found ${i.slides.length} slides from ${s}`);break}}}catch(e){console.log(`⚠️ Error with ${s}: ${e}`)}}}}}if(!e){let t=JSON.stringify(s).match(/\{"slides"\s*:\s*\[[\s\S]*?\]\s*\}/g);if(t&&t.length>0){let s=t.reduce((e,s)=>e.length>s.length?e:s);try{let t=s.replace(/\\n/g,"\n").replace(/\\"/g,'"').replace(/\\\\/g,"\\"),a=JSON.parse(t);a.slides&&Array.isArray(a.slides)&&a.slides.length>0&&(i.slides=a.slides,i.status="completed",e=!0,console.log("✅ Found slides via pattern matching"))}catch(e){}}}e||(console.log("⚠️ No valid slides found in Manus response, using demo"),i.status="completed",i.slides=n(i.userName)),o.set(t,i)}else"failed"===s.status&&(console.error("❌ Manus task failed"),i.status="failed",i.slides=n(i.userName),o.set(t,i))}}catch(e){console.error("❌ Error checking Manus status:",e)}return a.NextResponse.json(i)}function n(e){return[`<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
