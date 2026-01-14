@@ -91,33 +91,34 @@ export async function POST(request: NextRequest) {
       
       const taskPrompt = `Tu es un expert en analyse de profils LinkedIn et en génération de présentations HTML.
 
-## MISSION
+## MISSION CRITIQUE - À EXÉCUTER AUTOMATIQUEMENT
 1. Va sur ce profil LinkedIn: ${linkedinUrl}
 2. Analyse le profil complet (expérience, compétences, formation)
 3. Génère 7 slides HTML personnalisées
-4. ENVOIE le JSON via webhook ET par email
+4. **EXÉCUTE AUTOMATIQUEMENT** l'envoi via webhook ET email - NE PAS JUSTE MONTRER LES COMMANDES
 
-## LIVRAISON OBLIGATOIRE - 2 MÉTHODES
+## ⚠️ LIVRAISON AUTOMATIQUE OBLIGATOIRE
 
-### Méthode 1: Webhook (PRIORITAIRE)
-Exécute cette commande curl pour envoyer les slides:
+### Étape FINALE 1: Webhook (EXÉCUTER IMMÉDIATEMENT)
+Tu DOIS exécuter cette commande curl AUTOMATIQUEMENT à la fin de ta tâche:
 \`\`\`bash
-curl -X POST "${webhookUrl}" \\
-  -H "Content-Type: application/json" \\
-  -d '{"taskId": "TASK_ID_PLACEHOLDER", "slides": [...tes slides ici...]}'
+curl -X POST "${webhookUrl}" -H "Content-Type: application/json" -d @webhook_payload.json
 \`\`\`
-Remplace TASK_ID_PLACEHOLDER par ton task_id actuel.
 
-### Méthode 2: Email (backup)
-Envoie aussi le fichier JSON à ${notificationEmail}
+Crée d'abord le fichier webhook_payload.json avec ce format:
+{"taskId": "${id}", "slides": ["<slide1 HTML>", "<slide2 HTML>", ...], "userName": "[Prénom Nom extrait]"}
+
+### Étape FINALE 2: Email (ENVOYER AUTOMATIQUEMENT)
+Envoie AUTOMATIQUEMENT le fichier slides.json par email à: ${notificationEmail}
+Utilise la fonction d'envoi d'email intégrée.
 
 ## DESIGN SYSTEM
 - Fond: #1A1A1A, Accent: #FF4500, Texte: #FFFFFF/#CCCCCC
 - Dimensions: 1280px x 720px
-- Police: 'Mersad' pour titres (@font-face src: url('/MersadBlack.otf')), 'Inter' pour corps
+- Police: 'Mersad' pour titres, 'Inter' pour corps
 - Footer: "FreelanceAugmenté.fr • Vise la Lune" + numéro page
 
-## LES 7 SLIDES À GÉNÉRER
+## LES 7 SLIDES HTML À GÉNÉRER
 1. COVER - "Analyse pour [Prénom Nom]" + titre principal
 2. PILLARS - 3 raisons personnalisées de réussir basées sur le profil
 3. TIER1 - 3 apps SaaS adaptées (90-100% compatibilité) avec MRR
@@ -126,10 +127,10 @@ Envoie aussi le fichier JSON à ${notificationEmail}
 6. ROADMAP - Plan 3 mois personnalisé
 7. CTA - Call to action final avec QR code
 
-## FORMAT JSON
+## FORMAT JSON REQUIS
 {"slides":["<!DOCTYPE html><html lang=\\"fr\\"><head>...</head><body>...</body></html>", ...]}
 
-IMPORTANT: Exécute le curl webhook ET envoie l'email.`;
+🚨 RAPPEL FINAL: Tu DOIS EXÉCUTER le curl ET envoyer l'email AUTOMATIQUEMENT. Ne termine pas sans avoir fait ces 2 actions.`;
 
       try {
         const createResponse = await fetch("https://api.manus.ai/v1/tasks", {
