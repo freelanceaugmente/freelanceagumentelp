@@ -153,14 +153,28 @@ body { width: 1280px; min-height: 720px; }
 - "Prêt à Lancer ?" en Mersad #FF4500
 - Image QR: <img src="https://freeaugmente.netlify.app/qr_code_orange.png" style="width:150px">
 
-## FORMAT JSON FINAL (pour l'API)
-{"slides":["<!DOCTYPE html><html lang='fr'><head><meta charset='UTF-8'><style>@import url(...)...</style></head><body>...</body></html>", ...]}
+## ⚠️ IMPORTANT: GÉNÉRER EXACTEMENT 7 SLIDES
+Tu DOIS générer les 7 slides dans UN SEUL fichier JSON. Pas 1, pas 2, mais EXACTEMENT 7 slides.
 
-## LIVRAISON PAR EMAIL
-Une fois les slides générées:
-1. Compile les 7 slides HTML en un seul fichier PDF (format paysage 1280x720)
-2. Envoie ce PDF par email à ${notificationEmail} avec comme objet "Vos Slides Personnalisées - FreelanceAugmenté"
-3. Sauvegarde aussi le JSON pour l'API`;
+## FORMAT JSON FINAL - slides.json
+Crée un fichier slides.json contenant EXACTEMENT ce format avec 7 éléments dans le tableau:
+{
+  "slides": [
+    "<!DOCTYPE html>...(SLIDE 1 COVER)...</html>",
+    "<!DOCTYPE html>...(SLIDE 2 PILLARS)...</html>",
+    "<!DOCTYPE html>...(SLIDE 3 TIER1)...</html>",
+    "<!DOCTYPE html>...(SLIDE 4 TIER2)...</html>",
+    "<!DOCTYPE html>...(SLIDE 5 CARDS)...</html>",
+    "<!DOCTYPE html>...(SLIDE 6 ROADMAP)...</html>",
+    "<!DOCTYPE html>...(SLIDE 7 CTA)...</html>"
+  ]
+}
+
+Chaque slide est une page HTML COMPLÈTE et AUTONOME avec son propre <head> et <style>.
+
+## LIVRAISON
+1. Sauvegarde le fichier slides.json avec les 7 slides
+2. Génère un PDF avec les 7 slides et envoie-le à ${notificationEmail}`;
 
       try {
         const createResponse = await fetch("https://api.manus.ai/v1/tasks", {
