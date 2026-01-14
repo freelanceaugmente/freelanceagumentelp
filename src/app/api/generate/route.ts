@@ -207,90 +207,121 @@ export async function GET(request: NextRequest) {
         console.log(`📊 Manus task ${data.manusTaskId} status:`, statusData.status);
 
         if (statusData.status === "completed" || statusData.status === "stopped") {
-          // Log the full response to understand the structure
           console.log("📦 Full Manus response keys:", Object.keys(statusData));
-          
-          // Convert entire response to string to search for slides JSON
-          const fullResponseStr = JSON.stringify(statusData);
-          console.log("📦 Response length:", fullResponseStr.length);
           
           let slidesFound = false;
           
-          // Method 1: Search for {"slides": pattern anywhere in the response
-          const slidesJsonMatch = fullResponseStr.match(/\{"slides"\s*:\s*\[[\s\S]*?\]\s*\}/g);
-          if (slidesJsonMatch && slidesJsonMatch.length > 0) {
-            // Take the longest match (most complete)
-            const longestMatch = slidesJsonMatch.reduce((a, b) => a.length > b.length ? a : b);
-            console.log("🔍 Found slides JSON pattern, length:", longestMatch.length);
+          // Method 1: Check output array for files with fileUrl (Manus API format)
+          if (statusData.output && Array.isArray(statusData.output)) {
+            console.log("📁 Checking", statusData.output.length, "output items from Manus");
             
-            try {
-              // Unescape JSON string if needed
-              let cleanJson = longestMatch;
-              if (cleanJson.includes('\\n') || cleanJson.includes('\\"')) {
-                cleanJson = cleanJson.replace(/\\n/g, '\n').replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+            for (const outputItem of statusData.output) {
+              if (outputItem.content && Array.isArray(outputItem.content)) {
+                for (const contentItem of outputItem.content) {
+                  // Check for file with slides
+                  if (contentItem.fileUrl && (contentItem.fileName?.includes('slides') || contentItem.fileName?.includes('webhook'))) {
+                    console.log(`📥 Found file: ${contentItem.fileName} at ${contentItem.fileUrl}`);
+                    
+                    try {
+                      const fileResponse = await fetch(contentItem.fileUrl);
+                      if (fileResponse.ok) {
+                        const fileContent = await fileResponse.text();
+                        console.log(`📄 File content length: ${fileContent.length}`);
+                        
+                        // Try to parse as JSON
+                        try {
+                          const parsed = JSON.parse(fileContent);
+                          if (parsed.slides && Array.isArray(parsed.slides) && parsed.slides.length > 0) {
+                            data.slides = parsed.slides;
+                            data.status = 'completed';
+                            slidesFound = true;
+                            console.log(`✅ Found ${data.slides.length} slides from file ${contentItem.fileName}`);
+                            break;
+                          }
+                        } catch (e) {
+                          console.log(`⚠️ Could not parse ${contentItem.fileName} as JSON`);
+                        }
+                      }
+                    } catch (e) {
+                      console.log(`❌ Error fetching file: ${e}`);
+                    }
+                  }
+                  
+                  // Check for text content with slides
+                  if (contentItem.text && contentItem.text.includes('"slides"')) {
+                    const match = contentItem.text.match(/\{"slides"\s*:\s*\[[\s\S]*?\]\}/);
+                    if (match) {
+                      try {
+                        const parsed = JSON.parse(match[0]);
+                        if (parsed.slides && Array.isArray(parsed.slides) && parsed.slides.length > 0) {
+                          data.slides = parsed.slides;
+                          data.status = 'completed';
+                          slidesFound = true;
+                          console.log(`✅ Found ${data.slides.length} slides in output text`);
+                          break;
+                        }
+                      } catch (e) {}
+                    }
+                  }
+                }
+                if (slidesFound) break;
               }
-              
-              const parsed = JSON.parse(cleanJson);
-              if (parsed.slides && Array.isArray(parsed.slides) && parsed.slides.length > 0) {
-                data.slides = parsed.slides;
-                data.status = 'completed';
-                slidesFound = true;
-                console.log("✅ Successfully extracted", data.slides.length, "slides from Manus response");
-              }
-            } catch (e) {
-              console.log("⚠️ First JSON parse attempt failed, trying alternative...");
             }
           }
           
-          // Method 2: Check specific fields
+          // Method 2: Search entire response for slides pattern
           if (!slidesFound) {
-            const possibleFields = ['output', 'result', 'response', 'final_output', 'content', 'message', 'data'];
-            for (const field of possibleFields) {
-              if (statusData[field]) {
-                const fieldValue = typeof statusData[field] === 'string' ? statusData[field] : JSON.stringify(statusData[field]);
-                console.log(`🔍 Checking field '${field}', length:`, fieldValue.length);
-                
-                // Look for slides array in this field
-                const match = fieldValue.match(/\{"slides"\s*:\s*\[[\s\S]*?\]\s*\}/);
-                if (match) {
-                  try {
-                    let cleanJson = match[0].replace(/\\n/g, '\n').replace(/\\"/g, '"').replace(/\\\\/g, '\\');
-                    const parsed = JSON.parse(cleanJson);
-                    if (parsed.slides && Array.isArray(parsed.slides) && parsed.slides.length > 0) {
-                      data.slides = parsed.slides;
-                      data.status = 'completed';
-                      slidesFound = true;
-                      console.log(`✅ Found ${data.slides.length} slides in field '${field}'`);
-                      break;
+            const fullResponseStr = JSON.stringify(statusData);
+            console.log("📦 Searching full response, length:", fullResponseStr.length);
+            
+            // Look for fileUrl patterns
+            const fileUrlMatches = fullResponseStr.match(/"fileUrl"\s*:\s*"([^"]+)"/g);
+            if (fileUrlMatches) {
+              console.log(`🔗 Found ${fileUrlMatches.length} file URLs`);
+              for (const match of fileUrlMatches) {
+                const urlMatch = match.match(/"fileUrl"\s*:\s*"([^"]+)"/);
+                if (urlMatch && urlMatch[1]) {
+                  const fileUrl = urlMatch[1].replace(/\\/g, '');
+                  if (fileUrl.includes('slides') || fileUrl.includes('webhook') || fileUrl.endsWith('.json')) {
+                    console.log(`📥 Fetching: ${fileUrl}`);
+                    try {
+                      const fileResponse = await fetch(fileUrl);
+                      if (fileResponse.ok) {
+                        const fileContent = await fileResponse.text();
+                        const parsed = JSON.parse(fileContent);
+                        if (parsed.slides && Array.isArray(parsed.slides) && parsed.slides.length > 0) {
+                          data.slides = parsed.slides;
+                          data.status = 'completed';
+                          slidesFound = true;
+                          console.log(`✅ Found ${data.slides.length} slides from ${fileUrl}`);
+                          break;
+                        }
+                      }
+                    } catch (e) {
+                      console.log(`⚠️ Error with ${fileUrl}: ${e}`);
                     }
-                  } catch (e) {
-                    console.log(`⚠️ Parse error in field '${field}'`);
                   }
                 }
               }
             }
           }
           
-          // Method 3: Check files array
-          if (!slidesFound && statusData.files && Array.isArray(statusData.files)) {
-            console.log("📁 Checking", statusData.files.length, "files from Manus");
-            for (const file of statusData.files) {
-              const fileContent = typeof file === 'string' ? file : (file.content || file.data || JSON.stringify(file));
-              if (fileContent.includes('"slides"')) {
-                const match = fileContent.match(/\{"slides"\s*:\s*\[[\s\S]*?\]\s*\}/);
-                if (match) {
-                  try {
-                    const parsed = JSON.parse(match[0]);
-                    if (parsed.slides && Array.isArray(parsed.slides) && parsed.slides.length > 0) {
-                      data.slides = parsed.slides;
-                      data.status = 'completed';
-                      slidesFound = true;
-                      console.log("✅ Found slides in Manus files");
-                      break;
-                    }
-                  } catch (e) {}
+          // Method 3: Direct JSON pattern search
+          if (!slidesFound) {
+            const fullResponseStr = JSON.stringify(statusData);
+            const slidesJsonMatch = fullResponseStr.match(/\{"slides"\s*:\s*\[[\s\S]*?\]\s*\}/g);
+            if (slidesJsonMatch && slidesJsonMatch.length > 0) {
+              const longestMatch = slidesJsonMatch.reduce((a, b) => a.length > b.length ? a : b);
+              try {
+                let cleanJson = longestMatch.replace(/\\n/g, '\n').replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+                const parsed = JSON.parse(cleanJson);
+                if (parsed.slides && Array.isArray(parsed.slides) && parsed.slides.length > 0) {
+                  data.slides = parsed.slides;
+                  data.status = 'completed';
+                  slidesFound = true;
+                  console.log("✅ Found slides via pattern matching");
                 }
-              }
+              } catch (e) {}
             }
           }
           

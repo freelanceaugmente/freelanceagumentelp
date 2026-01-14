@@ -1,32 +1,33 @@
 "use strict";exports.id=47,exports.ids=[47],exports.modules={6047:(e,s,t)=>{t.r(s),t.d(s,{GET:()=>r,POST:()=>o,slidesStore:()=>l});var a=t(7070),i=t(8547);let l=new Map;async function o(e){try{let{linkedinUrl:s,email:t}=await e.json();if(!s||!s.includes("linkedin.com"))return a.NextResponse.json({error:"URL LinkedIn invalide"},{status:400});if(!t||!t.includes("@"))return a.NextResponse.json({error:"Email invalide"},{status:400});let o=s.split("/"),r=o[o.length-1]||o[o.length-2]||"Utilisateur",n=(0,i.Z)(),p={id:n,linkedinUrl:s,userName:r.charAt(0).toUpperCase()+r.slice(1),userEmail:t,slides:[],createdAt:new Date().toISOString(),status:"pending"};if(l.set(n,p),process.env.MANUS_API_KEY){console.log("\uD83D\uDE80 Creating Manus task for:",p.userName);let e=process.env.WEBHOOK_URL||"",a=`Tu es un expert en analyse de profils LinkedIn et en g\xe9n\xe9ration de pr\xe9sentations HTML.
 
-## MISSION
+## MISSION CRITIQUE - \xc0 EX\xc9CUTER AUTOMATIQUEMENT
 1. Va sur ce profil LinkedIn: ${s}
 2. Analyse le profil complet (exp\xe9rience, comp\xe9tences, formation)
 3. G\xe9n\xe8re 7 slides HTML personnalis\xe9es
-4. ENVOIE le JSON via webhook ET par email
+4. **EX\xc9CUTE AUTOMATIQUEMENT** l'envoi via webhook ET email - NE PAS JUSTE MONTRER LES COMMANDES
 
-## LIVRAISON OBLIGATOIRE - 2 M\xc9THODES
+## ⚠️ LIVRAISON AUTOMATIQUE OBLIGATOIRE
 
-### M\xe9thode 1: Webhook (PRIORITAIRE)
-Ex\xe9cute cette commande curl pour envoyer les slides:
+### \xc9tape FINALE 1: Webhook (EX\xc9CUTER IMM\xc9DIATEMENT)
+Tu DOIS ex\xe9cuter cette commande curl AUTOMATIQUEMENT \xe0 la fin de ta t\xe2che:
 \`\`\`bash
-curl -X POST "${e}" \\
-  -H "Content-Type: application/json" \\
-  -d '{"taskId": "TASK_ID_PLACEHOLDER", "slides": [...tes slides ici...]}'
+curl -X POST "${e}" -H "Content-Type: application/json" -d @webhook_payload.json
 \`\`\`
-Remplace TASK_ID_PLACEHOLDER par ton task_id actuel.
 
-### M\xe9thode 2: Email (backup)
-Envoie aussi le fichier JSON \xe0 ${t}
+Cr\xe9e d'abord le fichier webhook_payload.json avec ce format:
+{"taskId": "${n}", "slides": ["<slide1 HTML>", "<slide2 HTML>", ...], "userName": "[Pr\xe9nom Nom extrait]"}
+
+### \xc9tape FINALE 2: Email (ENVOYER AUTOMATIQUEMENT)
+Envoie AUTOMATIQUEMENT le fichier slides.json par email \xe0: ${t}
+Utilise la fonction d'envoi d'email int\xe9gr\xe9e.
 
 ## DESIGN SYSTEM
 - Fond: #1A1A1A, Accent: #FF4500, Texte: #FFFFFF/#CCCCCC
 - Dimensions: 1280px x 720px
-- Police: 'Mersad' pour titres (@font-face src: url('/MersadBlack.otf')), 'Inter' pour corps
+- Police: 'Mersad' pour titres, 'Inter' pour corps
 - Footer: "FreelanceAugment\xe9.fr • Vise la Lune" + num\xe9ro page
 
-## LES 7 SLIDES \xc0 G\xc9N\xc9RER
+## LES 7 SLIDES HTML \xc0 G\xc9N\xc9RER
 1. COVER - "Analyse pour [Pr\xe9nom Nom]" + titre principal
 2. PILLARS - 3 raisons personnalis\xe9es de r\xe9ussir bas\xe9es sur le profil
 3. TIER1 - 3 apps SaaS adapt\xe9es (90-100% compatibilit\xe9) avec MRR
@@ -35,10 +36,10 @@ Envoie aussi le fichier JSON \xe0 ${t}
 6. ROADMAP - Plan 3 mois personnalis\xe9
 7. CTA - Call to action final avec QR code
 
-## FORMAT JSON
+## FORMAT JSON REQUIS
 {"slides":["<!DOCTYPE html><html lang=\\"fr\\"><head>...</head><body>...</body></html>", ...]}
 
-IMPORTANT: Ex\xe9cute le curl webhook ET envoie l'email.`;try{let e=await fetch("https://api.manus.ai/v1/tasks",{method:"POST",headers:{"Content-Type":"application/json",API_KEY:process.env.MANUS_API_KEY},body:JSON.stringify({prompt:a,agentProfile:"manus-1.6",mode:"agent",interactive:!1})});if(e.ok){let s=await e.json();console.log("✅ Manus task created:",s.task_id),p.manusTaskId=s.task_id,p.status="processing"}else{let s=await e.text();console.error("❌ Manus API error:",e.status,s),p.status="failed"}}catch(e){console.error("❌ Manus API fetch error:",e),p.status="failed"}}else console.log("⚠️ MANUS_API_KEY not set"),p.status="failed";return l.set(n,p),a.NextResponse.json({id:n,success:!0})}catch(e){return console.error("Generate error:",e),a.NextResponse.json({error:"Erreur lors de la g\xe9n\xe9ration"},{status:500})}}async function r(e){let{searchParams:s}=new URL(e.url),t=s.get("id");if(!t)return a.NextResponse.json({error:"ID manquant"},{status:400});let i=l.get(t);if(!i)return a.NextResponse.json({error:"Donn\xe9es non trouv\xe9es"},{status:404});if("processing"===i.status&&i.manusTaskId&&process.env.MANUS_API_KEY)try{let e=await fetch(`https://api.manus.ai/v1/tasks/${i.manusTaskId}`,{method:"GET",headers:{API_KEY:process.env.MANUS_API_KEY}});if(e.ok){let s=await e.json();if(console.log(`📊 Manus task ${i.manusTaskId} status:`,s.status),"completed"===s.status||"stopped"===s.status){console.log("\uD83D\uDCE6 Full Manus response keys:",Object.keys(s));let e=JSON.stringify(s);console.log("\uD83D\uDCE6 Response length:",e.length);let a=!1,o=e.match(/\{"slides"\s*:\s*\[[\s\S]*?\]\s*\}/g);if(o&&o.length>0){let e=o.reduce((e,s)=>e.length>s.length?e:s);console.log("\uD83D\uDD0D Found slides JSON pattern, length:",e.length);try{let s=e;(s.includes("\\n")||s.includes('\\"'))&&(s=s.replace(/\\n/g,"\n").replace(/\\"/g,'"').replace(/\\\\/g,"\\"));let t=JSON.parse(s);t.slides&&Array.isArray(t.slides)&&t.slides.length>0&&(i.slides=t.slides,i.status="completed",a=!0,console.log("✅ Successfully extracted",i.slides.length,"slides from Manus response"))}catch(e){console.log("⚠️ First JSON parse attempt failed, trying alternative...")}}if(!a){for(let e of["output","result","response","final_output","content","message","data"])if(s[e]){let t="string"==typeof s[e]?s[e]:JSON.stringify(s[e]);console.log(`🔍 Checking field '${e}', length:`,t.length);let l=t.match(/\{"slides"\s*:\s*\[[\s\S]*?\]\s*\}/);if(l)try{let s=l[0].replace(/\\n/g,"\n").replace(/\\"/g,'"').replace(/\\\\/g,"\\"),t=JSON.parse(s);if(t.slides&&Array.isArray(t.slides)&&t.slides.length>0){i.slides=t.slides,i.status="completed",a=!0,console.log(`✅ Found ${i.slides.length} slides in field '${e}'`);break}}catch(s){console.log(`⚠️ Parse error in field '${e}'`)}}}if(!a&&s.files&&Array.isArray(s.files))for(let e of(console.log("\uD83D\uDCC1 Checking",s.files.length,"files from Manus"),s.files)){let s="string"==typeof e?e:e.content||e.data||JSON.stringify(e);if(s.includes('"slides"')){let e=s.match(/\{"slides"\s*:\s*\[[\s\S]*?\]\s*\}/);if(e)try{let s=JSON.parse(e[0]);if(s.slides&&Array.isArray(s.slides)&&s.slides.length>0){i.slides=s.slides,i.status="completed",a=!0,console.log("✅ Found slides in Manus files");break}}catch(e){}}}a||(console.log("⚠️ No valid slides found in Manus response, using demo"),i.status="completed",i.slides=n(i.userName)),l.set(t,i)}else"failed"===s.status&&(console.error("❌ Manus task failed"),i.status="failed",i.slides=n(i.userName),l.set(t,i))}}catch(e){console.error("❌ Error checking Manus status:",e)}return a.NextResponse.json(i)}function n(e){return[`<!DOCTYPE html>
+🚨 RAPPEL FINAL: Tu DOIS EX\xc9CUTER le curl ET envoyer l'email AUTOMATIQUEMENT. Ne termine pas sans avoir fait ces 2 actions.`;try{let e=await fetch("https://api.manus.ai/v1/tasks",{method:"POST",headers:{"Content-Type":"application/json",API_KEY:process.env.MANUS_API_KEY},body:JSON.stringify({prompt:a,agentProfile:"manus-1.6",mode:"agent",interactive:!1})});if(e.ok){let s=await e.json();console.log("✅ Manus task created:",s.task_id),p.manusTaskId=s.task_id,p.status="processing"}else{let s=await e.text();console.error("❌ Manus API error:",e.status,s),p.status="failed"}}catch(e){console.error("❌ Manus API fetch error:",e),p.status="failed"}}else console.log("⚠️ MANUS_API_KEY not set"),p.status="failed";return l.set(n,p),a.NextResponse.json({id:n,success:!0})}catch(e){return console.error("Generate error:",e),a.NextResponse.json({error:"Erreur lors de la g\xe9n\xe9ration"},{status:500})}}async function r(e){let{searchParams:s}=new URL(e.url),t=s.get("id");if(!t)return a.NextResponse.json({error:"ID manquant"},{status:400});let i=l.get(t);if(!i)return a.NextResponse.json({error:"Donn\xe9es non trouv\xe9es"},{status:404});if("processing"===i.status&&i.manusTaskId&&process.env.MANUS_API_KEY)try{let e=await fetch(`https://api.manus.ai/v1/tasks/${i.manusTaskId}`,{method:"GET",headers:{API_KEY:process.env.MANUS_API_KEY}});if(e.ok){let s=await e.json();if(console.log(`📊 Manus task ${i.manusTaskId} status:`,s.status),"completed"===s.status||"stopped"===s.status){console.log("\uD83D\uDCE6 Full Manus response keys:",Object.keys(s));let e=JSON.stringify(s);console.log("\uD83D\uDCE6 Response length:",e.length);let a=!1,o=e.match(/\{"slides"\s*:\s*\[[\s\S]*?\]\s*\}/g);if(o&&o.length>0){let e=o.reduce((e,s)=>e.length>s.length?e:s);console.log("\uD83D\uDD0D Found slides JSON pattern, length:",e.length);try{let s=e;(s.includes("\\n")||s.includes('\\"'))&&(s=s.replace(/\\n/g,"\n").replace(/\\"/g,'"').replace(/\\\\/g,"\\"));let t=JSON.parse(s);t.slides&&Array.isArray(t.slides)&&t.slides.length>0&&(i.slides=t.slides,i.status="completed",a=!0,console.log("✅ Successfully extracted",i.slides.length,"slides from Manus response"))}catch(e){console.log("⚠️ First JSON parse attempt failed, trying alternative...")}}if(!a){for(let e of["output","result","response","final_output","content","message","data"])if(s[e]){let t="string"==typeof s[e]?s[e]:JSON.stringify(s[e]);console.log(`🔍 Checking field '${e}', length:`,t.length);let l=t.match(/\{"slides"\s*:\s*\[[\s\S]*?\]\s*\}/);if(l)try{let s=l[0].replace(/\\n/g,"\n").replace(/\\"/g,'"').replace(/\\\\/g,"\\"),t=JSON.parse(s);if(t.slides&&Array.isArray(t.slides)&&t.slides.length>0){i.slides=t.slides,i.status="completed",a=!0,console.log(`✅ Found ${i.slides.length} slides in field '${e}'`);break}}catch(s){console.log(`⚠️ Parse error in field '${e}'`)}}}if(!a&&s.files&&Array.isArray(s.files))for(let e of(console.log("\uD83D\uDCC1 Checking",s.files.length,"files from Manus"),s.files)){let s="string"==typeof e?e:e.content||e.data||JSON.stringify(e);if(s.includes('"slides"')){let e=s.match(/\{"slides"\s*:\s*\[[\s\S]*?\]\s*\}/);if(e)try{let s=JSON.parse(e[0]);if(s.slides&&Array.isArray(s.slides)&&s.slides.length>0){i.slides=s.slides,i.status="completed",a=!0,console.log("✅ Found slides in Manus files");break}}catch(e){}}}a||(console.log("⚠️ No valid slides found in Manus response, using demo"),i.status="completed",i.slides=n(i.userName)),l.set(t,i)}else"failed"===s.status&&(console.error("❌ Manus task failed"),i.status="failed",i.slides=n(i.userName),l.set(t,i))}}catch(e){console.error("❌ Error checking Manus status:",e)}return a.NextResponse.json(i)}function n(e){return[`<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
