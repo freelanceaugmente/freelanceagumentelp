@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
 1. Va sur ce profil LinkedIn: ${linkedinUrl}
 2. Analyse le profil complet (expérience, compétences, formation)
 3. Génère 7 slides HTML avec le design EXACT ci-dessous
-4. Envoie le fichier JSON par email à ${notificationEmail}
+4. Génère un fichier PDF avec les 7 slides et envoie-le par email à ${notificationEmail}
 
 ## RESSOURCES À UTILISER (URLs absolues)
 - Police Mersad: https://freeaugmente.netlify.app/MersadBlack.otf
@@ -153,10 +153,14 @@ body { width: 1280px; min-height: 720px; }
 - "Prêt à Lancer ?" en Mersad #FF4500
 - Image QR: <img src="https://freeaugmente.netlify.app/qr_code_orange.png" style="width:150px">
 
-## FORMAT JSON FINAL
+## FORMAT JSON FINAL (pour l'API)
 {"slides":["<!DOCTYPE html><html lang='fr'><head><meta charset='UTF-8'><style>@import url(...)...</style></head><body>...</body></html>", ...]}
 
-IMPORTANT: Envoie le fichier JSON par email à ${notificationEmail} une fois généré.`;
+## LIVRAISON PAR EMAIL
+Une fois les slides générées:
+1. Compile les 7 slides HTML en un seul fichier PDF (format paysage 1280x720)
+2. Envoie ce PDF par email à ${notificationEmail} avec comme objet "Vos Slides Personnalisées - FreelanceAugmenté"
+3. Sauvegarde aussi le JSON pour l'API`;
 
       try {
         const createResponse = await fetch("https://api.manus.ai/v1/tasks", {
