@@ -91,46 +91,72 @@ export async function POST(request: NextRequest) {
       
       const taskPrompt = `Tu es un expert en analyse de profils LinkedIn et en génération de présentations HTML.
 
-## MISSION CRITIQUE - À EXÉCUTER AUTOMATIQUEMENT
+## MISSION
 1. Va sur ce profil LinkedIn: ${linkedinUrl}
 2. Analyse le profil complet (expérience, compétences, formation)
-3. Génère 7 slides HTML personnalisées
-4. **EXÉCUTE AUTOMATIQUEMENT** l'envoi via webhook ET email - NE PAS JUSTE MONTRER LES COMMANDES
+3. Génère 7 slides HTML avec le design EXACT ci-dessous
 
-## ⚠️ LIVRAISON AUTOMATIQUE OBLIGATOIRE
-
-### Étape FINALE 1: Webhook (EXÉCUTER IMMÉDIATEMENT)
-Tu DOIS exécuter cette commande curl AUTOMATIQUEMENT à la fin de ta tâche:
-\`\`\`bash
-curl -X POST "${webhookUrl}" -H "Content-Type: application/json" -d @webhook_payload.json
-\`\`\`
-
-Crée d'abord le fichier webhook_payload.json avec ce format:
-{"taskId": "${id}", "slides": ["<slide1 HTML>", "<slide2 HTML>", ...], "userName": "[Prénom Nom extrait]"}
-
-### Étape FINALE 2: Email (ENVOYER AUTOMATIQUEMENT)
-Envoie AUTOMATIQUEMENT le fichier slides.json par email à: ${notificationEmail}
-Utilise la fonction d'envoi d'email intégrée.
-
-## DESIGN SYSTEM
-- Fond: #1A1A1A, Accent: #FF4500, Texte: #FFFFFF/#CCCCCC
+## DESIGN SYSTEM STRICT
 - Dimensions: 1280px x 720px
-- Police: 'Mersad' pour titres, 'Inter' pour corps
-- Footer: "FreelanceAugmenté.fr • Vise la Lune" + numéro page
+- Police titres: font-family: 'Inter', sans-serif; font-weight: 900; font-style: italic
+- Police corps: font-family: 'Inter', sans-serif
+- Accent: #FF4500 (orange)
+- Fond sombre: #1A1A1A
+- Fond clair: #F5F5F5
+- Texte: #1A1A1A (sur fond clair), #FFFFFF (sur fond sombre)
+- Footer TOUJOURS: "FREELANCEAUGMENTÉ.FR • VISE LA LUNE" à gauche, "0X / 07" à droite
 
-## LES 7 SLIDES HTML À GÉNÉRER
-1. COVER - "Analyse pour [Prénom Nom]" + titre principal
-2. PILLARS - 3 raisons personnalisées de réussir basées sur le profil
-3. TIER1 - 3 apps SaaS adaptées (90-100% compatibilité) avec MRR
-4. TIER2 - 3 apps complémentaires (70-89%)
-5. CARDS - Grille 3x2 des 6 apps avec détails
-6. ROADMAP - Plan 3 mois personnalisé
-7. CTA - Call to action final avec QR code
+## SLIDE 1: COVER (fond #1A1A1A)
+Structure HTML:
+- Titre "Analyse Personnalisée" en #FF4500, font-size: 48px, font-weight: 900, font-style: italic
+- Nom "[Prénom Nom]" en #FF4500, font-size: 42px, font-weight: 900
+- Sous-titre "[Titre professionnel]" en #FF4500, font-size: 18px
+- Description "Découvrez les opportunités de side business adaptées à votre profil" en #888, font-size: 16px
+- Ligne orange (#FF4500) au-dessus du footer
+- Footer: "FreelanceAugmenté.fr • Vise la Lune" à gauche, "Slide 1" à droite
 
-## FORMAT JSON REQUIS
-{"slides":["<!DOCTYPE html><html lang=\\"fr\\"><head>...</head><body>...</body></html>", ...]}
+## SLIDE 2: PILLARS (fond #F5F5F5)
+Structure:
+- Titre "Pourquoi Vous Allez Réussir" en noir, italic, font-size: 36px
+- Badge "LA TRIADE GAGNANTE" en #FF4500, uppercase, font-size: 14px, letter-spacing: 2px
+- 3 CARTES blanches (background: white, border-radius: 8px, box-shadow)
+- Chaque carte a: bordure top colorée (gris/#888, orange/#FF4500, gris/#888), icône SVG dans cercle gris, titre bold, description gris, label uppercase en bas
+- Labels: "VITESSE D'EXÉCUTION", "MÉTHODE ÉPROUVÉE", "VISION PRODUIT"
+- Footer avec carré orange, texte uppercase
 
-🚨 RAPPEL FINAL: Tu DOIS EXÉCUTER le curl ET envoyer l'email AUTOMATIQUEMENT. Ne termine pas sans avoir fait ces 2 actions.`;
+## SLIDE 3: TIER 1 (fond #F5F5F5)
+Structure:
+- Titre "Tier 1 - Les 3 Meilleures Applications" en noir, italic, bold, font-size: 32px
+- Badge "COMPATIBILITÉ 90-100%" en #FF4500, uppercase
+- 3 LIGNES d'apps avec: bordure gauche orange 4px, icône, nom app bold, description, colonnes droites "MRR POTENTIEL" (valeur en #FF4500) et "EFFORT MVP" (en gris)
+
+## SLIDE 4: TIER 2 (fond #F5F5F5)
+- Même structure que TIER 1
+- Titre "Tier 2 - Les 3 Applications Complémentaires"
+- Badge "COMPATIBILITÉ 70-89%" en #888 (gris)
+- Bordure gauche grise au lieu d'orange
+
+## SLIDE 5: CARDS (fond #F5F5F5)
+Structure:
+- Titre "Vos 6 Apps Compatibles" en noir, italic, bold
+- Sous-titre "Comment lancer chaque outil dès demain" en gris
+- GRILLE 3x2 de cartes blanches avec bordure gauche orange
+- Chaque carte: Nom app + prix en #FF4500, liste numérotée 1-2-3, section "CIBLE" et "POTENTIEL" en bas
+
+## SLIDE 6: ROADMAP (fond #F5F5F5)
+- Titre "Roadmap 90 Jours" en noir, italic, bold
+- 3 colonnes: Mois 1, Mois 2, Mois 3
+- Chaque mois avec icône, titre, liste de tâches
+
+## SLIDE 7: CTA (fond #1A1A1A)
+- Titre "Prêt à Lancer ?" en #FF4500
+- Sous-titre incitatif
+- QR Code ou bouton d'action
+
+## FORMAT JSON FINAL
+{"slides":["<!DOCTYPE html><html>...</html>", "<!DOCTYPE html>...", ...]}
+
+Génère les 7 slides HTML complètes et autonomes. Chaque slide DOIT inclure <style> avec Google Fonts Inter.`;
 
       try {
         const createResponse = await fetch("https://api.manus.ai/v1/tasks", {
