@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr" data-wf-page="prosplay-demo" data-wf-site="prosplay">
+<head>
+    <meta charset="utf-8" />
+    <title>Demander une démo — Prosplay</title>
+    <meta content="Demandez une démonstration gratuite de Prosplay. Découvrez comment booster vos ventes avec nos campagnes de jeux-concours marketing." name="description" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="https://cdn.prod.website-files.com/68cbc67440ea6feccc24953a/css/nurturing.webflow.shared.b0395a239.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="../assets/images/Logo.svg" rel="shortcut icon" type="image/x-icon" />
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background: linear-gradient(135deg, #020027 0%, #0010a8 100%);
+            min-height: 100vh;
+        }
+        .demo-header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .demo-logo {
+            height: 38px;
+            width: auto;
+        }
+        .demo-back-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        .demo-back-link:hover {
+            opacity: 1;
+        }
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .demo-left {
+            color: #fff;
+        }
+        .demo-title {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 24px;
+        }
+        .demo-subtitle {
+            font-size: 18px;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin: 0 0 32px;
+        }
+        .demo-benefits {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 32px;
+        }
+        .demo-benefits li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .demo-benefits li::before {
+            content: "✓";
+            color: #fed92a;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .demo-note {
+            font-size: 14px;
+            color: #fed92a;
+            font-weight: 500;
+        }
+        .demo-visual {
+            margin-top: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .demo-visual img {
+            max-width: 100%;
+            height: auto;
+        }
+        .demo-right {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .form-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111827;
+            margin: 0 0 24px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+        .form-label .required {
+            color: #ef4444;
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #fed92a;
+            box-shadow: 0 0 0 3px rgba(254, 217, 42, 0.2);
+        }
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-submit {
+            width: 100%;
+            padding: 14px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+            background: #fed92a;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 8px;
+        }
+        .form-submit:hover {
+            background: #fbbf24;
+            transform: translateY(-2px);
+        }
+        .form-privacy {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 16px;
+            line-height: 1.5;
+        }
+        .form-privacy a {
+            color: #0010a8;
+            text-decoration: underline;
+        }
+        @media (max-width: 900px) {
+            .demo-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .demo-title {
+                font-size: 28px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 600px) {
+            .demo-header {
+                padding: 16px 20px;
+            }
+            .demo-container {
+                padding: 20px 16px 60px;
+            }
+            .demo-right {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="demo-header">
+        <a href="../index.html">
+            <img src="../assets/images/Logo-long2.svg" alt="Prosplay" class="demo-logo" />
+        </a>
+        <a href="../index.html" class="demo-back-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Retour au site
+        </a>
+    </header>
+
+    <main class="demo-container">
+        <div class="demo-left">
+            <h1 class="demo-title">Envie de découvrir Prosplay en action ?</h1>
+            <p class="demo-subtitle">Planifiez une démo de 30 minutes avec l'un de nos experts pour :</p>
+            
+            <ul class="demo-benefits">
+                <li>Échanger sur vos besoins et objectifs marketing</li>
+                <li>Découvrir des exemples de campagnes lancées avec Prosplay dans votre secteur</li>
+                <li>Voir comment vous pouvez collecter des données qualitatives via les jeux-concours</li>
+                <li>Obtenir une estimation personnalisée pour votre projet</li>
+            </ul>
+            
+            <p class="demo-note">Sans engagement, ni pression !</p>
+            
+            <div class="demo-visual">
+                <img src="../assets/images/demo1.png" alt="Tableau de bord Prosplay" style="border-radius: 8px;" />
+            </div>
+        </div>
+
+        <div class="demo-right">
+            <h2 class="form-title">Demandez une démo de Prosplay</h2>
+            
+            <form id="demo-form" action="#" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Nom<span class="required">*</span></label>
+                        <input type="text" class="form-input" name="nom" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Prénom<span class="required">*</span></label>
+                        <input type="text" class="form-input" name="prenom" required />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">E-mail professionnel<span class="required">*</span></label>
+                    <input type="email" class="form-input" name="email" required />
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Numéro de téléphone<span class="required">*</span></label>
+                    <input type="tel" class="form-input" name="telephone" required />
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Vous travaillez pour :<span class="required">*</span></label>
+                    <select class="form-select" name="type_entreprise" required>
+                        <option value="">Veuillez sélectionner</option>
+                        <option value="pme">Une PME</option>
+                        <option value="startup">Une startup</option>
+                        <option value="grande_entreprise">Une grande entreprise</option>
+                        <option value="agence">Une agence marketing</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Nom de l'entreprise<span class="required">*</span></label>
+                        <input type="text" class="form-input" name="entreprise" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Fonction<span class="required">*</span></label>
+                        <select class="form-select" name="fonction" required>
+                            <option value="">Veuillez sélectionner</option>
+                            <option value="dirigeant">Dirigeant / CEO</option>
+                            <option value="marketing">Responsable Marketing</option>
+                            <option value="communication">Responsable Communication</option>
+                            <option value="commercial">Responsable Commercial</option>
+                            <option value="digital">Responsable Digital</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Comment avez-vous entendu parler de nous ?<span class="required">*</span></label>
+                    <select class="form-select" name="source" required>
+                        <option value="">Veuillez sélectionner</option>
+                        <option value="google">Recherche Google</option>
+                        <option value="linkedin">LinkedIn</option>
+                        <option value="recommandation">Recommandation</option>
+                        <option value="presse">Article / Presse</option>
+                        <option value="evenement">Événement / Salon</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Comment pouvons-nous vous aider ?</label>
+                    <textarea class="form-textarea" name="message" placeholder="Décrivez brièvement votre projet ou vos besoins..."></textarea>
+                </div>
+                
+                <button type="submit" class="form-submit">Demander ma démo gratuite</button>
+                
+                <p class="form-privacy">
+                    En soumettant ce formulaire, vous acceptez notre <a href="politique-confidentialite.html">politique de confidentialité</a>. Vos données seront utilisées uniquement pour vous contacter concernant votre demande.
+                </p>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('demo-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Merci pour votre demande ! Notre équipe vous contactera dans les plus brefs délais.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
