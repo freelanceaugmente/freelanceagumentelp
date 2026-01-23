@@ -47,6 +47,49 @@
             .hero-title span {
                 white-space: normal !important;
             }
+            /* Fix titre "Pas le temps..." */
+            .content-title span {
+                white-space: normal !important;
+            }
+            .content-title {
+                font-size: clamp(24px, 6vw, 40px) !important;
+                line-height: 1.2 !important;
+            }
+            /* Cartes PME/Prosplay en 1 par ligne */
+            .pme-cards-grid {
+                grid-template-columns: 1fr !important;
+            }
+            /* Fix titre "Générez des leads..." */
+            .heading-text {
+                font-size: clamp(24px, 6vw, 40px) !important;
+                word-wrap: break-word !important;
+            }
+            /* Boutons Création/Publication/Résultats plus petits */
+            .programs-tabs-menu {
+                gap: 8px !important;
+            }
+            .programs-tabs-menu .tab-title {
+                font-size: 12px !important;
+                padding: 8px 12px !important;
+            }
+            .programs-tabs-1, .programs-tabs-2, .programs-tabs-3 {
+                padding: 0 !important;
+            }
+            /* Témoignages : 1 carte par ligne */
+            .testimonial-wrapper {
+                flex-direction: column !important;
+            }
+            .testimonial-card {
+                flex-direction: column !important;
+                width: 100% !important;
+            }
+            .rating-card {
+                width: 100% !important;
+                margin-bottom: 16px !important;
+            }
+            .testimonial-card-content {
+                width: 100% !important;
+            }
         }
     </style>
     <link href="assets/images/Logo.svg" rel="shortcut icon" type="image/x-icon" />
@@ -1042,7 +1085,7 @@
                                 style="-webkit-transform:translate3d(0, 18%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 18%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 18%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 18%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);filter:blur(0);opacity:1"
                                 class="text-lg">En tant que PME, il est difficile de se démarquer en ligne, d'attirer de nouveaux clients et de construire une stratégie marketing efficace sans y consacrer un temps et un budget considérables.</p>
                         </div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin:40px 0;width:100%;max-width:900px;">
+                        <div class="pme-cards-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin:40px 0;width:100%;max-width:900px;">
                             <div style="padding:24px;background:#fde68a;border-radius:12px;font-family:inherit;text-align:center;">
                                 <h3 class="section-title" style="margin:0 0 20px;font-size:20px;">Les PME peinent à créer des campagnes engageantes</h3>
                                 <ul style="list-style:none;padding:0;margin:0;font-family:inherit;text-align:left;">
