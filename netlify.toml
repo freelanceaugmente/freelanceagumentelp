@@ -1,0 +1,4 @@
+[build]
+  base = "CascadeProjects/windsurf-project-10"
+  publish = "."
+  command = ""
