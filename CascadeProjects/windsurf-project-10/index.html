@@ -770,7 +770,7 @@
             </div>
         </header>
         <main data-w-id="2727d165-ddd6-5927-95a8-bfcd1ac8d450" class="main-wrapper">
-            <section class="hero-section" style="padding:60px 0;">
+            <section class="hero-section" style="padding:60px 0;background: linear-gradient(to bottom, #eef7ff 70%, white 100%);">
                 <div class="container">
                     <div class="hero-wrapper" style="display:grid;grid-template-columns:1.35fr 1fr;gap:44px;align-items:center;">
                         <div class="hero-content-wrapper" style="gap:20px;text-align:left;max-width:720px;">
@@ -852,19 +852,19 @@
                             <div class="stats-stat-wrapper" style="color:#ffffff;">
                                 <div class="stats-stat-block">
                                     <div class="margin-bottom-8px">
-                                        <div class="h2-style" style="color:#ffffff;">300+</div>
+                                        <div class="h2-style" style="color:#ffffff;" data-count="300" data-suffix="+">300+</div>
                                     </div>
                                     <p class="text-lg" style="color:#ffffff;">Campagnes réalisées</p>
                                 </div>
                                 <div class="stats-stat-block">
                                     <div class="margin-bottom-8px">
-                                        <div class="h2-style" style="color:#ffffff;">3M+</div>
+                                        <div class="h2-style" style="color:#ffffff;" data-count="3" data-suffix="M+">3M+</div>
                                     </div>
                                     <p class="text-lg" style="color:#ffffff;">Participations</p>
                                 </div>
                                 <div class="stats-stat-block">
                                     <div class="margin-bottom-8px">
-                                        <div class="h2-style" style="color:#ffffff;">100+</div>
+                                        <div class="h2-style" style="color:#ffffff;" data-count="100" data-suffix="+">100+</div>
                                     </div>
                                     <p class="text-lg" style="color:#ffffff;">Collaborations</p>
                                 </div>
@@ -2402,6 +2402,42 @@
     <script src="https://cdn.prod.website-files.com/68cbc67440ea6feccc24953a/js/webflow.d0652226.ed8b648ac9368bf6.js"
         type="text/javascript" integrity="sha384-823BNdwm9EgZAx4aqYFl9EwetE3WSNuM7FHtm7csu6aAeir92uHXvj/vEEaay7NE"
         crossorigin="anonymous"></script>
+    <script>
+        // Stats counter animation on scroll
+        document.addEventListener('DOMContentLoaded', function () {
+            const counters = Array.from(document.querySelectorAll('.stats-stat-block .h2-style[data-count]'));
+            if (!counters.length) return;
+
+            const duration = 1200;
+
+            function animateCount(el) {
+                const target = parseFloat(el.dataset.count || '0');
+                const suffix = el.dataset.suffix || '';
+                const start = 0;
+                const startTime = performance.now();
+
+                function tick(now) {
+                    const progress = Math.min((now - startTime) / duration, 1);
+                    const value = Math.floor(start + (target - start) * progress);
+                    el.textContent = `${value}${suffix}`;
+                    if (progress < 1) requestAnimationFrame(tick);
+                }
+
+                requestAnimationFrame(tick);
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCount(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            counters.forEach(el => observer.observe(el));
+        });
+    </script>
     <script>
         // Manual Carousel Controls with looping (no blank space)
         document.addEventListener('DOMContentLoaded', function() {

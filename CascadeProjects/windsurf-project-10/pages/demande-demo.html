@@ -236,14 +236,27 @@
                 <div class="demo-right">
                     <h2 class="form-title">Demandez une démo de Prosplay</h2>
                     <iframe 
-                        src="http://127.0.0.1:49462/frm?id=f6c26f4b-bd7a-4d77-b2f9-17a47a5d742c&embed=true"
-                        width="100%"
-                        height="600"
-                        frameborder="0"
-                        style="border: none; max-width: 100%;"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
+  id="prosplay-form"
+  src="http://127.0.0.1:49462/frm?id=f6c26f4b-bd7a-4d77-b2f9-17a47a5d742c&embed=true"
+  width="100%"
+  style="border: none; max-width: 100%; display: block;"
+  frameborder="0"
+  scrolling="no"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+<script>
+  // Auto-resize iframe based on content height
+  window.addEventListener('message', function(e) {
+    if (e.data.type === 'resize') {
+      var iframe = document.getElementById('prosplay-form');
+      if (iframe) {
+        iframe.style.height = e.data.height + 'px';
+      }
+    }
+  });
+</script>
                 </div>
             </div>
         </main>
