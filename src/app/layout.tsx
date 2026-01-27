@@ -8,8 +8,42 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "AppList Generator - Vos idées d'apps pour revenus passifs",
-  description: "Générez votre feuille de route personnalisée avec 6 applications à vibecoder pour créer des revenus passifs grâce à l'IA",
+  title: "Développez vos revenus en devenant Freelance Augmenté",
+  description: "Passez de freelance débordé à entrepreneur augmenté en 2 semaines",
+  keywords: ["freelance", "IA", "revenus passifs", "SaaS", "applications", "productivité", "automatisation"],
+  authors: [{ name: "FreelanceAugmenté" }],
+  creator: "FreelanceAugmenté",
+  publisher: "FreelanceAugmenté",
+  metadataBase: new URL("https://freelanceaugmente.com"),
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://freelanceaugmente.com",
+    title: "Développez vos revenus en devenant Freelance Augmenté",
+    description: "Passez de freelance débordé à entrepreneur augmenté en 2 semaines",
+    siteName: "FreelanceAugmenté",
+    images: [
+      {
+        url: "/landing-assets/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "FreelanceAugmenté - Générez vos idées d'apps",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Développez vos revenus en devenant Freelance Augmenté",
+    description: "Passez de freelance débordé à entrepreneur augmenté en 2 semaines",
+    images: ["/landing-assets/images/og-image.png"],
+  },
+  icons: {
+    icon: [
+      { url: "/landing-assets/images/logos/logo-favicon2.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/landing-assets/images/logos/logo-favicon2.svg",
+    apple: "/landing-assets/images/logos/logo-favicon2.svg",
+  },
 };
 
 export default function RootLayout({
