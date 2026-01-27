@@ -1,0 +1,10 @@
+{
+  "name": "freelance-augmente",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.15.5"
+  }
+}

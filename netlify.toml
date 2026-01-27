@@ -1,12 +1,14 @@
 [build]
-  publish = "."
-  command = "echo 'Static site - no build needed'"
+  base = "applistgenerator"
+  publish = ".next"
+  command = "cd .. && node build.js"
 
-# SPA fallback - CRITICAL for React Router
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[build.environment]
+  NODE_VERSION = "20"
+
+# Next.js plugin
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 # Security headers
 [[headers]]
