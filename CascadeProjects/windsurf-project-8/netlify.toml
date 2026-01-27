@@ -1,6 +1,6 @@
 [build]
-  publish = "dist"
-  command = "npm run build"
+  publish = "."
+  command = "echo 'Static site - no build needed'"
 
 # SPA fallback - CRITICAL for React Router
 [[redirects]]
