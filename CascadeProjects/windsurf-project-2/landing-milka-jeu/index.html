@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jeu Concours Milka</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header" role="banner" aria-label="En-tête Milka">
+      <div class="header-content">
+        <a href="#" class="logo-link" aria-label="Milka - Retour à l'accueil">
+          <img src="logo-milka.svg" alt="Milka" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
+          <span class="logo-fallback">Milka</span>
+        </a>
+        <nav class="main-nav" aria-label="Navigation principale">
+          <a href="#" class="nav-link">Produits <svg viewBox="0 0 24 24" aria-hidden="true" class="chev"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#" class="nav-link">Nos engagements</a>
+          <a href="#" class="nav-link">À propos de Milka <svg viewBox="0 0 24 24" aria-hidden="true" class="chev"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </nav>
+        <button class="search-btn" aria-label="Rechercher">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M11 4a7 7 0 105.196 11.897l3.953 3.954a1 1 0 001.415-1.415l-3.954-3.953A7 7 0 0011 4zm0 2a5 5 0 110 10 5 5 0 010-10z" fill="#213547"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="hero">
+      <section class="brand">
+        <div class="logo" aria-label="Milka">Milka</div>
+        <h1 class="title">Jeu Concours Milka</h1>
+        <p class="tagline">Tente ta chance pour gagner un panier de douceurs Milka.</p>
+      </section>
+      <section class="cta">
+        <form class="form" action="#" method="post">
+          <label for="email">Adresse e-mail</label>
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="ton.email@example.com" required>
+          <label class="check">
+            <input type="checkbox" name="consent" required>
+            J’accepte les conditions du jeu et le traitement de mes données.
+          </label>
+          <button type="submit" class="btn">Je participe</button>
+        </form>
+        <p class="legal">Jeu sans obligation d’achat. Réservé à la France métropolitaine. <a href="#" tabindex="0">Voir règlement</a>.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo" aria-label="Pied de page Mondelez">
+      <div class="social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="Facebook">Facebook</a>
+        <a href="#" aria-label="YouTube">YouTube</a>
+      </div>
+      <nav class="links top" aria-label="Liens légaux principaux">
+        <a href="#">Conditions d'utilisation</a>
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">Mentions légales</a>
+        <a href="#">Publicité personnalisée</a>
+      </nav>
+      <nav class="links bottom" aria-label="Liens légaux secondaires">
+        <a href="#">Conditions générales</a>
+        <a href="#">Mondelēz International</a>
+        <a href="#">Politique relative aux cookies</a>
+        <a href="#">Contact</a>
+        <a href="#">FAQ</a>
+        <a href="#">Newsletter</a>
+      </nav>
+      <hr class="sep" aria-hidden="true" />
+      <div class="brandline">
+        <div class="mondelez" aria-label="Mondelēz International">Mondelēz International</div>
+        <div class="legalnote">© 2025 Mondelez Europe GmbH. Tous les droits sont réservés.</div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

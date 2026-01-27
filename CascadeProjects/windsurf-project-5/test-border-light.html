@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Border Light</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 50%, #020617 100%);
+            min-height: 300vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 24px;
+        }
+
+        .card {
+            position: relative;
+            background: #0b0b0b;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 28px;
+            padding: 40px;
+            margin-bottom: 100px;
+            color: white;
+            overflow: visible;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 28px;
+            padding: 2px;
+            background: conic-gradient(
+                from var(--angle, 0deg),
+                transparent 0deg,
+                transparent 60deg,
+                rgba(255, 255, 255, 0.1) 120deg,
+                rgba(255, 255, 255, 0.8) 180deg,
+                rgba(255, 255, 255, 0.1) 240deg,
+                transparent 300deg,
+                transparent 360deg
+            );
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .card.light-active::after {
+            opacity: 1;
+        }
+
+        h2 {
+            margin: 0 0 16px 0;
+            font-size: 32px;
+        }
+
+        p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: white; text-align: center; margin-bottom: 100px;">Test Border Light Animation</h1>
+        
+        <div class="card" id="card1">
+            <h2>Card 1</h2>
+            <p>Scroll to see the border light animation. The light should trace around the card border.</p>
+        </div>
+
+        <div class="card" id="card2">
+            <h2>Card 2</h2>
+            <p>The light rotates based on scroll position - from top (0°) to right (90°) to bottom (180°) to left (270°) and back to top (360°).</p>
+        </div>
+
+        <div class="card" id="card3">
+            <h2>Card 3</h2>
+            <p>Each card animates independently as it scrolls through the viewport.</p>
+        </div>
+    </div>
+
+    <script>
+        function initCardLights() {
+            const cards = document.querySelectorAll('.card');
+            
+            console.log(`Found ${cards.length} cards`);
+            
+            function updateCardLights() {
+                cards.forEach((card) => {
+                    const rect = card.getBoundingClientRect();
+                    const viewportHeight = window.innerHeight;
+                    
+                    if (rect.top < viewportHeight && rect.bottom > 0) {
+                        const cardTop = rect.top;
+                        const cardHeight = rect.height;
+                        const scrollProgress = Math.max(0, Math.min(1, 
+                            (viewportHeight - cardTop) / (viewportHeight + cardHeight)
+                        ));
+                        
+                        const angle = scrollProgress * 360;
+                        card.style.setProperty('--angle', `${angle}deg`);
+                        
+                        if (scrollProgress > 0.1 && scrollProgress < 0.9) {
+                            card.classList.add('light-active');
+                        } else {
+                            card.classList.remove('light-active');
+                        }
+                    } else {
+                        card.classList.remove('light-active');
+                    }
+                });
+            }
+            
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        updateCardLights();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+            
+            updateCardLights();
+            console.log('Card lights initialized');
+        }
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCardLights);
+        } else {
+            initCardLights();
+        }
+    </script>
+</body>
+</html>
