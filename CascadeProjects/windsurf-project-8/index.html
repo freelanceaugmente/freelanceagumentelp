@@ -43,79 +43,47 @@
     <div class="page-wrapper">
         <div class="global-styles w-embed">
             <style>
-                /* ===== POLICE MERSAD ===== */
-                @font-face {
-                    font-family: 'Mersad';
-                    font-style: normal;
-                    font-weight: 400;
-                    font-display: swap;
-                    src: url('https://fonts.cdnfonts.com/s/84218/Mersad Regular.woff') format('woff');
-                }
-                @font-face {
-                    font-family: 'Mersad';
-                    font-style: normal;
-                    font-weight: 500;
-                    font-display: swap;
-                    src: url('https://fonts.cdnfonts.com/s/84218/Mersad Medium.woff') format('woff');
-                }
-                @font-face {
-                    font-family: 'Mersad';
-                    font-style: normal;
-                    font-weight: 600;
-                    font-display: swap;
-                    src: url('https://fonts.cdnfonts.com/s/84218/Mersad SemiBold.woff') format('woff');
-                }
-                @font-face {
-                    font-family: 'Mersad';
-                    font-style: normal;
-                    font-weight: 700;
-                    font-display: swap;
-                    src: url('https://fonts.cdnfonts.com/s/84218/Mersad Bold.woff') format('woff');
-                }
-                @font-face {
-                    font-family: 'Mersad';
-                    font-style: normal;
-                    font-weight: 800;
-                    font-display: swap;
-                    src: url('https://fonts.cdnfonts.com/s/84218/Mersad ExtraBold.woff') format('woff');
-                }
-                @font-face {
-                    font-family: 'Mersad';
-                    font-style: normal;
-                    font-weight: 900;
-                    font-display: swap;
-                    src: url('https://fonts.cdnfonts.com/s/84218/Mersad Black.woff') format('woff');
-                }
+                /* ===== TYPOGRAPHIE ===== */
+                @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
 
-                /* ===== NOUVELLE DA - Variables de couleur ===== */
+                /* ===== NOUVELLE DA - Variables de couleur (Fond blanc + Orange) ===== */
                 :root {
-                    --color-bg-dark: #0F0E11;
-                    --color-bg-card: #1F1E20;
-                    --color-gray: #4F5053;
-                    --color-red-primary: #E10805;
-                    --color-red-accent: #FF3131;
-                    --color-orange: #FF914D;
+                    --color-bg-light: #F5F5F5;
+                    --color-bg-white: #FFFFFF;
+                    --color-bg-card: #FFFFFF;
+                    --color-gray: #6B7280;
+                    --color-gray-light: #9CA3AF;
+                    --color-orange-primary: #ef5a13;
+                    --color-orange-secondary: #e7000e;
+                    --color-orange-accent: #ef5a13;
+                    --color-text-dark: #1F2937;
+                    --color-text-secondary: #4B5563;
                     --color-white: #ffffff;
-                    --color-text: #ffffff;
-                    --font-heading: 'Mersad', sans-serif;
-                    --font-body: 'Mersad', sans-serif;
+                    --color-black: #000000;
+                    --font-heading: 'Playfair Display', serif;
+                    --font-body: 'Manrope', 'Inter', 'Helvetica Neue', Arial, sans-serif;
                     --border-radius: 16px;
+                    /* Legacy compatibility */
+                    --color-bg-dark: #F5F5F5;
+                    --color-red-primary: #ef5a13;
+                    --color-red-accent: #e7000e;
+                    --color-text: #1F2937;
                 }
 
                 /* Make text look crisper and more legible in all browsers */
                 body {
+                    font-family: var(--font-body), sans-serif !important;
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
-                    font-smoothing: antialiased;
                     text-rendering: optimizeLegibility;
-                    background-color: var(--color-bg-dark) !important;
-                    color: var(--color-text) !important;
-                    font-family: 'Mersad', -apple-system, BlinkMacSystemFont, sans-serif !important;
+                    background-color: #f4ece5 !important;
+                    color: var(--color-text-dark) !important;
+                    padding-top: 112px;
                 }
 
-                /* Fond global noir */
+                /* Fond global clair */
                 .page-wrapper {
-                    background: var(--color-bg-dark) !important;
+                    background: #f4ece5 !important;
                 }
 
                 /* Focus state style for keyboard navigation for the focusable elements */
@@ -176,6 +144,7 @@
                 .text-style-3lines {
                     display: -webkit-box;
                     overflow: hidden;
+                    line-clamp: 3;
                     -webkit-line-clamp: 3;
                     -webkit-box-orient: vertical;
                 }
@@ -184,6 +153,7 @@
                 .text-style-2lines {
                     display: -webkit-box;
                     overflow: hidden;
+                    line-clamp: 2;
                     -webkit-line-clamp: 2;
                     -webkit-box-orient: vertical;
                 }
@@ -207,9 +177,269 @@
                     }
                 }
 
+                @media screen and (max-width: 767px) {
+                    /* Tablet styles */
+                    .section-hero .hero-wrap {
+                        flex-direction: column;
+                        text-align: center;
+                    }
+
+                    .section-features .features-single {
+                        grid-template-columns: 1fr !important;
+                    }
+
+                    .hero-video-frame {
+                        aspect-ratio: 16 / 9;
+                        min-height: auto !important;
+                    }
+
+                    #features-2 .features-visual-single > div {
+                        transform: translateX(0) !important;
+                    }
+                }
+
                 @media screen and (max-width: 479px) {
                     .hide-mobile {
                         display: none !important;
+                    }
+
+                    /* Hero responsive mobile */
+                    .section-hero {
+                        padding: 0 0 6px !important;
+                        margin-top: -10px !important;
+                    }
+
+                    .section-hero .hero-bottom-wrap {
+                        margin-top: -5% !important;
+                        padding-bottom: 0 !important;
+                    }
+
+                    /* Reduce side padding to let hero media touch edges */
+                    .section-hero .padding-global {
+                        padding-left: 0 !important;
+                        padding-right: 0 !important;
+                    }
+
+                    .section-hero .container-large {
+                        padding: 0 6px !important;
+                    }
+
+                    .section-hero .hero-wrap {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 4px;
+                        align-items: center;
+                        text-align: center;
+                        width: 100% !important;
+                    }
+
+                    .nav-container {
+                        margin-bottom: 0 !important;
+                        padding-bottom: 0 !important;
+                    }
+
+                    .nav-list {
+                        display: none !important;
+                    }
+
+                    .section-hero .hero-heading {
+                        font-size: 1.75rem !important;
+                        line-height: 1.3 !important;
+                        padding: 0 16px !important;
+                        word-wrap: break-word;
+                        padding-top: 0 !important;
+                    }
+
+                    .section-hero .hero-subtext {
+                        font-size: 1rem !important;
+                        line-height: 1.5 !important;
+                        padding: 0 16px !important;
+                    }
+
+                    .section-hero .hero-text-wrap {
+                        padding: 0 8px !important;
+                        text-align: center;
+                        align-items: center;
+                        justify-content: center;
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    .section-hero .hero-cta-wrap {
+                        padding: 0 12px !important;
+                        margin-top: 2px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    .section-hero .hero-cta-wrap .cta {
+                        width: auto;
+                        min-width: 200px;
+                        justify-content: center;
+                    }
+
+                    .section-hero .hero-mid-wrap {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        margin-top: 8px;
+                        padding: 0;
+                    }
+
+                    .section-hero .hero-video-frame {
+                        width: calc(100% - 6px);
+                        margin: 0;
+                        padding: 0;
+                        border-radius: 14px;
+                    }
+
+                    .container-large {
+                        padding: 0 16px !important;
+                    }
+
+                    .padding-global {
+                        padding-left: 12px !important;
+                        padding-right: 12px !important;
+                    }
+
+                    /* Features section mobile */
+                    .section-features .features-single {
+                        grid-template-columns: 1fr !important;
+                        gap: 24px !important;
+                        padding: 0 8px;
+                    }
+
+                    .section-features .features-text {
+                        max-width: 100% !important;
+                        justify-self: center !important;
+                    }
+
+                    .section-features .features-points li {
+                        font-size: 16px !important;
+                        line-height: 1.5 !important;
+                    }
+
+                    .section-features .feature-heading-inner h2 {
+                        font-size: 1.5rem !important;
+                    }
+
+                    .section-features .feature-heading-inner .subheading {
+                        font-size: 1rem !important;
+                    }
+
+                    /* Features-2 animation section mobile */
+                    #features-2 .features-single > div[style*="inline-flex"] {
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        gap: 12px !important;
+                        font-size: 14px !important;
+                    }
+
+                    #features-2 .features-visual-single {
+                        transform: none !important;
+                    }
+
+                    #features-2 .features-visual-single > div {
+                        transform: translateX(0) !important;
+                    }
+
+                    #features-2 .typing-card {
+                        width: 100% !important;
+                        max-width: 340px !important;
+                    }
+
+                    /* Video responsive mobile */
+                    .hero-video-frame {
+                        min-height: auto !important;
+                        aspect-ratio: 16 / 9;
+                        width: 100% !important;
+                        max-width: 100% !important;
+                    }
+
+                    /* Hero mobile improvements */
+                    .hero-mid-wrap {
+                        width: 100% !important;
+                        padding: 0 !important;
+                    }
+
+                    .hero-logo-marquee-wrap {
+                        overflow: hidden !important;
+                    }
+
+                    .hero-marquee-logo {
+                        max-height: 28px !important;
+                    }
+
+                    /* CTA mobile */
+                    .cta {
+                        width: auto !important;
+                        max-width: 100% !important;
+                        white-space: normal !important;
+                    }
+
+                    .cta-text {
+                        font-size: 14px !important;
+                    }
+
+                    /* General mobile spacing */
+                    .section-features {
+                        padding: 18px 0 !important;
+                    }
+
+                    .section-quotes {
+                        padding: 18px 0 !important;
+                    }
+
+                    .heading-2 {
+                        font-size: 1.5rem !important;
+                        line-height: 1.3 !important;
+                    }
+
+                    .subheading {
+                        font-size: 0.95rem !important;
+                        line-height: 1.5 !important;
+                    }
+
+                    /* Quotes section mobile */
+                    .quotes-heading h2 {
+                        font-size: 1.5rem !important;
+                        padding: 0 12px;
+                    }
+
+                    .quotes-heading .subheading {
+                        font-size: 0.95rem !important;
+                    }
+
+                    .avatar-item {
+                        width: 280px !important;
+                        height: 180px !important;
+                    }
+
+                    .quote-detail {
+                        padding: 0 12px !important;
+                    }
+
+                    .quote-detail .quote-text {
+                        font-size: 0.95rem !important;
+                    }
+
+                    /* Headings mobile */
+                    .heading-1 {
+                        font-size: 1.75rem !important;
+                        line-height: 1.3 !important;
+                    }
+
+                    .heading-2 {
+                        font-size: 1.5rem !important;
+                        line-height: 1.35 !important;
+                    }
+
+                    section {
+                        padding: 60px 0 !important;
                     }
                 }
 
@@ -304,15 +534,127 @@
                 }
 
                 .section-curriculum {
-                    background: #0f1014;
+                    background: url('Background1.svg') center top repeat-y !important;
+                    background-size: 100% auto !important;
                     position: relative;
-                    padding-bottom: 0;
-                    padding-top: 60px;
+                    padding: 32px 24px 8px !important;
+                    max-width: 1432px;
+                    width: 100%;
+                    margin: 28px auto 0;
+                    border-radius: 28px 28px 0 0;
+                    overflow: visible;
+                }
+
+                .section-curriculum .padding-global {
+                    padding-left: 24px !important;
+                    padding-right: 24px !important;
+                }
+
+                .section-curriculum .container-large {
+                    max-width: 1200px !important;
+                }
+
+                .section-curriculum .cta {
+                    position: relative;
+                    z-index: 2;
+                }
+
+                .section-curriculum::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    height: 180px;
+                    background: linear-gradient(180deg, transparent 0%, #ffffff 100%);
+                    pointer-events: none;
+                    z-index: 0;
+                }
+
+                /* Fondu vers le blanc en bas des témoignages */
+                .section-testimonials::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: -1px;
+                    height: 180px;
+                    background: linear-gradient(180deg, var(--color-bg-light) 0%, #ffffff 100%);
+                    pointer-events: none;
+                    z-index: 0;
+                }
+
+                /* Titres en Playfair Display gras */
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6,
+                .heading-1,
+                .heading-2,
+                .heading-3,
+                .heading-4,
+                .heading-5,
+                .heading-6,
+                .section-hero .hero-heading,
+                .section-features .features-block-heading,
+                .section-values .values-heading,
+                .section-values .values-block-title,
+                .section-pricing .pricing-title,
+                .section-pricing .pricing-heading,
+                .section-testimonials .heading-2,
+                .section-faq .heading-2,
+                .section-faqs .heading-2 {
+                    font-family: 'Playfair Display', serif !important;
+                    font-weight: 700 !important;
+                }
+
+                /* Sous-titres en normal (sans gras) */
+                .subheading,
+                .section-hero .hero-subtext,
+                .section-hero .section-intro-text,
+                .section-hero .hero-bottom-heading,
+                .section-features .subheading,
+                .section-features .features-block-subtext,
+                .section-values .values-subtext,
+                .section-values .values-block-subtext,
+                .section-values .values-list-text,
+                .section-pricing .pricing-subtext,
+                .section-pricing .pricing-value,
+                .section-pricing .pricing-wrap-heading,
+                .section-pricing .pricing-tag-text,
+                .section-testimonials .subheading,
+                .section-faq .subheading,
+                .section-faqs .subheading {
+                    font-weight: 400 !important;
+                    font-family: var(--font-body) !important;
+                }
+
+                /* Police Garet/Manrope pour le texte descriptif du hero */
+                .section-hero .hero-subtext {
+                    font-family: var(--font-body) !important;
+                    color: #000000 !important;
+                }
+
+                /* Textes descriptifs en Manrope */
+                .section-hero .section-intro-text,
+                .section-features .features-block-subtext,
+                .section-values .values-block-subtext,
+                .section-values .values-list-text,
+                .section-pricing .pricing-value,
+                .section-pricing .pricing-list-text,
+                .section-about .about-subtext,
+                .section-about .about-stat-tagline,
+                .caption,
+                .body-small,
+                p {
+                    font-family: var(--font-body) !important;
                 }
 
                 .section-curriculum .curriculum-heading,
                 .section-curriculum .curriculum-subtext {
-                    color: #fff;
+                    color: var(--color-text-dark) !important;
                 }
 
                 .section-curriculum .star,
@@ -325,30 +667,30 @@
                 .section-curriculum .curriculum-module-items-wrap {
                     border: none !important;
                     box-shadow: none !important;
-                    background: none !important;
+                    background: #ffffff !important;
                 }
 
                 .section-curriculum .curriculum-block {
-                    background: #16171d !important;
-                    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-                    border-radius: 0px !important;
-                    box-shadow: none !important;
-                    color: #e5e7eb !important;
+                    background: #ffffff !important;
+                    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+                    border-radius: 0 !important;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+                    color: var(--color-text-dark) !important;
                 }
 
                 .section-curriculum .curriculum-block-title {
-                    color: #b7bdc9 !important;
+                    color: var(--color-orange-primary) !important;
                 }
 
                 .section-curriculum .curriculum-block-subtext,
                 .section-curriculum .curriculum-list-text,
                 .section-curriculum .curriculum-detail-text,
                 .section-curriculum .curriculum-detail-heading {
-                    color: #e5e7eb !important;
+                    color: var(--color-text-dark) !important;
                 }
 
                 .section-curriculum .curriculum-block-control-image {
-                    filter: brightness(0) invert(1) !important;
+                    filter: none !important;
                     transform: rotate(0deg) !important;
                     transition: transform 0.3s ease !important;
                 }
@@ -359,12 +701,45 @@
 
                 .section-curriculum .curriculum-block-mid-wrap {
                     border: 1px solid transparent;
-                    border-radius: 0px;
-                    background: #0f1014;
+                    border-radius: 0;
+                    background: #ffffff !important;
+                }
+
+                /* Disable curriculum dropdown interactions */
+                .section-curriculum .curriculum-dropdown,
+                .section-curriculum .curriculum-dropdown-toggle {
+                    pointer-events: none !important;
+                }
+
+                .section-curriculum .curriculum-dropdown-nav,
+                .section-curriculum .curriculum-list,
+                .section-curriculum .curriculum-block-mid-wrap {
+                    display: none !important;
+                }
+
+                .section-curriculum .curriculum-detail-heading,
+                .section-curriculum .curriculum-detail-row {
+                    display: none !important;
+                }
+
+                .section-curriculum .curriculum-side-illustration {
+                    position: absolute;
+                    top: 90%;
+                    right: -180px;
+                    width: 260px;
+                    max-width: 28vw;
+                    pointer-events: none;
+                    opacity: 0.9;
+                }
+
+                @media (max-width: 991px) {
+                    .section-curriculum .curriculum-side-illustration {
+                        display: none;
+                    }
                 }
 
                 .section-curriculum .curriculum-dropdown.w-open .curriculum-block-mid-wrap {
-                    border-color: rgba(229, 231, 235, 0.6);
+                    border-color: rgba(0, 0, 0, 0.1);
                 }
 
                 .section-curriculum .curriculum-module-items-wrap {
@@ -381,10 +756,9 @@
                     justify-content: center;
                     position: absolute;
                     left: 50%;
-                    transform: translateX(-50%);
-                    bottom: 0;
-                    margin: 0;
-                    z-index: 1;
+                    bottom: 40px;
+                    transform: translate(-50%, 0);
+                    z-index: 10;
                 }
 
                 .section-curriculum .curriculum-cta-wrap .cta,
@@ -393,7 +767,8 @@
                 }
 
                 .section-curriculum .curriculum-cta-wrap .cta {
-                    padding: 10px 18px !important;
+                    position: relative;
+                    z-index: 11;
                 }
 
                 /* Pricing: keep title on one line */
@@ -409,8 +784,12 @@
 
                 .pricing-tab-link {
                     background-color: var(--color-bg-card) !important;
-                    color: var(--color-white) !important;
+                    color: var(--color-text-dark) !important;
                     border-radius: var(--border-radius) !important;
+                }
+
+                .pricing-tab-link .pricing-tab-link-text {
+                    color: inherit !important;
                 }
 
                 .pricing-tab-link.w--current .pricing-tab-link-text {
@@ -468,52 +847,77 @@
                 .section-curriculum .curriculum-top-container,
                 .section-curriculum .curriculum-module-items-wrap,
                 .section-curriculum .curriculum-block-wrap {
-                    background: #0f1014 !important;
-                    background-image: none !important;
-                    border: none !important;
-                    border-color: transparent !important;
-                    outline: none !important;
-                    box-shadow: none !important;
-                }
-
-                .section-curriculum .curriculum-module-items-wrap,
-                .section-curriculum .curriculum-block-wrap {
-                    background: #0f1014 !important;
+                    background: transparent !important;
                     background-image: none !important;
                     border: none !important;
                     box-shadow: none !important;
                 }
 
-                /* Fond pointillé pour la section témoignages */
+                /* Fond pointillé workflow (orange clair) pour la section témoignages */
                 .section-quotes {
                     position: relative;
-                    background: var(--color-bg-dark) !important;
-                    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1.2px, transparent 1px);
-                    background-size: 16px 16px;
-                    background-repeat: repeat;
+                    background: #ffffff !important;
                     overflow: hidden;
+                    padding-top: 48px;
                 }
 
                 .section-quotes::before {
                     content: "";
                     position: absolute;
                     inset: 0;
-                    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1.2px, transparent 1px);
-                    background-size: 16px 16px;
-                    opacity: 0.5;
-                    -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 95%);
-                    mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 95%);
-                    -webkit-mask-repeat: no-repeat;
-                    mask-repeat: no-repeat;
-                    -webkit-mask-size: 100% 100%;
-                    mask-size: 100% 100%;
+                    background-image: radial-gradient(circle at center, rgba(239, 90, 19, 0.46) 1.2px, transparent 1.2px);
+                    background-size: 20px 20px;
+                    opacity: 0.9;
                     pointer-events: none;
                     z-index: 0;
                 }
 
-                .section-quotes .container-large {
+                /* Dégradé circulaire pour atténuer les pointillés aux bords */
+                .section-quotes::after {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    background: radial-gradient(
+                        circle at center,
+                        rgba(255, 255, 255, 0) 38%,
+                        rgba(255, 255, 255, 0.75) 62%,
+                        #ffffff 88%
+                    );
+                    pointer-events: none;
+                    z-index: 0;
+                }
+
+                .section-quotes .container-large,
+                .section-quotes .quotes-heading,
+                .section-quotes .quotes-carousel,
+                .section-quotes .quotes-wrap {
                     position: relative;
                     z-index: 1;
+                }
+
+                /* Ligne et chiffres orange clair dans la section about */
+                .section-about .section-divider {
+                    border-top: 1px solid rgba(0, 0, 0, 0.15) !important;
+                    background: transparent !important;
+                    border-left: none !important;
+                    border-right: none !important;
+                    border-bottom: none !important;
+                    height: 0 !important;
+                    margin: initial !important;
+                }
+
+                .section-about .section-divider hr {
+                    border-top: 1px solid rgba(0, 0, 0, 0.15) !important;
+                    background: transparent !important;
+                    border-left: none !important;
+                    border-right: none !important;
+                    border-bottom: none !important;
+                    height: 0 !important;
+                    margin: 0 !important;
+                }
+
+                .section-about .about-stat-title {
+                    color: var(--color-orange-primary) !important;
                 }
 
                 /* TJM Calculator Styles */
@@ -541,19 +945,19 @@
                 }
 
                 .category-card {
-                    background: var(--color-bg-card) !important;
-                    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-                    border-radius: var(--border-radius) !important;
+                    background: var(--color-bg-white) !important;
+                    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+                    border-radius: 0 !important;
                     padding: 28px 20px;
                     text-align: center;
-                    box-shadow: none;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
                     transition: transform 0.2s ease, border-color 0.2s ease;
                 }
 
                 .category-card:hover {
                     transform: translateY(-4px);
-                    border-color: var(--color-red-primary) !important;
-                    box-shadow: 0 8px 24px rgba(225, 8, 5, 0.15);
+                    border-color: var(--color-orange-primary) !important;
+                    box-shadow: 0 8px 24px rgba(239, 90, 19, 0.15);
                 }
 
                 .category-card .category-icon {
@@ -562,13 +966,13 @@
                     margin: 0 auto 18px;
                     object-fit: contain;
                     display: block;
-                    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+                    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
                 }
 
                 .category-card h4 {
                     font-size: 1.05rem;
                     font-weight: 700;
-                    color: var(--color-white) !important;
+                    color: var(--color-text-dark) !important;
                     letter-spacing: 0.01em;
                     margin: 0;
                 }
@@ -606,7 +1010,7 @@
                     width: 100%;
                     height: 10px;
                     border-radius: 5px;
-                    background: linear-gradient(to right, #8b5cf6 0%, #8b5cf6 var(--slider-percent, 38%), #333 var(--slider-percent, 38%), #333 100%);
+                    background: linear-gradient(to right, #ef5a13 0%, #e7000e var(--slider-percent, 38%), #333 var(--slider-percent, 38%), #333 100%);
                     outline: none;
                     cursor: pointer;
                 }
@@ -652,22 +1056,6 @@
                 }
 
                 .tjm-results {
-                    display: flex;
-                    gap: 16px;
-                    justify-content: center;
-                }
-
-                .tjm-result-card {
-                    display: flex;
-                    align-items: center;
-                    gap: 12px;
-                    padding: 20px 32px;
-                    border-radius: 12px;
-                    font-size: 1.1rem;
-                }
-
-                .tjm-result-card.tjm-days {
-                    background: #1a1a1a;
                     border: 1px solid #333;
                     color: #fff;
                 }
@@ -797,26 +1185,54 @@
 
                 /* Hero color inversion */
                 .section-hero {
-                    background: var(--color-bg-dark) !important;
-                    color: var(--color-white) !important;
+                    background: url('Background1.svg') center/cover no-repeat !important;
+                    color: var(--color-text-dark) !important;
                     position: relative;
+                    padding: 32px 24px 8px !important;
+                    max-width: 1432px;
+                    margin: 28px auto 0;
+                    border-radius: 28px 28px 0 0;
+                    box-shadow: none;
                 }
 
-                /* Halo dégradé rouge/orange en bas du hero */
+                .section-hero .hero-bottom-wrap {
+                    margin-top: -190px;
+                }
+
+                /* Infinity motif behind hero */
+                .section-hero .hero-infinity-bg {
+                    position: absolute;
+                    inset: -20% -5% -5% -5%;
+                    background-image: url('heromedia.svg');
+                    background-size: 90% auto;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    opacity: 0.38;
+                    mix-blend-mode: multiply;
+                    pointer-events: none;
+                    z-index: 0;
+                    filter: blur(0.3px);
+                    transform: rotate(8deg);
+                    transform-origin: center;
+                }
+
+                /* Transition douce vers la section suivante */
                 .section-hero::after {
                     content: "";
                     position: absolute;
-                    left: 5%;
-                    right: 5%;
-                    bottom: 120px;
-                    height: 320px;
-                    background: radial-gradient(circle at 50% 0%, rgba(255, 49, 49, 0.32), rgba(255, 145, 77, 0.24) 45%, rgba(225, 8, 5, 0) 80%);
-                    filter: blur(70px);
-                    z-index: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: -1px;
+                    height: 380px;
+                    background: linear-gradient(
+                        180deg,
+                        rgba(255, 255, 255, 0) 0%,
+                        rgba(255, 255, 255, 0.75) 16%,
+                        rgba(255, 255, 255, 0.92) 64%,
+                        #ffffff 140%
+                    );
                     pointer-events: none;
-                    opacity: 0;
-                    transform: scale(1.02);
-                    animation: hero-glow-in 1.4s ease-out 0.6s forwards;
+                    z-index: 0;
                 }
 
                 .section-hero::before {
@@ -826,7 +1242,7 @@
                     right: 8%;
                     top: 40%;
                     height: 240px;
-                    background: radial-gradient(circle at 50% 100%, rgba(255, 49, 49, 0.28), rgba(255, 145, 77, 0.22) 40%, rgba(225, 8, 5, 0) 78%);
+                    background: radial-gradient(circle at 50% 100%, rgba(239, 90, 19, 0.10), rgba(255, 140, 66, 0.06) 40%, rgba(239, 90, 19, 0) 78%);
                     filter: blur(70px);
                     z-index: 0;
                     pointer-events: none;
@@ -847,32 +1263,52 @@
                 }
 
                 .section-hero .hero-heading,
-                .section-hero .hero-subtext,
                 .section-hero .hero-bottom-heading,
                 .section-hero .section-intro-text,
                 .section-hero .cta-text {
-                    color: var(--color-white) !important;
+                    color: var(--color-text-dark) !important;
                     font-family: var(--font-heading) !important;
                 }
 
+                .section-hero .hero-marquee-logo {
+                    position: relative;
+                    z-index: 2;
+                }
+
+                .partner-bubble {
+                    width: 72px;
+                    height: 72px;
+                    border-radius: 50%;
+                    border: 1px solid #ffd8c2;
+                    background: #fff;
+                    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                    transform: translateY(-10%);
+                }
+
+                .section-hero .hero-logo-marquee-wrap,
+                .section-hero .hero-bottom-wrap {
+                    position: relative;
+                    z-index: 2;
+                }
+
                 .section-hero .hero-heading {
-                    padding-top: 10% !important;
+                    padding-top: 1.5% !important;
                 }
 
                 .section-hero .hero-heading strong {
-                    color: var(--color-red-primary) !important;
+                    color: var(--color-orange-primary) !important;
+                    font-weight: 500 !important;
                 }
 
                 .section-hero .hero-cta-wrap {
-                    padding-bottom: 10% !important;
+                    padding-bottom: 5% !important;
+                    margin-top: 5% !important;
                 }
 
-                /* desktop: augmenter le titre "Vous êtes freelance..." */
-                @media (min-width: 992px) {
-                    .features-heading-wrap h2.heading-2 {
-                        font-size: 40px !important;
-                    }
-                }
 
                 /* étoiles animées aléatoires dans le hero */
                 .hero-stars {
@@ -1024,8 +1460,8 @@
                 .section-hero .hero-video-frame {
                     aspect-ratio: 16 / 9;
                     background: transparent;
-                    border: 2px solid var(--color-red-primary);
-                    box-shadow: 0 8px 24px rgba(225, 8, 5, 0.15);
+                    border: 2px solid var(--color-orange-primary);
+                    box-shadow: 0 8px 24px rgba(239, 90, 19, 0.15);
                     border-radius: var(--border-radius);
                     display: flex;
                     align-items: center;
@@ -1038,7 +1474,7 @@
                     content: "";
                     position: absolute;
                     inset: 12px;
-                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    border: 1px solid rgba(0, 0, 0, 0.06);
                     border-radius: 14px;
                     pointer-events: none;
                 }
@@ -1053,7 +1489,7 @@
                 }
 
                 .section-hero .hero-video-inner {
-                    color: var(--color-white);
+                    color: var(--color-text-dark);
                     font-family: var(--font-heading);
                     font-size: 18px;
                     letter-spacing: 0.2px;
@@ -1085,33 +1521,18 @@
                     position: relative;
                     margin-top: 32px;
                     padding-top: 32px;
+                    transform: translateY(-20%);
                 }
 
                 .section-hero .hero-mid-wrap::before {
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    left: -5vw;
-                    right: -5vw;
-                    height: 1px;
-                    background: rgba(255, 255, 255, 0.08);
+                    content: none;
                 }
 
                 .section-hero .hero-mid-wrap::after {
-                    content: "";
-                    position: absolute;
-                    bottom: 0;
-                    left: -5vw;
-                    right: -5vw;
-                    height: 1px;
-                    background: rgba(255, 255, 255, 0.08);
+                    content: none;
                 }
 
                 /* Features typography tweaks */
-                .section-features .heading-2 {
-                    font-size: 30px;
-                    line-height: 1.2;
-                }
 
                 .section-features .subheading {
                     font-size: 21px;
@@ -1130,20 +1551,86 @@
                     line-height: 1.65;
                 }
 
-                .features-block {
-                    perspective: 1200px;
+                /* Nouveau layout: texte gauche, visuel droite */
+                .section-features .features-single {
+                    display: flex;
+                    gap: 48px;
+                    align-items: center;
+                    justify-content: space-between;
                 }
 
-                .features-block .features-visual {
-                    width: 120px;
+                .section-features .features-text {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                }
+
+                .section-features .features-text h2 {
+                    margin: 0 0 8px;
+                }
+
+                .section-features .features-text .subheading {
+                    margin: 0 0 16px;
+                }
+
+                .section-features .features-text .features-points {
+                    display: grid;
+                    gap: 14px;
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                }
+
+                .section-features .features-points li {
+                    position: relative;
+                    padding-left: 16px;
+                    font-size: 21px;
+                    line-height: 1.7;
+                    color: #333;
+                }
+
+                .section-features .features-points li::before {
+                    content: "•";
+                    position: absolute;
+                    left: 0;
+                    top: 0.2em;
+                    color: var(--color-orange-primary);
+                    font-weight: 700;
+                    line-height: 1;
+                }
+
+                .section-features .features-visual-single {
+                    flex: 1;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .section-features .features-visual-single img {
+                    width: 490px;
                     max-width: 100%;
-                    height: auto;
-                    display: block;
-                    margin: 0 auto 12px;
-                    transform-origin: center center;
-                    transform-style: preserve-3d;
-                    transition: transform 0.18s ease-out;
-                    will-change: transform;
+                    border-radius: 0;
+                    object-fit: contain;
+                    box-shadow: none;
+                }
+
+                @media (max-width: 991px) {
+                    .section-features .features-single {
+                        flex-direction: column;
+                        text-align: left;
+                        gap: 32px;
+                    }
+
+                    .section-features .features-text,
+                    .section-features .features-visual-single {
+                        width: 100%;
+                    }
+
+                    .section-features .features-visual-single img {
+                        width: 100%;
+                        max-width: 420px;
+                    }
                 }
 
                 /* Amplify video size in values blocks */
@@ -1182,11 +1669,40 @@
                     overflow: hidden;
                 }
 
+                /* Center lists inside values cards */
+                .values-block-bottom-wrap {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .values-block-bottom-wrap .values-list {
+                    margin: 0;
+                    padding-left: 0;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+                    width: 100%;
+                    max-width: 460px;
+                }
+
+                .values-block-bottom-wrap .values-list-item {
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 10px;
+                }
+
                 /* Vidéo de fond pour la deuxième carte (ex-3e) */
                 .values-block-mid-wrap.video-bg {
                     position: relative;
                     min-height: 220px;
                     overflow: hidden;
+                }
+
+                /* Give enough height for 4 bullets without overflow */
+                .section-values .values-block {
+                    min-height: 620px !important;
                 }
 
                 .values-block-mid-wrap.video-bg video {
@@ -1221,19 +1737,6 @@
                     animation: coin-spin 2.2s ease-in-out infinite;
                 }
 
-                .features-block.block-2 .features-visual.spin {
-                    animation-direction: reverse;
-                }
-
-                /* agrandir visuels des cartes 2 et 3 pour aligner les blocs */
-                .features-block.block-2 .features-visual {
-                    width: 270px;
-                }
-
-                .features-block.no-border .features-visual {
-                    width: 261px;
-                }
-
                 .section-quotes .star {
                     filter: brightness(0) contrast(1.5);
                     opacity: 1;
@@ -1241,8 +1744,14 @@
                 }
 
                 .section-features .star {
-                    filter: brightness(0) contrast(1.5);
-                    opacity: 0.85 !important;
+                    filter: invert(53%) sepia(86%) saturate(640%) hue-rotate(343deg) brightness(102%) contrast(101%);
+                    opacity: 0.92 !important;
+                    mix-blend-mode: normal;
+                }
+
+                .section-values .star {
+                    filter: invert(53%) sepia(86%) saturate(640%) hue-rotate(343deg) brightness(102%) contrast(101%);
+                    opacity: 0.92 !important;
                     mix-blend-mode: normal;
                 }
 
@@ -1251,11 +1760,11 @@
                 }
 
                 .section-quotes .quotes-wrap {
-                    background: var(--color-bg-card) !important;
+                    background: var(--color-bg-white) !important;
                     border-radius: var(--border-radius) !important;
                     overflow: visible;
                     padding: 32px 40px;
-                    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                    border: 1px solid rgba(0, 0, 0, 0.08) !important;
                     display: grid;
                     grid-template-columns: minmax(240px, 360px) 1fr;
                     gap: 32px;
@@ -1264,55 +1773,58 @@
                     position: relative;
                     z-index: 1;
                     margin: 0;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
                 }
 
                 /* Empty box illustration */
                 .about-top-wrap-image.empty-box {
                     width: 280px;
                     height: 220px;
-                    border: 2px solid #7c3aed;
+                    border: 2px solid #ef5a13;
                     border-radius: 12px;
                     background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.03));
                     box-shadow:
-                        0 10px 30px rgba(0, 0, 0, 0.06),
-                        inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+                        0 11px 25px rgba(0, 0, 0, 0.032),
+                        0 0 0 3px rgba(255, 255, 255, 0.9),
+                        0 11px 25px rgba(239, 90, 19, 0.048);
                     position: relative;
                     overflow: hidden;
+                    margin: 0 auto;
                 }
 
                 .about-top-wrap-image.empty-box::before {
                     content: "";
                     position: absolute;
                     inset: 10px 14px;
-                    border: 2px solid rgba(124, 58, 237, 0.3);
+                    border: 2px solid rgba(239, 90, 19, 0.3);
                     border-radius: 8px;
                 }
 
                 .about-top-wrap-image.empty-box .badge-chip {
                     position: absolute;
+                    padding: 10px 14px;
                     display: inline-flex;
                     align-items: center;
                     gap: 8px;
                     padding: 8px 12px;
-                    background: #f7f3ff;
-                    border: 2px solid rgba(124, 58, 237, 0.6);
+                    background: #fff8f4;
+                    border: 2px solid rgba(239, 90, 19, 0.6);
                     border-radius: 24px;
                     font-size: 13px;
                     font-weight: 600;
-                    color: #4c1d95;
-                    box-shadow: 0 8px 16px rgba(124, 58, 237, 0.18);
+                    color: #ef5a13;
+                    box-shadow: 0 8px 16px rgba(239, 90, 19, 0.18);
                     user-select: none;
                     pointer-events: none;
                     transform-origin: center;
-                    will-change: transform;
-                    white-space: nowrap;
+                    transition: transform 0.2s ease, opacity 0.2s ease;
                 }
 
                 .about-top-wrap-image.empty-box .badge-chip .dot {
                     width: 12px;
                     height: 12px;
                     border-radius: 50%;
-                    background: #7c3aed;
+                    background: #ef5a13;
                     opacity: 0.9;
                     flex-shrink: 0;
                 }
@@ -1339,8 +1851,8 @@
                 .about-top-wrap-image.empty-box .badge-loader .loader-spinner {
                     width: 42px;
                     height: 42px;
-                    border: 4px solid rgba(124, 58, 237, 0.2);
-                    border-top-color: #7c3aed;
+                    border: 4px solid rgba(239, 90, 19, 0.2);
+                    border-top-color: #ef5a13;
                     border-radius: 50%;
                     animation: spin 0.85s linear infinite;
                 }
@@ -1349,10 +1861,10 @@
                 .about-top-wrap-image.empty-box .mini-app {
                     position: absolute;
                     inset: 10px 14px;
-                    background: #f7f3ff;
-                    border: 1.5px solid rgba(124, 58, 237, 0.4);
+                    background: #fff7f2;
+                    border: 1.5px solid rgba(239, 90, 19, 0.35);
                     border-radius: 12px;
-                    box-shadow: 0 10px 28px rgba(124, 58, 237, 0.15);
+                    box-shadow: 0 10px 28px rgba(239, 90, 19, 0.15);
                     padding: 10px;
                     display: none;
                     grid-template-rows: auto 1fr;
@@ -1368,29 +1880,31 @@
                     display: grid;
                     opacity: 1;
                     transform: translateY(0) scale(1);
-                }
 
-                .mini-app .mini-header {
-                    background: linear-gradient(135deg, #7c3aed, #5b21b6);
-                    border-radius: 9px;
-                    color: #fff;
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    padding: 8px 10px;
-                    font-weight: 700;
-                    font-size: 13px;
-                    letter-spacing: 0.15px;
-                }
+.about-top-wrap-image.empty-box .mini-app.visible {
+    display: grid;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
 
-                .mini-app .mini-header .mini-logo {
-                    width: 22px;
+.mini-app .mini-header {
+    background: linear-gradient(135deg, #ef5a13, #e7000e);
+    border-radius: 9px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.15px;
+}
                     height: 22px;
                     border-radius: 6px;
                     background: #fff;
                     display: grid;
                     place-items: center;
-                    color: #6d28d9;
+                    color: #ef5a13;
                     font-weight: 800;
                     font-size: 12px;
                 }
@@ -1398,6 +1912,18 @@
                 .mini-app .mini-header .mini-logo img {
                     width: 14px;
                     height: 14px;
+                }
+
+                .hero-wrap {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    gap: 32px;
+                    position: relative;
+                    z-index: 1;
+                }
+
+                .hero-top-wrap {
+                    padding-top: 4%;
                 }
 
                 .mini-app .mini-body {
@@ -1408,7 +1934,7 @@
                 }
 
                 .mini-app .mini-nav {
-                    background: rgba(124, 58, 237, 0.08);
+                    background: rgba(239, 90, 19, 0.08);
                     border-radius: 8px;
                     padding: 10px;
                     display: grid;
@@ -1418,7 +1944,7 @@
                 .mini-app .mini-nav .pill {
                     height: 9px;
                     border-radius: 999px;
-                    background: rgba(124, 58, 237, 0.3);
+                    background: rgba(239, 90, 19, 0.32);
                     animation: shimmer 2.4s ease-in-out infinite;
                 }
 
@@ -1431,8 +1957,8 @@
                 }
 
                 .mini-app .mini-content {
-                    background: #fcfaff;
-                    border: 1px solid rgba(124, 58, 237, 0.35);
+                    background: #fff8f4;
+                    border: 1px solid rgba(239, 90, 19, 0.35);
                     border-radius: 10px;
                     padding: 10px;
                     display: grid;
@@ -1442,7 +1968,7 @@
                 .mini-app .mini-content .row {
                     height: 11px;
                     border-radius: 999px;
-                    background: rgba(124, 58, 237, 0.18);
+                    background: rgba(239, 90, 19, 0.18);
                     animation: shimmer 2.6s ease-in-out infinite;
                 }
 
@@ -1532,11 +2058,112 @@
                     margin: 0 auto 50px;
                 }
 
+                .quotes-heading .subheading {
+                    padding-bottom: 8%;
+                }
+
                 .quotes-carousel {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     gap: 40px;
+                }
+
+                .quote-text-wrap img {
+                    filter: invert(53%) sepia(86%) saturate(640%) hue-rotate(343deg) brightness(102%) contrast(101%);
+                }
+
+                @media (max-width: 767px) {
+                    .quote-name,
+                    .quote-role,
+                    .quote-text {
+                        text-align: center !important;
+                        padding-left: 0 !important;
+                    }
+
+                    .quote-text-wrap {
+                        text-align: center !important;
+                        align-items: center !important;
+                    }
+
+                    .quote-text-wrap img {
+                        display: none !important;
+                    }
+                }
+
+                .quote-name,
+                .quote-role {
+                    padding-left: 68px;
+                    text-align: left;
+                }
+
+                .quotes-arrows {
+                    display: flex;
+                    gap: 10px;
+                    justify-content: center;
+                    margin-top: 12px;
+                }
+
+                .quotes-arrow-btn {
+                    width: 42px;
+                    height: 42px;
+                    border-radius: 50%;
+                    border: 1px solid var(--color-orange-primary);
+                    background: #fff6ef;
+                    color: var(--color-orange-primary);
+                    font-weight: 700;
+                    cursor: pointer;
+                    box-shadow: 0 6px 18px rgba(239, 90, 19, 0.15);
+                    transition: transform 0.2s ease, box-shadow 0.2s ease;
+                }
+
+                .quotes-arrow-btn:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 10px 24px rgba(239, 90, 19, 0.22);
+                }
+
+                @media (min-width: 992px) {
+                    .quotes-carousel {
+                        display: grid;
+                        grid-template-columns: minmax(420px, 1fr) minmax(320px, 1fr);
+                        grid-template-rows: auto auto;
+                        column-gap: 56px;
+                        row-gap: 24px;
+                        align-items: start;
+                    }
+
+                    .quote-detail,
+                    .quote-detail.active {
+                        grid-column: 2;
+                        grid-row: 1;
+                        max-width: none;
+                        text-align: left;
+                        align-items: flex-start;
+                        margin-top: 7%;
+                    }
+
+                    .quotes-avatars {
+                        grid-column: 1;
+                        grid-row: 1;
+                        justify-content: center;
+                    }
+
+                    .quotes-cta {
+                        grid-column: 2;
+                        grid-row: 2;
+                        justify-self: center;
+                        align-self: center;
+                        margin-top: 0;
+                        transform: translateY(-320%);
+                    }
+
+                    .quotes-arrows {
+                        grid-column: 1;
+                        grid-row: 2;
+                        justify-content: center;
+                        align-self: center;
+                        transform: translateY(-90%);
+                    }
                 }
 
                 .quotes-avatars {
@@ -1556,7 +2183,7 @@
                     transform: translate(-50%, -50%);
                     font-size: 180px;
                     font-weight: 900;
-                    color: rgba(225, 8, 5, 0.08);
+                    color: rgba(239, 90, 19, 0.10);
                     letter-spacing: -8px;
                     pointer-events: none;
                     z-index: 0;
@@ -1569,6 +2196,33 @@
                     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
                     z-index: 1;
                     border-radius: 28px;
+                    width: 493px;
+                    height: 320px;
+                }
+
+                .avatar-overlay {
+                    position: absolute;
+                    top: -22px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    border: 3px solid #fff;
+                    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.2);
+                    background: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                    z-index: 12;
+                }
+
+                .avatar-overlay img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 50%;
                 }
 
                 .avatar-item:nth-child(1) {
@@ -1585,7 +2239,7 @@
                 }
 
                 .avatar-item:not(.active) {
-                    filter: grayscale(0.6) opacity(0.7);
+                    display: none;
                 }
 
                 .avatar-item:hover:not(.active) {
@@ -1594,25 +2248,27 @@
                 }
 
                 .avatar-item img {
-                    width: 170px;
-                    height: 170px;
+                    width: 100%;
+                    height: 100%;
                     border-radius: var(--border-radius);
                     object-fit: cover;
-                    border: 4px solid var(--color-red-primary);
+                    border: none;
+                    background: #ffffff !important;
                     box-shadow:
-                        0 18px 46px rgba(225, 8, 5, 0.2),
-                        0 0 0 0 rgba(225, 8, 5, 0.0);
-                    background: transparent !important;
+                        0 0 0 0.8px rgba(239, 90, 19, 0.4),
+                        0 8px 16px rgba(239, 90, 19, 0.10);
                     padding: 0 !important;
-                    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+                    transition: box-shadow 0.25s ease;
+                }
+
+                .avatar-item[data-index="1"] img {
+                    background: #000000 !important;
                 }
 
                 .avatar-item.active img {
-                    border-color: var(--color-red-accent);
                     box-shadow:
-                        0 22px 54px rgba(225, 8, 5, 0.35),
-                        0 0 0 8px rgba(225, 8, 5, 0.2),
-                        0 0 0 14px rgba(255, 255, 255, 0.1);
+                        0 0 0 1px rgba(231, 0, 14, 0.68),
+                        0 12px 24px rgba(231, 0, 14, 0.18);
                 }
 
                 .quote-detail {
@@ -1633,18 +2289,18 @@
                 .quote-detail .quote-name {
                     font-size: 1.6rem;
                     font-weight: 800;
-                    color: var(--color-white) !important;
+                    color: var(--color-text-dark) !important;
                     margin: 0 0 6px;
                 }
 
                 .quote-detail .quote-role {
-                    color: var(--color-red-accent) !important;
+                    color: var(--color-orange-primary) !important;
                     font-weight: 600;
                     margin: 0 0 18px;
                 }
 
                 .quote-detail .quote-text {
-                    color: rgba(255, 255, 255, 0.85) !important;
+                    color: var(--color-text-secondary) !important;
                     line-height: 1.7;
                     margin: 0;
                 }
@@ -1679,9 +2335,20 @@
 
                 @media (max-width: 600px) {
                     .avatar-item img {
-                        width: 130px;
-                        height: 130px;
+                        width: 100%;
+                        height: 100%;
                         border-radius: 20px;
+                        object-fit: cover;
+                    }
+                    .avatar-item {
+                        width: 320px;
+                        height: 210px;
+                    }
+                    .avatar-overlay {
+                        width: 64px;
+                        height: 64px;
+                        top: -18px;
+                        border-width: 2px;
                     }
                     .quotes-avatars::before {
                         font-size: 100px;
@@ -1766,22 +2433,22 @@
                 }
 
                 .quotes-text {
-                    color: var(--color-white) !important;
+                    color: var(--color-text-dark) !important;
                 }
 
                 .quotes-name,
                 .quotes-title {
-                    color: var(--color-white) !important;
+                    color: var(--color-text-dark) !important;
                 }
 
                 .quotes-text.heading-5 {
                     font-size: 22px;
                     line-height: 1.35;
                     font-weight: 600;
-                    color: var(--color-white) !important;
+                    color: var(--color-text-dark) !important;
                 }
                 .quotes-text.heading-5 strong {
-                    color: var(--color-red-primary) !important;
+                    color: var(--color-orange-primary) !important;
                 }
 
                 .quotes-name {
@@ -1902,11 +2569,11 @@
 
                 /* Global CTA style (hero + all CTAs) */
                 .cta {
-                    background-color: var(--color-red-primary) !important;
-                    border: 1px solid var(--color-red-primary) !important;
+                    background: linear-gradient(135deg, #ef5a13, #e7000e) !important;
+                    border: none !important;
                     color: var(--color-white) !important;
                     border-radius: var(--border-radius) !important;
-                    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35) !important;
+                    box-shadow: 0 2px 6px rgba(239, 90, 19, 0.35) !important;
                     padding: 12px 24px !important;
                     transition: all 0.2s ease !important;
                 }
@@ -1927,12 +2594,17 @@
                 }
 
                 .cta .cta-arrow-wrap {
-                    width: 30px;
-                    height: 30px;
-                    border-radius: 50%;
-                    background: #ffffff url('Logo-favicon.svg') center/cover no-repeat;
-                    box-shadow: 0 0 0 2px #ffffff, 0 3px 8px rgba(0, 0, 0, 0.3);
+                    position: relative;
+                    width: 26px;
+                    height: 26px;
+                    border-radius: 0;
+                    background: transparent url('logo-favicon.svg') center/contain no-repeat !important;
+                    box-shadow: none !important;
                     flex-shrink: 0;
+                }
+
+                .cta .cta-arrow-wrap img {
+                    display: none !important;
                 }
 
                 .cta .cta-arrow {
@@ -1940,10 +2612,10 @@
                 }
 
                 .cta:hover {
-                    background-color: var(--color-red-accent) !important;
-                    border-color: var(--color-red-accent) !important;
+                    background: linear-gradient(135deg, #e7000e, #ef5a13) !important;
+                    border: none !important;
                     color: var(--color-white) !important;
-                    box-shadow: 0 4px 12px rgba(225, 8, 5, 0.4) !important;
+                    box-shadow: 0 4px 12px rgba(231, 0, 14, 0.4) !important;
                 }
 
                 .cta:hover .cta-text {
@@ -1951,7 +2623,7 @@
                 }
 
                 .cta:hover .cta-arrow-wrap {
-                    box-shadow: 0 0 0 2px #ffffff, 0 3px 8px rgba(0, 0, 0, 0.3);
+                    box-shadow: none;
                 }
 
                 /* Nav CTA size adjustments */
@@ -1977,21 +2649,35 @@
                     margin-left: auto !important;
                     margin-right: auto !important;
                     border-radius: var(--border-radius) !important;
-                    background: rgba(31, 30, 32, 0.95) !important;
+                    background: rgba(255, 255, 255, 0.95) !important;
                     backdrop-filter: blur(16px) saturate(180%) !important;
                     -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-                    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-                    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3) !important;
+                    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+                    left: auto !important;
+                    right: auto !important;
                 }
 
-                .nav .nav-list-link,
-                .nav .nav-brand-text {
-                    color: var(--color-white) !important;
+                .nav .nav-list-link {
+                    color: var(--color-text-dark) !important;
                     font-family: var(--font-body) !important;
+                    font-weight: 500 !important;
+                    text-transform: none !important;
+                    letter-spacing: 0 !important;
+                    font-size: 16px !important;
+                }
+
+                .nav .nav-brand-text {
+                    display: none !important;
+                    color: var(--color-text-dark) !important;
+                    font-family: 'Playfair Display', serif !important;
+                    text-transform: uppercase;
+                    letter-spacing: 0.2px;
+                    font-weight: 700 !important;
                 }
 
                 .nav .nav-list-link:hover {
-                    color: var(--color-red-accent) !important;
+                    color: var(--color-orange-primary) !important;
                 }
 
                 /* Nav separators */
@@ -2016,10 +2702,47 @@
                     background: rgba(0, 0, 0, 0.12);
                 }
 
+                /* Sticky navbar (global) */
+                .nav-container {
+                    position: fixed !important;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    z-index: 999;
+                    background: transparent !important;
+                    padding: 12px 16px;
+                    box-shadow: none;
+                    transform: none !important;
+                    opacity: 1 !important;
+                    transition: none !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    box-sizing: border-box;
+                }
+
+                /* Unifier l'arrière-plan du haut de page avec le hero */
+                body,
+                .page-wrapper,
+                .main-wrapper {
+                    background: #ffffff !important;
+                }
+
+                .nav {
+                    position: relative !important;
+                    transform: none !important;
+                    opacity: 1 !important;
+                    transition: none !important;
+                    margin: 0 auto !important;
+                    width: min(1200px, 100%) !important;
+                    box-sizing: border-box;
+                }
+
                 /* Hero marquee logos visibility */
                 .section-hero .hero-marquee-logo {
-                    filter: brightness(0) saturate(100%) invert(1) !important;
-                    opacity: 0.7 !important;
+                    filter: brightness(0) saturate(100%) !important;
+                    opacity: 0.9 !important;
+                    mix-blend-mode: normal !important;
                 }
 
                 /* Harmonise headings/subtitles across the page with hero fonts */
@@ -2037,24 +2760,121 @@
                 .heading-6,
                 .subtitle,
                 .title,
-                .caption,
-                .hero-subtext {
+                .caption {
                     font-family: var(--font-heading) !important;
-                    color: var(--color-white) !important;
+                    color: var(--color-text-dark) !important;
                 }
 
-                /* ===== SECTIONS AVEC FOND SOMBRE ===== */
+                /* ===== SECTIONS AVEC FOND CLAIR ===== */
                 .section-features,
                 .section-values,
                 .section-about,
                 .section-pricing,
                 .section-expert,
                 .section-testomonials,
+                .section-testimonials,
                 .section-faqs,
                 .section-faq,
                 footer {
-                    background: var(--color-bg-dark) !important;
-                    color: var(--color-white) !important;
+                    background: var(--color-bg-light) !important;
+                    color: var(--color-text-dark) !important;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                /* Déplier la section "Vous êtes freelance..." en layout grilles visibles */
+                .section-features .features-single {
+                    display: grid !important;
+                    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                    gap: 32px;
+                    align-items: start;
+                }
+
+                .section-features .feature-heading-inner {
+                    grid-column: 1 / -1;
+                    text-align: center;
+                }
+
+                .section-features .features-text,
+                .section-features .features-visual-single {
+                    width: 100% !important;
+                    max-width: none !important;
+                }
+
+                .section-features .features-text {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    max-height: none !important;
+                    overflow: visible !important;
+                }
+
+                /* Fond blanc explicite pour la section TJM */
+                .section-expert {
+                    background: #ffffff !important;
+                }
+
+                /* Fond Background1 pour la section about */
+                .section-about {
+                    background: #ffffff !important;
+                }
+
+                /* Fond blanc explicite pour la section témoignages quotes */
+                .section-quotes {
+                    background: #ffffff !important;
+                }
+
+                /* Fond blanc pour "Vous êtes freelance..." */
+                .section-features {
+                    background: #ffffff !important;
+                    padding-top: 24px;
+                }
+
+                .section-pricing {
+                    background: #ffffff !important;
+                }
+
+                .section-values {
+                    background: #ffffff !important;
+                }
+
+                .section-faqs,
+                .section-faq {
+                    background: #ffffff !important;
+                }
+
+                /* Supprimer l'encadrement uniquement sur les cartes de la section features */
+                .section-features .features-block {
+                    background: #ffffff !important;
+                    border: none !important;
+                    box-shadow: none !important;
+                }
+
+                .section-features .features-block-detail-wrap,
+                .section-features .features-wrap {
+                    background: #ffffff !important;
+                    border: none !important;
+                    box-shadow: none !important;
+                }
+
+                /* Texte tarifs en noir */
+                .section-pricing,
+                .section-pricing .pricing-wrap,
+                .section-pricing .pricing-container,
+                .section-pricing .pricing-title,
+                .section-pricing .pricing-heading,
+                .section-pricing .pricing-subtext,
+                .section-pricing .pricing-value,
+                .section-pricing .pricing-list-text,
+                .section-pricing .pricing-list-item,
+                .section-pricing .pricing-wrap-heading,
+                .section-pricing .pricing-tag-wrap,
+                .section-pricing .pricing-tag-text,
+                .section-pricing .pale-text {
+                    color: var(--color-text-dark) !important;
+                }
+
+                .section-pricing .pale-text {
+                    opacity: 0.7;
                 }
 
                 .section-features .heading-2,
@@ -2079,7 +2899,7 @@
                 .section-faqs .subheading,
                 .section-faq .heading-2,
                 .section-faq .subheading {
-                    color: var(--color-white) !important;
+                    color: var(--color-text-dark) !important;
                 }
 
                 /* FAQ spécifique */
@@ -2089,45 +2909,65 @@
                 .faq-text,
                 .section-faqs *,
                 .section-faq * {
-                    color: var(--color-white) !important;
+                    color: var(--color-text-dark) !important;
                 }
 
                 .faq-item .heading-3,
                 .faq-item .heading-4,
                 .faq-item .heading-5,
                 .faq-item .heading-6 {
-                    color: var(--color-white) !important;
+                    color: var(--color-text-dark) !important;
                 }
 
                 .faq-item .body-small,
                 .faq-item .caption {
-                    color: var(--color-white) !important;
+                    color: var(--color-text-secondary) !important;
                 }
 
-                /* Accents en rouge */
+                /* Accents en orange */
                 .section-features .subheading,
                 .section-values .values-subtext,
                 .quote-detail .quote-role {
-                    color: var(--color-red-accent) !important;
+                    color: var(--color-orange-primary) !important;
                 }
 
-                /* Cartes avec fond gris foncé et coins arrondis */
+                /* Cartes avec fond blanc et coins arrondis */
                 .features-block,
                 .values-block,
                 .pricing-container,
                 .testomonials-block,
                 .faq-item {
-                    background: var(--color-bg-card) !important;
-                    border-radius: var(--border-radius) !important;
-                    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                    background: #fffbf3 !important;
+                    border-radius: 0 !important;
+                    border: 1px dashed rgba(239, 90, 19, 0.22) !important;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+                }
+
+                /* Footer infinity background */
+                /* Testimonials infinity background */
+                .section-testimonials .testimonials-infinity-bg {
+                    position: absolute;
+                    inset: -10% -10% -20% -10%;
+                    background-image: url('heromedia.svg');
+                    background-size: 90% auto;
+                    background-repeat: no-repeat;
+                    background-position: center 45%;
+                    opacity: 0.32;
+                    mix-blend-mode: multiply;
+                    pointer-events: none;
+                    filter: blur(0.3px);
+                    transform: rotate(15deg);
+                    transform-origin: center;
+                    z-index: 0;
+                }
+
+                .section-testimonials .testimonials-wrap {
+                    position: relative;
+                    z-index: 1;
                 }
 
                 .section-hero .hero-border-lines {
-                    position: absolute;
-                    inset: 0;
-                    border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
-                    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
-                    pointer-events: none;
+                    display: none !important;
                 }
 
                 .margin-left {
@@ -2140,6 +2980,7 @@
                     padding-top: 0rem !important;
                     padding-right: 0rem !important;
                     padding-bottom: 0rem !important;
+                    padding-left: 0rem !important;
                 }
 
                 .margin-horizontal {
@@ -2167,21 +3008,19 @@
             <nav class="nav">
                 <div class="nav-wrapper"><a href="/" aria-current="page"
                         class="nav-brand-link w-inline-block w--current"><img
-                            src="Logo-favicon.svg"
+                            src="logo-navbar.svg"
                             loading="lazy" alt="FreelanceAugmenté Logo" class="nav-brand-logo" />
-                        <div class="nav-brand-text">FreelanceAugmenté</div>
                     </a>
                     <ul role="list" class="nav-list">
-                        <li class="nav-list-item"><a href="/#features" class="nav-list-link">Programme</a></li>
-                        <li class="nav-list-item"><a href="/#pricing" class="nav-list-link">Tarifs</a></li>
-                        <li class="nav-list-item"><a href="/#integrations" class="nav-list-link">Automations</a></li>
+                        <li class="nav-list-item"><a href="/#integrations" class="nav-list-link">Programme</a></li>
+                        <li class="nav-list-item"><a href="/#features" class="nav-list-link">Générateur</a></li>
                         <li class="nav-list-item"><a href="/#testimonials" class="nav-list-link">Avis</a></li>
                         <li class="nav-list-item"><a href="/#faqs" class="nav-list-link">FAQ</a></li>
                         <li class="nav-list-item hide-desktop"><a data-wf--cta--variant="for-navigation-bar"
-                                data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/#pricing"
+                                data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/applistgenerator"
                                 class="cta w-variant-407ad224-ea3d-6907-4bba-9f321107da7d w-inline-block">
                                 <div class="cta-wrap">
-                                    <div class="cta-text">Rejoindre la méthode</div>
+                                    <div class="cta-text">Générer mon idée d’app</div>
                                     <div class="cta-arrow-wrap"><img
                                             src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8711c204cdf2d2e8224c2_Vector.svg"
                                             loading="lazy" alt="" class="cta-arrow is-relative" /><img
@@ -2191,10 +3030,10 @@
                             </a></li>
                     </ul>
                     <div class="nav-cta"><a data-wf--cta--variant="for-navigation-bar"
-                            data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/#pricing"
+                            data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/applistgenerator"
                             class="cta w-variant-407ad224-ea3d-6907-4bba-9f321107da7d w-inline-block">
                             <div class="cta-wrap">
-                                <div class="cta-text">Rejoindre la méthode</div>
+                                <div class="cta-text">Générer mon idée d’app</div>
                                 <div class="cta-arrow-wrap"><img
                                         src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8711c204cdf2d2e8224c2_Vector.svg"
                                         loading="lazy" alt="" class="cta-arrow is-relative" /><img
@@ -2214,6 +3053,7 @@
         </div>
         <main class="main-wrapper">
             <section class="section-hero">
+                <div class="hero-infinity-bg" aria-hidden="true"></div>
                 <div class="hero-stars" aria-hidden="true">
                     <span class="star"></span>
                     <span class="star"></span>
@@ -2232,19 +3072,16 @@
                             <div class="hero-top-wrap">
                                 <div class="hero-text-wrap">
                                     <h1 data-w-id="49cb072b-6c26-a2f2-ca91-756bf8ad2a79" style="opacity:0"
-                                        class="hero-heading heading-1">Passez de <strong>freelance</strong> débordé à
-                                        entrepreneur <strong>augmenté</strong></h1>
+                                        class="hero-heading heading-1">Développez vos revenus en devenant <strong>Freelance Augmenté</strong></h1>
                                     <p data-w-id="217a10b1-0e93-c182-704c-75b2d70b6301" style="opacity:0"
-                                        class="hero-subtext">Notre méthode basée sur l'IA nous a permis de gérer plus
-                                        de clients, de lancer nos propres SaaS et de diviser notre temps de travail. On
-                                        vous montre comment.</p>
+                                        class="hero-subtext">C'est une méthode concrète, pour utiliser l’IA afin de multiplier sa productivité, ses revenus et sa liberté.</p>
                                 </div>
                                 <div data-w-id="ed4b835f-5a9d-8f82-2203-b0dc5c49c724" style="opacity:0"
                                     class="hero-cta-wrap"><a data-wf--cta--variant="base"
-                                        data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/#pricing"
+                                        data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/applistgenerator"
                                         class="cta w-inline-block">
                                         <div class="cta-wrap">
-                                            <div class="cta-text">Rejoindre la méthode</div>
+                                            <div class="cta-text">Générer mon idée d’app</div>
                                             <div class="cta-arrow-wrap"><img
                                                     src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg"
                                                     loading="lazy" alt="RIght facing arrow"
@@ -2257,10 +3094,7 @@
                             </div>
                             <div data-w-id="9f903edb-c4ba-feaa-1120-5dc01d17f0e3" style="opacity:0"
                                 class="hero-mid-wrap">
-                                <div class="hero-video-frame">
-                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ&controls=0&modestbranding=1&rel=0"
-                                        title="Never Gonna Give You Up" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                </div><img
+                                <div class="hero-video-frame" style="background:#f7f7f7;border:1px solid #ef5a13;border-radius:24px;min-height:360px;box-shadow:0 12px 32px rgba(0,0,0,0.06);"></div><img
                                     src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
                                     loading="lazy" alt="" class="star" /><img
                                     src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
@@ -2274,32 +3108,22 @@
                             </div>
                             <div class="hero-bottom-wrap">
                                 <div class="hero-logo-marquee-wrap">
-                                    <div class="hero-marquee-row"><img
-                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68d175ba7fa4a3520e50e08b_akari%20logos%20(6).svg"
-                                            loading="lazy" alt="" class="hero-marquee-logo" /><img
-                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68d175ba0d0731b0e9872716_akari%20logos%20(1).svg"
-                                            loading="lazy" alt="" class="hero-marquee-logo" /><img
-                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68d175bbc36bba799a9e9fe1_akari%20logos%20(2).svg"
-                                            loading="lazy" alt="" class="hero-marquee-logo" /><img
-                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68d175baef3ef806a08b358b_akari%20logos%20(3).svg"
-                                            loading="lazy" alt="" class="hero-marquee-logo" /><img
-                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68d175bad333429bd6ce6db0_akari%20logos%20(4).svg"
-                                            loading="lazy" alt="" class="hero-marquee-logo" /><img
-                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68d175ba595b8c32480b8d6f_akari%20logos%20(5).svg"
-                                            loading="lazy" alt="" class="hero-marquee-logo" /></div>
-                                    <div class="hero-marquee-row"><img
-                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68d175ba7fa4a3520e50e08b_akari%20logos%20(6).svg"
-                                            loading="lazy" alt="" class="hero-marquee-logo" /><img
-                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68d175ba0d0731b0e9872716_akari%20logos%20(1).svg"
-                                            loading="lazy" alt="" class="hero-marquee-logo" /><img
-                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68d175bbc36bba799a9e9fe1_akari%20logos%20(2).svg"
-                                            loading="lazy" alt="" class="hero-marquee-logo" /><img
-                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68d175baef3ef806a08b358b_akari%20logos%20(3).svg"
-                                            loading="lazy" alt="" class="hero-marquee-logo" /><img
-                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68d175bad333429bd6ce6db0_akari%20logos%20(4).svg"
-                                            loading="lazy" alt="" class="hero-marquee-logo" /><img
-                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68d175ba595b8c32480b8d6f_akari%20logos%20(5).svg"
-                                            loading="lazy" alt="" class="hero-marquee-logo" /></div>
+                                    <div class="hero-marquee-row">
+                                        <div class="partner-bubble"></div>
+                                        <div class="partner-bubble"></div>
+                                        <div class="partner-bubble"></div>
+                                        <div class="partner-bubble"></div>
+                                        <div class="partner-bubble"></div>
+                                        <div class="partner-bubble"></div>
+                                    </div>
+                                    <div class="hero-marquee-row">
+                                        <div class="partner-bubble"></div>
+                                        <div class="partner-bubble"></div>
+                                        <div class="partner-bubble"></div>
+                                        <div class="partner-bubble"></div>
+                                        <div class="partner-bubble"></div>
+                                        <div class="partner-bubble"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -2310,46 +3134,194 @@
             <section id="features" class="section-features">
                 <div class="padding-global">
                     <div class="container-large">
-                        <div class="features-heading-wrap" style="text-align:center; max-width: 720px; margin: 0 auto 48px;">
-                            <div class="feature-heading-inner" style="display:flex; flex-direction:column; gap:12px; align-items:center;">
+                        <div class="features-single" style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items:center; justify-items:center;">
+                            <div class="feature-heading-inner" style="grid-column: 1 / -1; display:flex; flex-direction:column; gap:12px; align-items:center; text-align:center;">
                                 <h2 class="heading-2" style="margin:0;">Vous êtes freelance et vous vous reconnaissez ?</h2>
-                                <p class="subheading">3 situations qui plombent ton temps, tes revenus et ton potentiel.</p>
+                                <p class="subheading" style="margin:0; color:#1F2937 !important; font-size: 18px; line-height: 1.6;">5 situations qui plombent ton temps, tes revenus et ton potentiel.</p>
+                            </div>
+                            <div class="features-text" style="width:100%; max-width:560px; justify-self:start; text-align:left;">
+                                <ul class="features-points" style="font-size:30px; line-height:1.7; margin: 0 auto; padding-left: 22px;">
+                                    <li>Tu manques de <strong>temps</strong>… et tu le sais.</li>
+                                    <li>Tu plafonnes en <strong>productivité</strong> (et donc en <strong>revenus</strong>).</li>
+                                    <li>Tu perds du <strong>temps</strong> à chercher “la bonne idée”.</li>
+                                    <li>Tu n’exploites pas tout ton <strong>potentiel</strong> faute de méthode.</li>
+                                    <li>Tu risques d’être dépassé sur le <strong>marché</strong> freelance.</li>
+                                </ul>
+                            </div>
+                            <div class="features-visual-single">
+                                <img src="image1.svg" alt="Freelance augmenté visuel" loading="lazy" />
                             </div>
                         </div>
-                        <div class="features-wrap">
-                            <div class="features-block">
-                                <div class="features-block-detail-wrap">
-                                    <img src="sablier_3D_iridescent_incline_transparent.png" alt="Sablier illustrant le temps" class="features-visual" loading="lazy" />
-                                    <h2 class="features-block-heading subtitle">Ton business consomme tout ton temps… sans jamais évoluer</h2>
-                                    <p class="features-block-subtext caption">Tu avances dans ton travail, pas dans ton business. Ce qui pourrait te faire changer de niveau est toujours reporté à “plus tard”.</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Duplicate: Vous êtes freelance... -->
+            <section id="features-2" class="section-features">
+                <div class="padding-global">
+                    <div class="container-large">
+                        <div class="features-single" style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items:center; justify-items:center;">
+                            <div class="feature-heading-inner" style="grid-column: 1 / -1; display:flex; flex-direction:column; gap:12px; align-items:center; text-align:center;">
+                                <h2 class="heading-2" style="margin:0;">Découvrez votre potentiel caché grâce<br>à votre profil LinkedIn</h2>
+                                <p class="subheading" style="margin:0; color:#1F2937 !important; font-size: 18px; line-height: 1.6;">Testez notre générateur qui analyse votre profil LinkedIn<br>et propose, en moins d'une minute, 6 idées d’applications personnalisées pour générer des revenus récurrents.</p>
+                            </div>
+                            <div style="grid-column: 1 / -1; display: inline-flex; align-items: center; gap: 18px; color: #374151; font-weight: 700; font-size: 18px; line-height: 1.6;">
+                                <span>Analyse IA</span>
+                                <span style="width: 1px; height: 24px; background: #e5e5e5;"></span>
+                                <span>6 apps personnalisées</span>
+                                <span style="width: 1px; height: 24px; background: #e5e5e5;"></span>
+                                <span>Roadmap prête</span>
+                            </div>
+                            <div class="features-text" style="display:none;"></div>
+                            <div class="features-visual-single">
+                                <div style="position: relative; display: inline-flex; justify-content: center; transform: translateX(75%);">
+                                    <div class="typing-card" style="width: 490px; max-width: 100%; background: #f9f7f4; border: 1px solid #ededed; border-radius: 16px; padding: 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.08); display: flex; flex-direction: column; gap: 14px; transition: filter 0.3s ease;">
+                                        <!-- LinkedIn field -->
+                                        <div style="background: #ffffff; border: 1px solid #e1e1e1; border-radius: 12px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; min-height: 56px;">
+                                            <svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M16 2H4C2.9 2 2 2.9 2 4V16C2 17.1 2.9 18 4 18H16C17.1 18 18 17.1 18 16V4C18 2.9 17.1 2 16 2ZM7 15H5V8H7V15ZM6 7C5.45 7 5 6.55 5 6C5 5.45 5.45 5 6 5C6.55 5 7 5.45 7 6C7 6.55 6.55 7 6 7ZM15 15H13V11.5C13 10.67 12.33 10 11.5 10C10.67 10 10 10.67 10 11.5V15H8V8H10V9C10.5 8.5 11.25 8 12 8C13.66 8 15 9.34 15 11V15Z" fill="#777"/>
+                                            </svg>
+                                            <span class="typing-field" data-text="https://linkedin.com/in/votre-profil" style="flex: 1; min-height: 16px; color: #8a8a8a; font-size: 15px;"></span>
+                                        </div>
+                                    </div>
+                                    <div class="typing-spinner" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; pointer-events: none; opacity: 0; transition: opacity 0.3s ease;">
+                                        <div style="width: 38px; height: 38px; border: 4px solid rgba(255,99,71,0.25); border-top-color: #ff6347; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                                        <div style="font-size: 14px; color: #ff6347; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                                <path d="M12 3l2.2 4.8L19 10l-4.8 2.2L12 17l-2.2-4.8L5 10l4.8-2.2L12 3z" opacity="0.9"/>
+                                                <path d="M18 13.5l1.1 2.4 2.4 1.1-2.4 1.1-1.1 2.4-1.1-2.4-2.4-1.1 2.4-1.1 1.1-2.4z" opacity="0.6"/>
+                                                <path d="M6.5 14.5l0.8 1.8 1.8 0.8-1.8 0.8-0.8 1.8-0.8-1.8-1.8-0.8 1.8-0.8 0.8-1.8z" opacity="0.45"/>
+                                            </svg>
+                                            Génération en cours...
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="features-block block-2">
-                                <div class="features-block-detail-wrap">
-                                    <img src="fleche_3D_iridescente_epaisse_inclinee_transparent.png" alt="Flèche illustrant la croissance" class="features-visual" loading="lazy" />
-                                    <h2 class="features-block-heading subtitle">Tes revenus plafonnent</h2>
-                                    <p class="features-block-subtext caption">Tu as des compétences solides, des clients, parfois même trop de missions…<br />
-                                        Mais malgré tout, ton chiffre d’affaires plafonne.</p>
+                            <div style="grid-column: 1 / -1; display:flex; justify-content:center; margin-top: 24px;">
+                                <a data-wf--cta--variant="base" data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/applistgenerator"
+                                    class="cta w-inline-block">
+                                    <div class="cta-wrap">
+                                        <div class="cta-text">Tester avec mon profil</div>
+                                        <div class="cta-arrow-wrap"><img
+                                                src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg"
+                                                loading="lazy" alt="RIght facing arrow" class="cta-arrow is-relative" /><img
+                                                src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg"
+                                                loading="lazy" alt="RIght facing arrow" class="cta-arrow is-absolute" /></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <style>
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+            </style>
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const typingFields = document.querySelectorAll('#features-2 .typing-field');
+                    const card = document.querySelector('#features-2 .typing-card');
+                    const spinner = document.querySelector('#features-2 .typing-spinner');
+                    if (!typingFields.length) return;
+
+                    const texts = Array.from(typingFields).map((el) => el.dataset.text || '');
+                    const maxLen = texts.reduce((m, t) => Math.max(m, t.length), 0);
+                    let i = 0;
+
+                    const reset = () => {
+                        typingFields.forEach((el) => el.textContent = '');
+                        if (card) card.style.filter = 'none';
+                        if (spinner) spinner.style.opacity = '0';
+                        i = 0;
+                        step();
+                    };
+
+                    const step = () => {
+                        texts.forEach((text, idx) => {
+                            const el = typingFields[idx];
+                            el.textContent = text.slice(0, i);
+                        });
+                        i += 1;
+                        if (i <= maxLen) {
+                            setTimeout(step, 55);
+                        } else {
+                            // petite pause puis affichage flou + spinner, puis relance boucle
+                            setTimeout(() => {
+                                if (card) card.style.filter = 'blur(4px)';
+                                if (spinner) spinner.style.opacity = '1';
+                                setTimeout(reset, 1200);
+                            }, 250);
+                        }
+                    };
+
+                    step();
+                });
+            </script>
+            <section class="section-quotes">
+                <div class="padding-global">
+                    <div class="container-large">
+                        <div class="quotes-heading" style="text-align: center; max-width: 820px; margin: 0 auto 40px; padding-top: 14p%;">
+                            <h2 class="heading-2" style="margin: 0;">Passez de freelance débordé à entrepreneur augmenté</h2>
+                            <p class="subheading" style="margin: 10px 0 0;">Nous sommes freelances et aujourd’hui, grâce à l’IA, nous réalisons bien plus.</p>
+                        </div>
+                        <div class="quotes-carousel">
+                            <div class="quotes-avatars">
+                                <div class="avatar-item active" data-index="0">
+                                    <a href="https://jipup.com/" target="_blank" rel="noopener noreferrer" style="display:block; width:100%; height:100%; position:relative;">
+                                        <img src="project1.svg" loading="lazy" alt="Profil Luc" />
+                                        <div class="avatar-overlay">
+                                            <img src="profile-luc.svg" alt="Avatar Luc" />
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="avatar-item" data-index="1">
+                                    <a href="https://www.teeps.ai/" target="_blank" rel="noopener noreferrer" style="display:block; width:100%; height:100%; position:relative;">
+                                        <img src="project2.svg" loading="lazy" alt="Profil Dibrilou" />
+                                        <div class="avatar-overlay">
+                                            <img src="profile-dibrilou.svg" alt="Avatar Dibrilou" />
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
-                            <div id="w-node-_5d7ff9b0-6a15-273b-30c3-da196e516260-98bc9da8"
-                                class="features-block no-border">
-                                <div class="features-block-detail-wrap">
-                                    <img src="jauge_3D_iridescente_inclinee_transparent.png" alt="Jauge illustrant la progression" class="features-visual" loading="lazy" />
-                                    <h2 class="features-block-heading subtitle">Tu sais que tu joues en dessous de ton potentiel</h2>
-                                    <p class="features-block-subtext caption">Tu vois d’autres freelances lancer des produits, automatiser, scaler.
-                                        Tu te dis “je pourrais faire pareil”. Puis tu retournes livrer un client de plus.</p>
+                            <div class="quotes-arrows">
+                                <button class="quotes-arrow-btn" data-direction="prev" aria-label="Témoignage précédent">←</button>
+                                <button class="quotes-arrow-btn" data-direction="next" aria-label="Témoignage suivant">→</button>
+                            </div>
+                            <div class="quote-detail active" data-index="0">
+                                <p class="quote-name">Luc <a href="https://fr.linkedin.com/in/luc-ebert" target="_blank" rel="noopener noreferrer" style="vertical-align: middle; margin-left: 6px;"><img src="LinkedIn_logo_initials.png" alt="LinkedIn" style="width: 18px; height: 18px; vertical-align: middle;"></a> <a href="https://jipup.com/" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: none; font-size: 0.75em; font-style: italic;">(jipup.com ↗)</a></p>
+                                <p class="quote-role">+800€/mois de MRR, une agence IA qui tourne en parallèle</p>
+                                <div class="quote-text-wrap">
+                                    <img src="guillemets.png" alt="Guillemets">
+                                    <p class="quote-text">« L’IA n’est pas un gadget : c’est mon accélérateur. J’ai vendu un SaaS à 16k€, puis monté une agence IA qui tourne pendant que je code. J’automatise 80% de mes tâches et je garde le contrôle sur la valeur. »</p>
+                                    <img src="guillemets.png" alt="Guillemets" style="transform: scaleX(-1);">
                                 </div>
-                            </div><img
-                                src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b810b6fec2b3b43504580f_Plus%20icon.png"
-                                loading="lazy" style="opacity:0" data-w-id="75bda142-02b2-0505-c6c3-e1a14fd788fc"
-                                alt="Plus Icon" class="star" /><img
-                                src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b810b6fec2b3b43504580f_Plus%20icon.png"
-                                loading="lazy" alt="Plus Icon" class="star top-right" /><img
-                                src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b810b6fec2b3b43504580f_Plus%20icon.png"
-                                loading="lazy" alt="Plus Icon" class="star bottom-left" /><img
-                                src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b810b6fec2b3b43504580f_Plus%20icon.png"
-                                loading="lazy" alt="Plus Icon" class="star bottom-right" />
+                            </div>
+                            <div class="quote-detail" data-index="1">
+                                <p class="quote-name">Dibrilou <a href="https://fr.linkedin.com/in/dibrilou" target="_blank" rel="noopener noreferrer" style="vertical-align: middle; margin-left: 6px;"><img src="LinkedIn_logo_initials.png" alt="LinkedIn" style="width: 18px; height: 18px; vertical-align: middle;"></a> <a href="https://www.teeps.ai/" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: none; font-size: 0.75em; font-style: italic;">(teeps.ai ↗)</a></p>
+                                <p class="quote-role">Plusieurs SaaS vendus, dont un lancé en 7 jours</p>
+                                <div class="quote-text-wrap">
+                                    <img src="guillemets.png" alt="Guillemets">
+                                    <p class="quote-text">« J’utilise l’IA pour prototyper, vendre vite, puis empiler les briques. Un produit en 7 jours, plusieurs reventes derrière. Je montre comment passer de l’idée au revenu, valider, puis multiplier les micro-SaaS rentables. »</p>
+                                    <img src="guillemets.png" alt="Guillemets" style="transform: scaleX(-1);">
+                                </div>
+                            </div>
+                            <div class="quotes-cta">
+                                <a data-wf--cta--variant="base" data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/applistgenerator"
+                                    class="cta w-inline-block">
+                                    <div class="cta-wrap">
+                                        <div class="cta-text">Générer mon idée d’app</div>
+                                        <div class="cta-arrow-wrap"><img
+                                                src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg"
+                                                loading="lazy" alt="RIght facing arrow"
+                                                class="cta-arrow is-relative" /><img
+                                                src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg"
+                                                loading="lazy" alt="RIght facing arrow"
+                                                class="cta-arrow is-absolute" /></div>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2363,16 +3335,15 @@
                                     class="section-intro-wrap w-variant-0db3c2ff-7146-ade7-02fe-e53db96c4e8b">
                                 </div>
                                 <h2 data-w-id="3f045fed-6cef-1999-c0a0-3248c147a786" style="opacity:0"
-                                    class="values-heading heading-2">Vous perdez du temps, de l’argent et des opportunités.</h2>
-                                <p data-w-id="f6e78df7-e762-859a-c20c-669f60ea4c4b" style="opacity:0"
-                                    class="values-subtext">Emails, saisies, reporting, création de contenu… sans automatisation, vous restez coincé dans l’opérationnel pendant que d’autres scalent avec l’IA.</p>
+                                    class="values-heading heading-2">Comment nous allons t'accompagner de A à Z</h2>
+                                <p data-w-id="f6e78df7-e762-859a-c20c-669f60ea4c4b" style="opacity:0; color:#1F2937 !important;"
+                                    class="values-subtext">On part de votre situation, on implémente l’automatisation, puis on sécurise des revenus récurrents.</p>
                             </div>
                             <div class="values-bottom-wrap">
                                 <div class="values-block">
                                     <div class="values-block-top-wrap">
-                                        <h3 class="values-block-title subtitle">Surcharge de travail manuel</h3>
-                                        <p class="values-block-subtext body-small">Coincé à faire des tâches que
-                                            l’automatisation règle en quelques minutes.</p>
+                                        <h3 class="values-block-title subtitle">Diagnostic rapide & objectifs</h3>
+                                        <p class="values-block-subtext body-small">On analyse vos revenus, clients et temps pour bâtir un plan IA clair (MRR, SaaS, liberté).</p>
                                     </div>
                                     <div class="values-block-mid-wrap">
                                     </div>
@@ -2396,14 +3367,19 @@
                                                 <div class="values-list-text body-small">Définition de vos objectifs (MRR,
                                                     SaaS, liberté)</div>
                                             </li>
+                                            <li class="values-list-item"><img
+                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8167d7503553596033cfe_Vector%20616.svg"
+                                                    loading="lazy" alt="Tick Icon" class="values-list-tick" />
+                                                <div class="values-list-text body-small">Positionnement et offres
+                                                    différenciées pour mieux vendre</div>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="values-block">
                                     <div class="values-block-top-wrap">
-                                        <h3 class="values-block-title subtitle">Efficacité et revenus gaspillés</h3>
-                                        <p class="values-block-subtext body-small">Tu perds du temps, de l’énergie et de
-                                            l’argent sans automatisation.</p>
+                                        <h3 class="values-block-title subtitle">Automatisation mise en prod</h3>
+                                        <p class="values-block-subtext body-small">Méthodes IA prêtes à l’emploi : 80% des tâches automatisées, code 2x plus vite.</p>
                                     </div>
                                     <div class="values-block-mid-wrap video-bg">
                                         <video src="media5.mp4" autoplay muted loop playsinline></video>
@@ -2425,17 +3401,22 @@
                                             <li class="values-list-item"><img
                                                     src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8167d7503553596033cfe_Vector%20616.svg"
                                                     loading="lazy" alt="Tick Icon" class="values-list-tick" />
-                                                <div class="values-list-text body-small">Prospection et closing assistés
-                                                    par l’IA</div>
+                                                <div class="values-list-text body-small">Mise en production guidée de vos
+                                                    automatisations</div>
+                                            </li>
+                                            <li class="values-list-item"><img
+                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8167d7503553596033cfe_Vector%20616.svg"
+                                                    loading="lazy" alt="Tick Icon" class="values-list-tick" />
+                                                <div class="values-list-text body-small">Recherche et qualification clients
+                                                    (prospection + marketing)</div>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="values-block">
                                     <div class="values-block-top-wrap">
-                                        <h3 class="values-block-title subtitle">Trop d’outils, pas de roadmap</h3>
-                                        <p class="values-block-subtext body-small">L’IA paraît écrasante sans apprentissage
-                                            structuré. L’IA paraît écrasante sans apprentissage structuré.</p>
+                                        <h3 class="values-block-title subtitle">Revenus diversifiés & support</h3>
+                                        <p class="values-block-subtext body-small">Missions + MRR, communauté, accompagnement continu pour scaler sans vous disperser.</p>
                                     </div>
                                     <div class="values-block-mid-wrap">
                                     </div>
@@ -2458,72 +3439,24 @@
                                                     loading="lazy" alt="Tick Icon" class="values-list-tick" />
                                                 <div class="values-list-text body-small">Communauté et support continu (webinaire, intervenants exclusifs, témoignages ...)</div>
                                             </li>
+                                            <li class="values-list-item"><img
+                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8167d7503553596033cfe_Vector%20616.svg"
+                                                    loading="lazy" alt="Tick Icon" class="values-list-tick" />
+                                                <div class="values-list-text body-small">Suivi et améliorations</div>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <img
-                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b810b6fec2b3b43504580f_Plus%20icon.png"
+                                    src="media1.svg"
                                     loading="lazy" style="opacity:0" data-w-id="92fcfa32-3e40-9dbc-85aa-94b311cdcfce"
-                                    alt="Plus Icon" class="star" /><img
+                                    alt="Media Icon" class="star" /><img
                                     src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b810b6fec2b3b43504580f_Plus%20icon.png"
                                     loading="lazy" alt="Plus Icon" class="star top-right" /><img
                                     src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b810b6fec2b3b43504580f_Plus%20icon.png"
                                     loading="lazy" alt="Plus Icon" class="star bottom-left" /><img
                                     src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b810b6fec2b3b43504580f_Plus%20icon.png"
                                     loading="lazy" alt="Plus Icon" class="star bottom-right" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="section-quotes">
-                <div class="padding-global">
-                    <div class="container-large">
-                        <div class="quotes-heading" style="text-align: center; max-width: 820px; margin: 0 auto 40px;">
-                            <h2 class="heading-2" style="margin: 0;">D'un business qui plafonne à un business décuplé par l’IA</h2>
-                            <p class="subheading" style="margin: 10px 0 0;">Nous sommes des freelances comme vous.</p>
-                        </div>
-                        <div class="quotes-carousel">
-                            <div class="quotes-avatars">
-                                <div class="avatar-item active" data-index="0">
-                                    <img src="profile-luc.svg" loading="lazy" alt="Profil Luc" />
-                                </div>
-                                <div class="avatar-item" data-index="1">
-                                    <img src="profile-dibrilou.svg" loading="lazy" alt="Profil Dibrilou" />
-                                </div>
-                            </div>
-                            <div class="quote-detail active" data-index="0">
-                                <p class="quote-name">Luc</p>
-                                <p class="quote-role">800€/mois en MRR + une agence IA à côté</p>
-                                <div class="quote-text-wrap">
-                                    <img src="guillemets.png" alt="Guillemets">
-                                    <p class="quote-text">L'IA n'est pas un gadget. C'est mon levier. J'ai construit et vendu plusieurs SaaS, dont celui-ci à 16k€. Maintenant j'ai une agence IA qui tourne en parallèle de mes missions.<br><br>Je vous montre comment j'automatise 80% de mes tâches de dev et de gestion.</p>
-                                    <img src="guillemets.png" alt="Guillemets" style="transform: scaleX(-1);">
-                                </div>
-                            </div>
-                            <div class="quote-detail" data-index="1">
-                                <p class="quote-name">Dibrilou</p>
-                                <p class="quote-role">Plusieurs SaaS vendus, dont un en une semaine</p>
-                                <div class="quote-text-wrap">
-                                    <img src="guillemets.png" alt="Guillemets">
-                                    <p class="quote-text">J'ai utilisé l'IA pour construire et vendre plusieurs produits. Ma stratégie : créer une première brique simple, la vendre, puis construire d'autres briques autour.<br><br>Je vous apprends à créer des produits rapidement, les valider auprès du marché, et construire un empire de petits SaaS rentables.</p>
-                                    <img src="guillemets.png" alt="Guillemets" style="transform: scaleX(-1);">
-                                </div>
-                            </div>
-                            <div class="quotes-cta">
-                                <a data-wf--cta--variant="base" data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/#pricing"
-                                    class="cta w-inline-block">
-                                    <div class="cta-wrap">
-                                        <div class="cta-text">Rejoindre la méthode</div>
-                                        <div class="cta-arrow-wrap"><img
-                                                src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg"
-                                                loading="lazy" alt="RIght facing arrow"
-                                                class="cta-arrow is-relative" /><img
-                                                src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg"
-                                                loading="lazy" alt="RIght facing arrow"
-                                                class="cta-arrow is-absolute" /></div>
-                                    </div>
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -2536,9 +3469,9 @@
                             <div class="about-top-wrap">
                                 <div class="about-top-left-wrap">
                                     <h2 data-w-id="8415bf95-8e4b-8203-279e-d37e0a26556c" style="opacity:0"
-                                        class="about-heading heading-2">Devenez un Freelance Augmenté grâce à l'IA</h2>
+                                        class="about-heading heading-2">Les résultats obtenus en moyenne par nos membres</h2>
                                     <p data-w-id="164e9707-beb4-fc37-ecba-0feca5471d7b" style="opacity:0"
-                                        class="about-subtext title">Apprenez à gérer 2x plus de clients, diviser votre temps de travail et lancer vos propres produits en parallèle de vos missions.</p>
+                                        class="about-subtext">Apprenez à gérer 2x plus de clients, diviser votre temps de travail et lancer vos propres produits en parallèle de vos missions.</p>
                                 </div>
                                 <div data-w-id="06c0245a-131f-d4e9-771d-630e76ceae27" style="opacity:0"
                                     class="about-top-image-wrap">
@@ -2574,42 +3507,6 @@
                                 </div>
                                 <div class="section-divider"></div>
                             </div>
-                            <div class="about-bottom-wrap">
-                                <div class="category-grid" style="display: grid; grid-template-columns: repeat(8, minmax(160px, 1fr)); gap: 24px; margin-top: 40px; width: 100%; transform: translateY(-6%);">
-                                    <div class="category-card" style="background: #fff; border-radius: 0; padding: 30px 20px; text-align: center;">
-                                        <img class="category-icon" src="domaines/immobilier_maison.png" alt="Immobilier & Construction">
-                                        <h4 style="font-size: 1rem; font-weight: 600; color: #000; margin: 0;">Immobilier & Construction</h4>
-                                    </div>
-                                    <div class="category-card" style="background: #fff; border-radius: 0; padding: 30px 20px; text-align: center;">
-                                        <img class="category-icon" src="domaines/marketing_courbe.png" alt="Marketing & Growth">
-                                        <h4 style="font-size: 1rem; font-weight: 600; color: #000; margin: 0;">Marketing & Growth</h4>
-                                    </div>
-                                    <div class="category-card" style="background: #fff; border-radius: 0; padding: 30px 20px; text-align: center;">
-                                        <img class="category-icon" src="domaines/coaching_ampoule.png" alt="Coaching & Formation">
-                                        <h4 style="font-size: 1rem; font-weight: 600; color: #000; margin: 0;">Coaching & Formation</h4>
-                                    </div>
-                                    <div class="category-card" style="background: #fff; border-radius: 0; padding: 30px 20px; text-align: center;">
-                                        <img class="category-icon" src="domaines/finance_calculatrice.png" alt="Finance & Gestion">
-                                        <h4 style="font-size: 1rem; font-weight: 600; color: #000; margin: 0;">Finance & Gestion</h4>
-                                    </div>
-                                    <div class="category-card" style="background: #fff; border-radius: 0; padding: 30px 20px; text-align: center;">
-                                        <img class="category-icon" src="domaines/rh_document_loupe.png" alt="RH & Recrutement">
-                                        <h4 style="font-size: 1rem; font-weight: 600; color: #000; margin: 0;">RH & Recrutement</h4>
-                                    </div>
-                                    <div class="category-card" style="background: #fff; border-radius: 0; padding: 30px 20px; text-align: center;">
-                                        <img class="category-icon" src="domaines/creation_crayon.png" alt="Création & Communication">
-                                        <h4 style="font-size: 1rem; font-weight: 600; color: #000; margin: 0;">Création & Communication</h4>
-                                    </div>
-                                    <div class="category-card" style="background: #fff; border-radius: 0; padding: 30px 20px; text-align: center;">
-                                        <img class="category-icon" src="domaines/commerce_boutique.png" alt="Commerce & Services locaux">
-                                        <h4 style="font-size: 1rem; font-weight: 600; color: #000; margin: 0;">Commerce & Services locaux</h4>
-                                    </div>
-                                    <div class="category-card" style="background: #fff; border-radius: 0; padding: 30px 20px; text-align: center;">
-                                        <img class="category-icon" src="domaines/plus_question.png" alt="Et bien plus encore...">
-                                        <h4 style="font-size: 1rem; font-weight: 600; color: #000; margin: 0;">Et bien plus encore...</h4>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -2643,255 +3540,12 @@
                                     loading="lazy" alt="Plus Icon" class="curriculum-star top-right" />
                                 <div class="curriculum-block-wrap"><div class="curriculum-block"><div data-hover="false" data-delay="0" data-w-id="ea570bf2-d8dc-f0be-b144-282c4ff7bdf0" class="curriculum-dropdown w-dropdown"><div class="curriculum-dropdown-toggle w-dropdown-toggle"><div class="curriculum-block-top-wrap"><h3 class="curriculum-block-title">MODULE 1 : INTRODUCTION</h3><div class="curriculum-block-control-wrap"><p class="curriculum-block-subtext heading-6">Les bases de ton projet</p><button class="curriculum-block-control-btn"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b953dcbdbb36a3f3c85cde_Vector%20(1).svg" loading="lazy" alt="" class="curriculum-block-control-image"/></button></div></div><div class="curriculum-block-mid-wrap"><ul role="list" class="curriculum-list"><li class="curriculum-list-item"><div class="curriculum-list-count">01</div><p class="curriculum-list-text">Introduction to AI Automation</p></li><li class="curriculum-list-item"><div class="curriculum-list-count">02</div><p class="curriculum-list-text">AI automation fundamentals</p></li><li class="curriculum-list-item"><div class="curriculum-list-count">03</div><p class="curriculum-list-text">Understanding AI agents structure</p></li><li class="curriculum-list-item"><div class="curriculum-list-count">04</div><p class="curriculum-list-text">Get started with Gemini for AI automation</p></li></ul></div></div><nav class="curriculum-dropdown-nav w-dropdown-list"></nav></div><div class="curriculum-block-bottom-wrap"><p class="curriculum-detail-heading">includes</p><div class="curriculum-detail-row"><div class="curriculum-detail-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b95d7797ebfb4ee4b1db43_Vector%20(2).svg" loading="lazy" alt="" class="curriculum-detail-icon"/><div class="curriculum-detail-text">Video lessons</div></div><div class="curriculum-detail-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b95d77f9ebb94b6104d97b_Icons.svg" loading="lazy" alt="" class="curriculum-detail-icon"/><div class="curriculum-detail-text">Assignment</div></div><div class="curriculum-detail-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b95d7790e49316c9860e4c_Icons%20(1).svg" loading="lazy" alt="" class="curriculum-detail-icon"/><div class="curriculum-detail-text">Lab notebook</div></div></div></div></div></div><div class="curriculum-block-wrap block-2"><div class="curriculum-block"><div data-hover="false" data-delay="0" data-w-id="ea570bf2-d8dc-f0be-b144-282c4ff7bdf0" class="curriculum-dropdown w-dropdown"><div class="curriculum-dropdown-toggle w-dropdown-toggle"><div class="curriculum-block-top-wrap"><h3 class="curriculum-block-title">MODULE 2 : PRÉPARATION</h3><div class="curriculum-block-control-wrap"><p class="curriculum-block-subtext heading-6">Les premières fondations de ton SaaS</p><button class="curriculum-block-control-btn"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b953dcbdbb36a3f3c85cde_Vector%20(1).svg" loading="lazy" alt="" class="curriculum-block-control-image"/></button></div></div><div class="curriculum-block-mid-wrap"><ul role="list" class="curriculum-list"><li class="curriculum-list-item"><div class="curriculum-list-count">01</div><p class="curriculum-list-text">Introduction to LangChain workflows</p></li><li class="curriculum-list-item"><div class="curriculum-list-count">02</div><p class="curriculum-list-text">Building custom chains and agents</p></li><li class="curriculum-list-item"><div class="curriculum-list-count">03</div><p class="curriculum-list-text">Handling inputs, outputs, and memory</p></li><li class="curriculum-list-item"><div class="curriculum-list-count">04</div><p class="curriculum-list-text">Best practices for orchestration</p></li></ul></div></div><nav class="curriculum-dropdown-nav w-dropdown-list"></nav></div><div class="curriculum-block-bottom-wrap"><p class="curriculum-detail-heading">includes</p><div class="curriculum-detail-row"><div class="curriculum-detail-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b95d7797ebfb4ee4b1db43_Vector%20(2).svg" loading="lazy" alt="" class="curriculum-detail-icon"/><div class="curriculum-detail-text">Video lessons</div></div><div class="curriculum-detail-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b95d77f9ebb94b6104d97b_Icons.svg" loading="lazy" alt="" class="curriculum-detail-icon"/><div class="curriculum-detail-text">Assignment</div></div><div class="curriculum-detail-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b95d7790e49316c9860e4c_Icons%20(1).svg" loading="lazy" alt="" class="curriculum-detail-icon"/><div class="curriculum-detail-text">Lab notebook</div></div></div></div></div></div><div class="curriculum-block-wrap block-3"><div class="curriculum-block"><div data-hover="false" data-delay="0" data-w-id="ea570bf2-d8dc-f0be-b144-282c4ff7bdf0" class="curriculum-dropdown w-dropdown"><div class="curriculum-dropdown-toggle w-dropdown-toggle"><div class="curriculum-block-top-wrap"><h3 class="curriculum-block-title">MODULE 3 : DÉVELOPPEMENT</h3><div class="curriculum-block-control-wrap"><p class="curriculum-block-subtext heading-6">Tes premières lignes sans coder</p><button class="curriculum-block-control-btn"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b953dcbdbb36a3f3c85cde_Vector%20(1).svg" loading="lazy" alt="" class="curriculum-block-control-image"/></button></div></div><div class="curriculum-block-mid-wrap"><ul role="list" class="curriculum-list"><li class="curriculum-list-item"><div class="curriculum-list-count">01</div><p class="curriculum-list-text">What is Retrieval-Augmented Generation</p></li><li class="curriculum-list-item"><div class="curriculum-list-count">02</div><p class="curriculum-list-text">Setting up vector databases</p></li><li class="curriculum-list-item"><div class="curriculum-list-count">03</div><p class="curriculum-list-text">Implementing retrieval pipelines</p></li><li class="curriculum-list-item"><div class="curriculum-list-count">04</div><p class="curriculum-list-text">Enhancing responses with context</p></li></ul></div></div><nav class="curriculum-dropdown-nav w-dropdown-list"></nav></div><div class="curriculum-block-bottom-wrap"><p class="curriculum-detail-heading">includes</p><div class="curriculum-detail-row"><div class="curriculum-detail-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b95d7797ebfb4ee4b1db43_Vector%20(2).svg" loading="lazy" alt="" class="curriculum-detail-icon"/><div class="curriculum-detail-text">Video lessons</div></div><div class="curriculum-detail-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b95d77f9ebb94b6104d97b_Icons.svg" loading="lazy" alt="" class="curriculum-detail-icon"/><div class="curriculum-detail-text">Assignment</div></div><div class="curriculum-detail-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b95d7790e49316c9860e4c_Icons%20(1).svg" loading="lazy" alt="" class="curriculum-detail-icon"/><div class="curriculum-detail-text">Lab notebook</div></div></div></div></div></div><div class="curriculum-block-wrap block-4"><div class="curriculum-block"><div data-hover="false" data-delay="0" data-w-id="ea570bf2-d8dc-f0be-b144-282c4ff7bdf0" class="curriculum-dropdown w-dropdown"><div class="curriculum-dropdown-toggle w-dropdown-toggle"><div class="curriculum-block-top-wrap"><h3 class="curriculum-block-title">MODULE 4 : DÉPLOIEMENT</h3><div class="curriculum-block-control-wrap"><p class="curriculum-block-subtext heading-6">Mise en ligne de ton SaaS</p><button class="curriculum-block-control-btn"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b953dcbdbb36a3f3c85cde_Vector%20(1).svg" loading="lazy" alt="" class="curriculum-block-control-image"/></button></div></div><div class="curriculum-block-mid-wrap"><ul role="list" class="curriculum-list"><li class="curriculum-list-item"><div class="curriculum-list-count">01</div><p class="curriculum-list-text">Optimizing retrieval performance</p></li><li class="curriculum-list-item"><div class="curriculum-list-count">02</div><p class="curriculum-list-text">Handling large document sets</p></li><li class="curriculum-list-item"><div class="curriculum-list-count">03</div><p class="curriculum-list-text">Combining multiple knowledge sources</p></li><li class="curriculum-list-item"><div class="curriculum-list-count">04</div><p class="curriculum-list-text">Advanced RAG use cases</p></li></ul></div></div><nav class="curriculum-dropdown-nav w-dropdown-list"></nav></div><div class="curriculum-block-bottom-wrap"><p class="curriculum-detail-heading">includes</p><div class="curriculum-detail-row"><div class="curriculum-detail-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b95d7797ebfb4ee4b1db43_Vector%20(2).svg" loading="lazy" alt="" class="curriculum-detail-icon"/><div class="curriculum-detail-text">Video lessons</div></div><div class="curriculum-detail-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b95d77f9ebb94b6104d97b_Icons.svg" loading="lazy" alt="" class="curriculum-detail-icon"/><div class="curriculum-detail-text">Assignment</div></div><div class="curriculum-detail-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b95d7790e49316c9860e4c_Icons%20(1).svg" loading="lazy" alt="" class="curriculum-detail-icon"/><div class="curriculum-detail-text">Lab notebook</div></div></div></div></div></div><div class="curriculum-block-wrap block-5"><div class="curriculum-block"><div data-hover="false" data-delay="0" data-w-id="ea570bf2-d8dc-f0be-b144-282c4ff7bdf0" class="curriculum-dropdown w-dropdown"><div class="curriculum-dropdown-toggle w-dropdown-toggle"><div class="curriculum-block-top-wrap"><h3 class="curriculum-block-title">Module 5</h3><div class="curriculum-block-control-wrap"><p class="curriculum-block-subtext heading-6">Capstone Project &amp; Career Prep</p><button class="curriculum-block-control-btn"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b953dcbdbb36a3f3c85cde_Vector%20(1).svg" loading="lazy" alt="" class="curriculum-block-control-image"/></button></div></div><div class="curriculum-block-mid-wrap"><ul role="list" class="curriculum-list"><li class="curriculum-list-item"><div class="curriculum-list-count">01</div><p class="curriculum-list-text">Capstone project requirements overview</p></li><li class="curriculum-list-item"><div class="curriculum-list-count">02</div><p class="curriculum-list-text">Building and showcasing your project</p></li><li class="curriculum-list-item"><div class="curriculum-list-count">03</div><p class="curriculum-list-text">Preparing for AI job interviews</p></li><li class="curriculum-list-item"><div class="curriculum-list-count">04</div><p class="curriculum-list-text">Career growth in AI automation</p></li></ul></div></div><nav class="curriculum-dropdown-nav w-dropdown-list"></nav></div><div class="curriculum-block-bottom-wrap"><p class="curriculum-detail-heading">includes</p><div class="curriculum-detail-row"><div class="curriculum-detail-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b95d7797ebfb4ee4b1db43_Vector%20(2).svg" loading="lazy" alt="" class="curriculum-detail-icon"/><div class="curriculum-detail-text">Video lessons</div></div><div class="curriculum-detail-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b95d77f9ebb94b6104d97b_Icons.svg" loading="lazy" alt="" class="curriculum-detail-icon"/><div class="curriculum-detail-text">Assignment</div></div><div class="curriculum-detail-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b95d7790e49316c9860e4c_Icons%20(1).svg" loading="lazy" alt="" class="curriculum-detail-icon"/><div class="curriculum-detail-text">Lab notebook</div></div></div></div></div></div>
                                 <div class="curriculum-cta-wrap">
-                                    <a data-wf--cta--variant="base" data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/#pricing" class="cta w-inline-block">
+                                    <a data-wf--cta--variant="base" data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/applistgenerator" class="cta w-inline-block">
                                         <div class="cta-wrap">
-                                            <div class="cta-text">Rejoindre la méthode</div>
+                                            <div class="cta-text">Générer mon idée d’app</div>
                                             <div class="cta-arrow-wrap"><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg" loading="lazy" alt="RIght facing arrow" class="cta-arrow is-relative"/><img src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg" loading="lazy" alt="RIght facing arrow" class="cta-arrow is-absolute"/></div>
                                         </div>
                                     </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section id="pricing" class="section-pricing">
-                <div class="padding-global">
-                    <div class="container-large">
-                        <div class="pricing-wrap">
-                            <div class="pricing-top-wrap">
-                                <h2 class="pricing-heading heading-2">Boost ton business avec l’IA</h2>
-                                <p class="pricing-subtext">Conçois, déploie et fais évoluer tes automations pour livrer
-                                    plus vite, mieux et sans stress.</p>
-                            </div>
-                            <div data-w-id="8a4f26fd-6860-c878-f879-5f4d1bd2247e" style="opacity:0"
-                                data-current="Monthly" data-easing="ease" data-duration-in="300" data-duration-out="100"
-                                class="pricing-tabs w-tabs">
-                                <div class="pricing-tabs-menu w-tab-menu"><a data-w-tab="Monthly"
-                                        class="pricing-tab-link w-inline-block w-tab-link w--current">
-                                        <div class="pricing-tab-link-text">Mensuel</div>
-                                    </a><a data-w-tab="Yearly" class="pricing-tab-link w-inline-block w-tab-link">
-                                        <div class="pricing-tab-link-text">Annuel (–20%)</div>
-                                    </a></div>
-                                <div class="pricing-tabs-content w-tab-content">
-                                    <div data-w-tab="Monthly" class="pricing-tab-pane w-tab-pane w--tab-active">
-                                        <div class="pricing-tab-pane-grid">
-                                            <div class="pricing-container">
-                                                <div class="pricing-heading-wrap">
-                                                    <p class="pricing-wrap-heading">pack complet</p>
-                                                    <div class="pricing-heading-dash"></div>
-                                                    <div class="pricing-tag-wrap">populaire</div>
-                                                </div>
-                                                <h3 class="pricing-title heading-2">€75</h3>
-                                                <p class="pricing-value">La méthode clé en main pour automatiser ton
-                                                    activité et lancer ton SaaS sans dev.</p>
-                                                <ul role="list" class="pricing-list">
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Accès immédiat aux 6 modules complets</div>
-                                                    </li>
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Mises à jour et bonus inclus</div>
-                                                    </li>
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Accès communauté privée</div>
-                                                    </li>
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Certificat de réussite</div>
-                                                    </li>
-                                                </ul>
-                                                <div class="pricing-cta-wrap"><a data-wf--cta--variant="base"
-                                                        data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2"
-                                                        href="/#pricing" class="cta w-inline-block">
-                                                        <div class="cta-wrap">
-                                                            <div class="cta-text">Rejoindre la méthode</div>
-                                                            <div class="cta-arrow-wrap"><img
-                                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg"
-                                                                    loading="lazy" alt="RIght facing arrow"
-                                                                    class="cta-arrow is-relative" /><img
-                                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg"
-                                                                    loading="lazy" alt="RIght facing arrow"
-                                                                    class="cta-arrow is-absolute" /></div>
-                                                        </div>
-                                                    </a></div><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star" /><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star top-right" /><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star bottom-left" /><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star bottom-right" />
-                                            </div>
-                                            <div class="pricing-container">
-                                                <p class="pricing-wrap-heading">pack ultime</p>
-                                                <h3 class="pricing-title heading-2">€90</h3>
-                                                <p class="pricing-value">Pour accélérer ton agence ou ton collectif avec
-                                                    des automations IA prêtes à déployer.</p>
-                                                <ul role="list" class="pricing-list">
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Accès immédiat aux 6 modules complets</div>
-                                                    </li>
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Mises à jour et bonus inclus</div>
-                                                    </li>
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Accès communauté privée</div>
-                                                    </li>
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Certificat de réussite</div>
-                                                    </li>
-                                                </ul>
-                                                <div class="pricing-cta-wrap"><a data-wf--cta--variant="base"
-                                                        data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2"
-                                                        href="/#pricing" class="cta w-inline-block">
-                                                        <div class="cta-wrap">
-                                                            <div class="cta-text">Rejoindre la méthode</div>
-                                                            <div class="cta-arrow-wrap"><img
-                                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg"
-                                                                    loading="lazy" alt="RIght facing arrow"
-                                                                    class="cta-arrow is-relative" /><img
-                                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg"
-                                                                    loading="lazy" alt="RIght facing arrow"
-                                                                    class="cta-arrow is-absolute" /></div>
-                                                        </div>
-                                                    </a></div><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star" /><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star top-right" /><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star bottom-left" /><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star bottom-right" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div data-w-tab="Yearly" class="pricing-tab-pane w-tab-pane">
-                                        <div class="pricing-tab-pane-grid">
-                                            <div class="pricing-container">
-                                                <div class="pricing-heading-wrap">
-                                                    <p class="pricing-wrap-heading">pack complet</p>
-                                                    <div class="pricing-heading-dash"></div>
-                                                    <div class="pricing-tag-wrap">populaire</div>
-                                                </div>
-                                                <h3 class="pricing-title heading-2">€900 <span
-                                                        class="pale-text">€1080</span></h3>
-                                                <p class="pricing-value">La méthode clé en main pour automatiser ton
-                                                    activité et lancer ton SaaS sans dev.</p>
-                                                <ul role="list" class="pricing-list">
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Accès immédiat aux 6 modules complets</div>
-                                                    </li>
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Mises à jour et bonus inclus</div>
-                                                    </li>
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Accès communauté privée</div>
-                                                    </li>
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Certificat de réussite</div>
-                                                    </li>
-                                                </ul>
-                                                <div class="pricing-cta-wrap"><a data-wf--cta--variant="base"
-                                                        data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2"
-                                                        href="/#pricing" class="cta w-inline-block">
-                                                        <div class="cta-wrap">
-                                                            <div class="cta-text">Rejoindre la méthode</div>
-                                                            <div class="cta-arrow-wrap"><img
-                                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg"
-                                                                    loading="lazy" alt="RIght facing arrow"
-                                                                    class="cta-arrow is-relative" /><img
-                                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg"
-                                                                    loading="lazy" alt="RIght facing arrow"
-                                                                    class="cta-arrow is-absolute" /></div>
-                                                        </div>
-                                                    </a></div><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star" /><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star top-right" /><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star bottom-left" /><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star bottom-right" />
-                                            </div>
-                                            <div class="pricing-container">
-                                                <p class="pricing-wrap-heading">pack ultime</p>
-                                                <h3 class="pricing-title heading-2">€1080 <span
-                                                        class="pale-text">€1296</span></h3>
-                                                <p class="pricing-value">Pour accélérer ton agence ou ton collectif avec
-                                                    des automations IA prêtes à déployer.</p>
-                                                <ul role="list" class="pricing-list">
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Accès immédiat aux 6 modules complets</div>
-                                                    </li>
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Mises à jour et bonus inclus</div>
-                                                    </li>
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Accès communauté privée</div>
-                                                    </li>
-                                                    <li class="pricing-list-item"><img loading="lazy"
-                                                            src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b8143410c9da3ce97c2655_Vector%20616.svg"
-                                                            alt="" class="pricing-list-icon" />
-                                                        <div class="pricing-list-text">Certificat de réussite</div>
-                                                    </li>
-                                                </ul>
-                                                <div class="pricing-cta-wrap"><a data-wf--cta--variant="base"
-                                                        data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2"
-                                                        href="/#pricing" class="cta w-inline-block">
-                                                        <div class="cta-wrap">
-                                                            <div class="cta-text">Rejoindre la méthode</div>
-                                                            <div class="cta-arrow-wrap"><img
-                                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg"
-                                                                    loading="lazy" alt="RIght facing arrow"
-                                                                    class="cta-arrow is-relative" /><img
-                                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b80b309ba7e6875ad91517_right%20arrow.svg"
-                                                                    loading="lazy" alt="RIght facing arrow"
-                                                                    class="cta-arrow is-absolute" /></div>
-                                                        </div>
-                                                    </a></div><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star" /><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star top-right" /><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star bottom-left" /><img loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68b801acff955da298bc9db6/68b83523f4473a0d69939132_Plus%20icon.svg"
-                                                    alt="" class="star bottom-right" />
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -2941,6 +3595,7 @@
                 </div>
             </section>
             <section id="testimonials" class="section-testimonials">
+                <div class="testimonials-infinity-bg" aria-hidden="true"></div>
                 <div class="padding-global">
                     <div class="container-large">
                         <div class="testimonials-wrap">
@@ -3145,7 +3800,7 @@
                                 </div>
                             </div>
                             <div class="faq-cta-wrap"><a data-wf--cta--variant="secondary"
-                                    data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/#pricing"
+                                    data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/applistgenerator"
                                     class="cta w-variant-bdc03042-63d8-51ec-3b68-ec0ffb57eecc w-inline-block">
                                     <div class="cta-wrap">
                                         <div class="cta-text">Rejoindre la méthode</div>
@@ -3165,21 +3820,22 @@
             </section>
         </main>
         <footer class="footer">
-            <div class="footer-wrapper" style="display: flex; flex-direction: column; align-items: center; gap: 30px; padding: 40px 20px;">
-                <nav style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap; justify-content: center;">
-                    <a href="#programmes" style="color: #fff; text-decoration: none; font-size: 1rem;">Programmes</a>
+            <div class="footer-infinity-bg" aria-hidden="true"></div>
+            <div class="footer-wrapper" style="display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 20px 16px;">
+                <nav style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap; justify-content: center;">
+                    <a href="#programmes" style="color: var(--color-text-dark); text-decoration: none; font-size: 1rem;">Programmes</a>
                     <span style="color: #666;">|</span>
-                    <a href="#apropos" style="color: #fff; text-decoration: none; font-size: 1rem;">À propos</a>
+                    <a href="#apropos" style="color: var(--color-text-dark); text-decoration: none; font-size: 1rem;">À propos</a>
                     <span style="color: #666;">|</span>
-                    <a href="#temoignages" style="color: #fff; text-decoration: none; font-size: 1rem;">Témoignages</a>
+                    <a href="#temoignages" style="color: var(--color-text-dark); text-decoration: none; font-size: 1rem;">Témoignages</a>
                     <span style="color: #666;">|</span>
-                    <a href="#mentions-legales" style="color: #fff; text-decoration: none; font-size: 1rem;">Mentions légales</a>
+                    <a href="#mentions" style="color: var(--color-text-dark); text-decoration: none; font-size: 1rem;">Mentions légales</a>
                     <span style="color: #666;">|</span>
-                    <a href="#cgv" style="color: #fff; text-decoration: none; font-size: 1rem;">CGV</a>
+                    <a href="#cgv" style="color: var(--color-text-dark); text-decoration: none; font-size: 1rem;">CGV</a>
                 </nav>
-                <p style="color: #fff; margin: 0; font-size: 1rem; display: flex; align-items: center; gap: 10px;">
+                <p style="color: var(--color-text-dark); opacity: 0.7; text-align: center; margin: 0; font-size: 0.95rem;">
                     <img src="logo-blanc.svg" alt="FreelanceAugmenté" style="height: 22px; width: 22px;">
-                    © 2025 FreelanceAugmenté. Tous droits réservés.
+                    2025 FreelanceAugmenté. Tous droits réservés.
                 </p>
             </div>
         </footer>
@@ -3194,6 +3850,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const avatars = document.querySelectorAll('.quotes-carousel .avatar-item');
             const details = document.querySelectorAll('.quotes-carousel .quote-detail');
+            const arrows = document.querySelectorAll('.quotes-arrows .quotes-arrow-btn');
             if (!avatars.length) return;
 
             const activate = (idx) => {
@@ -3213,9 +3870,19 @@
                 avatar.addEventListener('click', () => activate(idx));
                 avatar.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        activate(idx);
+                        const idx = avatar.getAttribute('data-index');
+                        if (idx) activate(idx);
                     }
+                });
+            });
+
+            // Arrows navigation
+            arrows.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const dir = btn.getAttribute('data-direction');
+                    const current = Array.from(avatars).findIndex((a) => a.classList.contains('active'));
+                    const next = dir === 'prev' ? (current - 1 + avatars.length) % avatars.length : (current + 1) % avatars.length;
+                    activate(String(next));
                 });
             });
         });
@@ -3263,8 +3930,8 @@
                 { label: 'Emails', color: '#ef4444' },
                 { label: 'Données', color: '#10b981' },
                 { label: 'Automatisation', color: '#0ea5e9' },
-                { label: 'Excel', color: '#7c3aed' },
-                { label: 'CRM', color: '#111827' }
+                { label: 'Excel', color: '#ef5a13' },
+                { label: 'CRM', color: '#ef5a13' }
             ];
 
             const state = [];
@@ -3520,45 +4187,12 @@
             });
         });
 
-        // Rotation "pièce" sur scroll pour les visuels des cartes features
+        // Désactivation de la rotation au scroll sur les visuels des features
         document.addEventListener('DOMContentLoaded', () => {
-            const section = document.querySelector('.section-features');
             const visuals = document.querySelectorAll('.section-features .features-block .features-visual');
-            if (!section || !visuals.length) return;
-
-            const spinRange = 360; // rotation totale sur la section
-
-            const updateTransforms = () => {
-                const sectionRect = section.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
-                const sectionTop = sectionRect.top + window.scrollY;
-                const sectionHeight = sectionRect.height || 1;
-                const viewMid = window.scrollY + viewportHeight / 2;
-
-                // progress 0 -> 1 sur la section (centre de viewport)
-                const progress = Math.min(1, Math.max(0, (viewMid - sectionTop) / sectionHeight));
-
-                visuals.forEach((img, idx) => {
-                    const rect = img.getBoundingClientRect();
-                    const viewportCenter = window.innerHeight / 2;
-                    const imgCenter = rect.top + rect.height / 2;
-                    const offsetRatio = (imgCenter - viewportCenter) / viewportCenter; // -1 à 1 autour du centre
-
-                    // spin principal calé sur la progression (face vers l’utilisateur à 0% et 100%)
-                    const spin = (progress * spinRange) - (spinRange / 2); // -180° à +180°
-                    const baseTilt = Math.max(-1, Math.min(1, offsetRatio)) * 18;
-                    const tilt = spin + baseTilt;
-                    const twistDirection = idx === 1 ? -1 : 1; // inverse pour la carte centrale
-                    const tiltX = baseTilt * 0.8;
-
-                    img.style.transform = `rotateY(${tilt * twistDirection}deg) rotateX(${tiltX}deg)`;
-                });
-            };
-
-            const onScroll = () => window.requestAnimationFrame(updateTransforms);
-            updateTransforms();
-            window.addEventListener('scroll', onScroll, { passive: true });
-            window.addEventListener('resize', updateTransforms);
+            visuals.forEach((img) => {
+                img.style.transform = 'none';
+            });
         });
 
         // TJM Calculator - Slider interactif avec animation des jauges
