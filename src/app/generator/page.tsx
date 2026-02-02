@@ -5,12 +5,11 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Linkedin, Rocket, Loader2, Mail, Search, BarChart3, FileText } from "lucide-react";
+import { Linkedin, Rocket, Loader2, Search, BarChart3, FileText } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 export default function Generator() {
   const [linkedinUrl, setLinkedinUrl] = useState("");
-  const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
@@ -24,18 +23,13 @@ export default function Generator() {
       return;
     }
 
-    if (!email || !email.includes("@")) {
-      setError("Veuillez entrer une adresse email valide");
-      return;
-    }
-
     setIsLoading(true);
 
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ linkedinUrl, email }),
+        body: JSON.stringify({ linkedinUrl }),
       });
 
       if (!response.ok) {
@@ -43,7 +37,7 @@ export default function Generator() {
       }
 
       const data = await response.json();
-      router.push(`/slides/${data.id}`);
+      router.push(`/results/${data.id}`);
     } catch {
       setError("Une erreur est survenue. Veuillez réessayer.");
       setIsLoading(false);
@@ -78,8 +72,8 @@ export default function Generator() {
               alt="Décor"
               className="absolute -left-10 -top-10 w-36 h-36 drop-shadow-sm opacity-90 pointer-events-none z-0"
             />
-            <Card className="relative z-10 bg-[#fff8ee] border border-dashed border-[#dcdcdc] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-none">
-              <CardContent className="p-8">
+            <Card className="relative z-10 bg-white border border-dashed border-[#dcdcdc] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-none">
+              <CardContent className="px-8 py-6">
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="relative">
                     <Linkedin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#6B7280]" />
@@ -94,18 +88,7 @@ export default function Generator() {
                     />
                   </div>
 
-                  <div className="relative">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#6B7280]" />
-                    <Input
-                      type="email"
-                      placeholder="votre@email.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="pl-12 h-14 bg-white border-[#f0e3d6] text-[#1F2937] placeholder:text-[#9CA3AF] focus:border-[#ef5a13] focus:ring-[#ef5a13] rounded-xl"
-                      style={{ backgroundColor: '#ffffff' }}
-                      required
-                    />
-                  </div>
+                  {/* Name field removed per request */}
 
                   {error && (
                     <p className="text-red-500 text-sm text-left">{error}</p>

@@ -71,6 +71,22 @@
                     --color-text: #1F2937;
                 }
 
+                .nav .nav-list {
+                    display: flex;
+                    gap: 18px;
+                    margin: 0 auto;
+                    justify-content: center;
+                    flex: 1;
+                }
+
+                @media (max-width: 767px) {
+                    .nav .nav-list {
+                        margin: 0;
+                        justify-content: flex-start;
+                        flex: unset;
+                    }
+                }
+
                 /* Make text look crisper and more legible in all browsers */
                 body {
                     font-family: var(--font-body), sans-serif !important;
@@ -165,6 +181,61 @@
                 }
 
                 @media screen and (max-width: 991px) {
+
+                    /* Hero tablet layout */
+                    .section-hero .hero-wrap {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        text-align: center;
+                        gap: 20px;
+                    }
+
+                    .section-hero {
+                        padding: 0 0 20px !important;
+                    }
+
+                    .section-hero .hero-left {
+                        align-items: center;
+                        gap: 12px;
+                    }
+
+                    .section-hero .hero-text-wrap {
+                        max-width: 760px;
+                        width: 100%;
+                        text-align: center;
+                    }
+
+                    .section-hero .hero-cta-wrap {
+                        justify-content: center;
+                    }
+
+                    .hero-mid-wrap {
+                        margin: 32px auto 0 !important;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        padding: 0 16px;
+                    }
+
+                    .section-hero .hero-bottom-wrap {
+                        margin-top: -4% !important;
+                        padding-bottom: 0;
+                    }
+
+                    /* LinkedIn animation block stacking and centering */
+                    #features-2 .features-single {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 20px;
+                    }
+
+                    #features-2 .features-visual-single {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                    }
 
                     .hide,
                     .hide-tablet {
@@ -1196,6 +1267,24 @@
                     box-shadow: none;
                 }
 
+                /* Halo doux autour du fond Background1 */
+                .section-hero::before {
+                    content: "";
+                    position: absolute;
+                    inset: -12% -8% -10% -8%;
+                    background: radial-gradient(ellipse at center, rgba(255, 198, 168, 0.55), rgba(255, 198, 168, 0));
+                    filter: blur(28px);
+                    opacity: 1;
+                    z-index: 0;
+                    pointer-events: none;
+                }
+
+                /* Garantit que le contenu passe au-dessus du halo */
+                .section-hero > * {
+                    position: relative;
+                    z-index: 1;
+                }
+
                 .section-hero .hero-bottom-wrap {
                     margin-top: -190px;
                 }
@@ -1203,17 +1292,14 @@
                 /* Infinity motif behind hero */
                 .section-hero .hero-infinity-bg {
                     position: absolute;
-                    inset: -20% -5% -5% -5%;
-                    background-image: url('/landing-assets/images/backgrounds/heromedia.svg');
-                    background-size: 90% auto;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                    opacity: 0.38;
+                    inset: -20% 32% -5% -5%;
+                    background: none !important;
+                    opacity: 0;
                     mix-blend-mode: multiply;
                     pointer-events: none;
                     z-index: 0;
-                    filter: blur(0.3px);
-                    transform: rotate(8deg);
+                    filter: none;
+                    transform: none;
                     transform-origin: center;
                 }
 
@@ -1271,9 +1357,70 @@
                     font-family: var(--font-heading) !important;
                 }
 
+                /* Soulignement stylisé réutilisable */
+                .underline-brush {
+                    position: relative;
+                    display: inline-block;
+                    padding-bottom: 4px;
+                }
+
+                .underline-brush::after {
+                    content: "";
+                    position: absolute;
+                    left: -4%;
+                    right: -4%;
+                    bottom: -6px;
+                    height: 12px;
+                    background: linear-gradient(90deg, transparent 0%, rgba(255,200,0,0.9) 8%, rgba(255,200,0,0.9) 92%, transparent 100%);
+                    border-radius: 999px;
+                    transform: rotate(-2deg);
+                    z-index: -1;
+                    opacity: 0.9;
+                }
+
+                /* Dégradé texte orange */
+                .text-gradient-orange {
+                    background: linear-gradient(90deg, #ef5a13 0%, #e7000e 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    color: transparent;
+                }
+
                 .section-hero .hero-marquee-logo {
                     position: relative;
                     z-index: 2;
+                }
+
+                /* Marquee stack logos */
+                .stack-logos {
+                    background: url('/landing-assets/images/backgrounds/Background1.svg') center/cover no-repeat;
+                    padding: 24px 32px;
+                    border-radius: 18px;
+                    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+                    overflow: hidden;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .stack-marquee {
+                    display: flex;
+                    gap: 36px;
+                    align-items: center;
+                    width: max-content;
+                    animation: stack-scroll 18s linear infinite;
+                }
+
+                .stack-marquee img {
+                    height: 170px;
+                    width: auto;
+                    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+                }
+
+                @keyframes stack-scroll {
+                    from { transform: translateX(0); }
+                    to { transform: translateX(-50%); }
                 }
 
                 .partner-bubble {
@@ -1286,8 +1433,47 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    position: relative;
                     overflow: hidden;
                     flex-shrink: 0;
+                    cursor: default;
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-image: url('/landing-assets/images/profiles/avatar1.jpg');
+                }
+
+                /* 8 avatars humains (selfies) cyclés sur toutes les bulles */
+                .hero-marquee-row .partner-bubble:nth-child(8n+1) {
+                    background-image: url('/avatar/Jean%20Pierrot%20Andriandraina.webp');
+                }
+
+                .hero-marquee-row .partner-bubble:nth-child(8n+2) {
+                    background-image: url('/avatar/Manon%20Wauthy.webp');
+                }
+
+                .hero-marquee-row .partner-bubble:nth-child(8n+3) {
+                    background-image: url('/avatar/Mohamed%20ANNOURTA.webp');
+                }
+
+                .hero-marquee-row .partner-bubble:nth-child(8n+4) {
+                    background-image: url('/avatar/William%20Le%20Guel.jpeg');
+                }
+
+                .hero-marquee-row .partner-bubble:nth-child(8n+5) {
+                    background-image: url('/avatar/haroun%20megdoud.webp');
+                }
+
+                .hero-marquee-row .partner-bubble:nth-child(8n+6) {
+                    background-image: url('/avatar/Jean%20Pierrot%20Andriandraina.webp');
+                }
+
+                .hero-marquee-row .partner-bubble:nth-child(8n+7) {
+                    background-image: url('/avatar/Manon%20Wauthy.webp');
+                }
+
+                .hero-marquee-row .partner-bubble:nth-child(8n) {
+                    background-image: url('/avatar/Mohamed%20ANNOURTA.webp');
                 }
 
                 .hero-logo-marquee-wrap {
@@ -1300,13 +1486,13 @@
                 .hero-marquee-row {
                     display: flex;
                     gap: 24px;
-                    animation: marquee-scroll 20s linear infinite;
-                    width: max-content;
+                    animation: none;
+                    width: auto;
+                    justify-content: center;
                 }
 
                 .hero-marquee-row:nth-child(2) {
-                    animation-direction: reverse;
-                    animation-duration: 18s;
+                    animation: none;
                 }
 
                 @keyframes marquee-scroll {
@@ -1831,7 +2017,7 @@
 
                 .about-top-wrap-image.empty-box .badge-chip {
                     position: absolute;
-                    padding: 10px 14px;
+                    padding: 8.5px 12px;
                     display: inline-flex;
                     align-items: center;
                     gap: 8px;
@@ -1863,14 +2049,12 @@
                     left: 50%;
                     top: 50%;
                     transform: translate(-50%, -50%);
-                    display: grid;
-                    gap: 8px;
+                    display: flex;
                     align-items: center;
-                    justify-items: center;
-                    width: 88%;
+                    justify-content: center;
                     opacity: 0;
-                    pointer-events: none;
                     transition: opacity 0.4s ease;
+                    display: none !important;
                 }
 
                 .about-top-wrap-image.empty-box .badge-loader.visible {
@@ -2709,6 +2893,165 @@
                     color: var(--color-orange-primary) !important;
                 }
 
+                /* Mobile menu button */
+                .nav-menu-btn {
+                    display: none;
+                    width: 44px;
+                    height: 44px;
+                    border-radius: 12px;
+                    border: 1px solid rgba(0, 0, 0, 0.08);
+                    background: #fff;
+                    align-items: center;
+                    justify-content: center;
+                    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+                    cursor: pointer;
+                    margin-left: auto;
+                    padding: 10px;
+                }
+
+                @media (max-width: 767px) {
+                    .nav-menu-btn {
+                        display: flex;
+                    }
+
+                    .nav .nav-list,
+                    .nav-cta {
+                        display: none;
+                    }
+
+                    .nav.is-open .nav-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 12px;
+                        background: #fff;
+                        position: absolute;
+                        top: 64px;
+                        right: 16px;
+                        padding: 14px 16px;
+                        border-radius: 12px;
+                        box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+                        z-index: 1000;
+                        width: calc(100% - 32px);
+                        max-width: 360px;
+                    }
+
+                    .nav.is-open .nav-cta {
+                        display: flex;
+                        width: 100%;
+                        justify-content: center;
+                    }
+
+                    .nav.is-open .nav-actions {
+                        position: relative;
+                    }
+
+                    .mobile-menu {
+                        display: none;
+                        position: fixed;
+                        inset: 0;
+                        background: transparent;
+                        backdrop-filter: none;
+                        z-index: 1200;
+                        align-items: flex-start;
+                        justify-content: center;
+                        padding: 24px;
+                    }
+
+                    .mobile-menu .menu-panel {
+                        width: 100%;
+                        max-width: 420px;
+                        background: #fff;
+                        color: #111827;
+                        border-radius: 16px;
+                        padding: 20px 20px 16px;
+                        box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+                        display: flex;
+                        flex-direction: column;
+                        gap: 16px;
+                        position: relative;
+                    }
+
+                    .mobile-menu .menu-header {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 12px;
+                    }
+
+                    .mobile-menu .menu-close {
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 10px;
+                        border: 1px solid rgba(0,0,0,0.08);
+                        background: #f9fafb;
+                        display: grid;
+                        place-items: center;
+                        color: #111827;
+                        cursor: pointer;
+                    }
+
+                    .mobile-menu .menu-links {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 14px;
+                        padding: 4px 0;
+                    }
+
+                    .mobile-menu .menu-links a {
+                        color: #111827;
+                        text-decoration: none;
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 1.5;
+                    }
+
+                    .mobile-menu .menu-links a:hover {
+                        color: #ef5a13;
+                    }
+
+                    .mobile-menu .menu-cta {
+                        display: flex;
+                        gap: 10px;
+                        flex-wrap: wrap;
+                    }
+
+                    .mobile-menu .menu-cta .cta {
+                        flex: 1 1 160px;
+                        text-align: center;
+                    }
+
+                    .nav.is-open .mobile-menu {
+                        display: flex;
+                    }
+                }
+
+                .hamburger-icon {
+                    position: relative;
+                    width: 20px;
+                    height: 14px;
+                }
+
+                .hamburger-icon span {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    height: 2px;
+                    background: linear-gradient(90deg, #ef5a13, #e7000e);
+                    border-radius: 999px;
+                    transition: transform 0.2s ease, opacity 0.2s ease;
+                }
+
+                .hamburger-icon span:nth-child(1) { top: 0; }
+                .hamburger-icon span:nth-child(2) { top: 6px; }
+                .hamburger-icon span:nth-child(3) { top: 12px; }
+
+                .nav.is-open .hamburger-icon span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+                .nav.is-open .hamburger-icon span:nth-child(2) { opacity: 0; }
+                .nav.is-open .hamburger-icon span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+                /* Mobile menu hidden by default (desktop) */
+                .mobile-menu { display: none; }
+
                 /* Nav separators */
                 .nav .nav-list {
                     display: flex;
@@ -2718,6 +3061,156 @@
                 .nav .nav-list-item {
                     position: relative;
                     padding-right: 18px;
+                }
+
+                /* Tabs text (Analyse IA, etc.) */
+                #features-2 .tabs-menu {
+                    gap: 12px;
+                    color: #111827;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 1.45;
+                }
+
+                #features-2 .tabs-menu span,
+                #features-2 .tabs-menu a {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0;
+                    border: none;
+                    background: transparent;
+                    color: inherit;
+                    min-height: auto;
+                    font-weight: 700;
+                }
+
+                #features-2 .tabs-menu .tab-sep {
+                    width: 1px;
+                    height: 18px;
+                    background: #d1d5db;
+                    display: inline-flex;
+                    align-self: center;
+                    margin: 0 4px;
+                }
+
+                /* Responsive: section générateur LinkedIn */
+                @media (max-width: 991px) {
+                    #features-2 .heading-2 {
+                        font-size: 28px !important;
+                        line-height: 1.2 !important;
+                        word-break: break-word;
+                    }
+
+                    #features-2 .subheading {
+                        font-size: 16px !important;
+                        line-height: 1.5 !important;
+                        max-width: 480px;
+                        margin: 0 auto !important;
+                    }
+
+                    #features-2 .features-single {
+                        padding: 0 16px;
+                    }
+
+                    #features-2 .feature-heading-inner {
+                        gap: 10px !important;
+                    }
+                }
+
+                @media (max-width: 767px) {
+                    #features-2 .container-large {
+                        max-width: 400px;
+                        padding: 0 20px;
+                        margin: 0 auto;
+                    }
+
+                    #features-2 .heading-2 {
+                        font-size: 22px !important;
+                        line-height: 1.22 !important;
+                        word-break: break-word;
+                        letter-spacing: -0.2px;
+                    }
+
+                    #features-2 .features-single {
+                        gap: 18px !important;
+                        padding: 0 20px;
+                    }
+
+                    #features-2 .feature-heading-inner {
+                        text-align: center;
+                        align-items: center;
+                    }
+
+                    #features-2 .subheading {
+                        font-size: 14px !important;
+                        line-height: 1.45 !important;
+                        max-width: 320px;
+                        margin: 0 auto !important;
+                    }
+
+                    #features-2 .typing-card {
+                        padding: 12px !important;
+                        width: 100% !important;
+                        max-width: 320px !important;
+                        margin: 0 auto;
+                    }
+
+                    #features-2 .features-visual-single {
+                        margin-top: 8px !important;
+                        padding: 0 20px;
+                    }
+
+                    #features-2 .tabs-menu {
+                        flex-wrap: wrap;
+                        gap: 4px;
+                        justify-content: center;
+                        font-size: 13.5px;
+                        line-height: 1.35;
+                        max-width: 340px;
+                        margin: 0 auto;
+                    }
+
+                    #features-2 .tabs-menu span,
+                    #features-2 .tabs-menu a {
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 0;
+                        border-radius: 0;
+                        border: none;
+                        background: transparent;
+                        color: #111827;
+                        min-height: auto;
+                        font-weight: 700;
+                    }
+
+                    #features-2 .tabs-menu .tab-sep {
+                        padding: 0;
+                        border: none;
+                        width: 1px;
+                        height: 16px;
+                        background: #e5e5e5;
+                        display: inline-flex;
+                        align-self: center;
+                        margin: 0 4px;
+                    }
+
+                    #features-2 .typing-card .subheading,
+                    #features-2 .typing-card p,
+                    #features-2 .typing-card span {
+                        font-size: 14px !important;
+                        line-height: 1.45 !important;
+                    }
+
+                    /* Result media image */
+                    .result-media-img {
+                        width: 100% !important;
+                        max-width: 384px !important;
+                        height: auto;
+                        padding: 0 20px;
+                        margin: 0 auto;
+                    }
                 }
 
                 .nav .nav-list-item:not(:last-child)::after {
@@ -2750,6 +3243,17 @@
                     box-sizing: border-box;
                 }
 
+                @media (max-width: 767px) {
+                    .nav-container {
+                        position: absolute !important;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        padding: 12px 12px;
+                        z-index: 900;
+                    }
+                }
+
                 /* Unifier l'arrière-plan du haut de page avec le hero */
                 body,
                 .page-wrapper,
@@ -2765,6 +3269,21 @@
                     margin: 0 auto !important;
                     width: min(1200px, 100%) !important;
                     box-sizing: border-box;
+                }
+
+                .nav .nav-wrapper {
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    width: 100%;
+                    justify-content: space-between;
+                }
+
+                .nav .nav-actions {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    margin-left: 24px;
                 }
 
                 /* Hero marquee logos visibility */
@@ -2931,6 +3450,23 @@
                     color: var(--color-text-dark) !important;
                 }
 
+                .section-about .about-mid-wrap {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                    gap: 24px;
+                    justify-items: center;
+                    text-align: center;
+                }
+
+                .section-about .about-stat-wrap {
+                    text-align: center;
+                }
+
+                .section-about .about-stat-title,
+                .section-about .about-stat-tagline {
+                    text-align: center;
+                }
+
                 /* FAQ spécifique */
                 .faq-item,
                 .faq-question,
@@ -3058,25 +3594,53 @@
                                 </div>
                             </a></li>
                     </ul>
-                    <div class="nav-cta"><a data-wf--cta--variant="for-navigation-bar"
-                            data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/generator"
-                            class="cta w-variant-407ad224-ea3d-6907-4bba-9f321107da7d w-inline-block">
-                            <div class="cta-wrap">
-                                <div class="cta-text">Générer mon idée d’app</div>
-                                <div class="cta-arrow-wrap"><img
-                                        src="/landing-assets/libs/icons/vector.svg"
-                                        loading="lazy" alt="" class="cta-arrow is-relative" /><img
-                                        src="/landing-assets/libs/icons/vector.svg"
-                                        loading="lazy" alt="" class="cta-arrow is-absolute" /></div>
+                    <div class="nav-actions">
+                        <div class="nav-cta"><a data-wf--cta--variant="for-navigation-bar"
+                                data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/generator"
+                                class="cta w-variant-407ad224-ea3d-6907-4bba-9f321107da7d w-inline-block">
+                                <div class="cta-wrap">
+                                    <div class="cta-text">Générer mon idée d’app</div>
+                                    <div class="cta-arrow-wrap"><img
+                                            src="/landing-assets/libs/icons/vector.svg"
+                                            loading="lazy" alt="" class="cta-arrow is-relative" /><img
+                                            src="/landing-assets/libs/icons/vector.svg"
+                                            loading="lazy" alt="" class="cta-arrow is-absolute" /></div>
+                                </div>
+                            </a></div><button data-w-id="c6a2b13e-29af-d701-e2bc-f97081a26f02" class="nav-menu-btn" aria-label="Ouvrir le menu" type="button">
+                            <div class="hamburger-icon" aria-hidden="true">
+                                <span></span>
+                                <span></span>
+                                <span></span>
                             </div>
-                        </a></div><button data-w-id="c6a2b13e-29af-d701-e2bc-f97081a26f02" class="nav-menu-btn">
-                        <div data-is-ix2-target="1" class="hamburger-lottie"
-                            data-w-id="c6a2b13e-29af-d701-e2bc-f97081a26f03" data-animation-type="lottie"
-                            data-src="/landing-assets/libs/lottie/hamburger-menu.json"
-                            data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg"
-                            data-default-duration="0" data-duration="2.5833333333333335" data-ix2-initial-state="0">
+                        </button>
+                    </div>
+                    <div class="mobile-menu" aria-hidden="true">
+                        <div class="menu-panel">
+                            <div class="menu-header">
+                                <div style="display:flex; align-items:center; gap:10px;">
+                                    <img src="/landing-assets/images/logos/logo-navbar.svg" alt="Freelance Augmenté" style="height:24px;">
+                                    <span style="font-weight:700; color:#fff;">Freelance Augmenté</span>
+                                </div>
+                                <button class="menu-close" type="button" aria-label="Fermer le menu">✕</button>
+                            </div>
+                            <div class="menu-links">
+                                <a href="/#integrations">Programme</a>
+                                <a href="/#features">Générateur</a>
+                                <a href="/#testimonials">Avis</a>
+                                <a href="/#faqs">FAQ</a>
+                            </div>
+                            <div class="menu-cta">
+                                <a data-wf--cta--variant="for-navigation-bar" data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/generator"
+                                    class="cta w-variant-407ad224-ea3d-6907-4bba-9f321107da7d w-inline-block">
+                                    <div class="cta-wrap">
+                                        <div class="cta-text">Générer mon idée d’app</div>
+                                        <div class="cta-arrow-wrap"><img src="/landing-assets/libs/icons/vector.svg" loading="lazy" alt="" class="cta-arrow is-relative" /><img
+                                                src="/landing-assets/libs/icons/vector.svg" loading="lazy" alt="" class="cta-arrow is-absolute" /></div>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </button>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -3101,7 +3665,7 @@
                             <div class="hero-top-wrap">
                                 <div class="hero-text-wrap">
                                     <h1 data-w-id="49cb072b-6c26-a2f2-ca91-756bf8ad2a79"
-                                        class="hero-heading heading-1 hero-animate-title">Développez vos revenus en devenant <strong>Freelance Augmenté</strong></h1>
+                                        class="hero-heading heading-1 hero-animate-title">Développez vos revenus en devenant <span class="underline-brush text-gradient-orange">Freelance Augmenté</span></h1>
                                     <p data-w-id="217a10b1-0e93-c182-704c-75b2d70b6301"
                                         class="hero-subtext hero-animate-subtitle">C'est une méthode concrète, pour utiliser l'IA afin de multiplier sa productivité, ses revenus et sa liberté.</p>
                                 </div>
@@ -3123,7 +3687,12 @@
                             </div>
                             <div data-w-id="9f903edb-c4ba-feaa-1120-5dc01d17f0e3"
                                 class="hero-mid-wrap hero-animate-video">
-                                <div class="hero-video-frame" style="background:#f7f7f7;border:1px solid #ef5a13;border-radius:24px;min-height:360px;box-shadow:0 12px 32px rgba(0,0,0,0.06);"></div><img
+                                <div class="hero-video-frame" style="background:#f7f7f7;border:1px solid #ef5a13;border-radius:24px;min-height:360px;box-shadow:0 12px 32px rgba(0,0,0,0.06);">
+                                    <video id="hero-video" controls preload="metadata" style="width:100%;height:100%;object-fit:cover;border-radius:20px;">
+                                        <source src="/landing-assets/videos/Demovsl.mp4" type="video/mp4" />
+                                        Votre navigateur ne supporte pas la lecture vidéo.
+                                    </video>
+                                </div><img
                                     src="/landing-assets/libs/icons/plus.svg"
                                     loading="lazy" alt="" class="star" /><img
                                     src="/landing-assets/libs/icons/plus.svg"
@@ -3210,21 +3779,21 @@
             <section id="features-2" class="section-features">
                 <div class="padding-global">
                     <div class="container-large">
-                        <div class="features-single" style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items:center; justify-items:center;">
+                        <div class="features-single" style="display:flex; flex-direction:column; gap: 32px; align-items:center; justify-content:center; width:100%; text-align:center;">
                             <div class="feature-heading-inner" style="grid-column: 1 / -1; display:flex; flex-direction:column; gap:12px; align-items:center; text-align:center;">
-                                <h2 class="heading-2" style="margin:0;">Découvrez votre potentiel caché grâce<br>à votre profil LinkedIn</h2>
+                                <h2 class="heading-2" style="margin:0;">Découvrez votre potentiel caché grâce<br>à votre profil LinkedIn <span class="underline-brush">gratuit</span></h2>
                                 <p class="subheading" style="margin:0; color:#1F2937 !important; font-size: 18px; line-height: 1.6;">Testez notre générateur qui analyse votre profil LinkedIn<br>et propose, en moins d'une minute, 6 idées d’applications personnalisées pour générer des revenus récurrents.</p>
                             </div>
-                            <div style="grid-column: 1 / -1; display: inline-flex; align-items: center; gap: 18px; color: #374151; font-weight: 700; font-size: 18px; line-height: 1.6;">
+                            <div class="tabs-menu" style="grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 18px; color: #374151; font-weight: 700; font-size: 18px; line-height: 1.6; width: 100%; text-align: center; flex-wrap: wrap;">
                                 <span>Analyse IA</span>
-                                <span style="width: 1px; height: 24px; background: #e5e5e5;"></span>
+                                <span class="tab-sep"></span>
                                 <span>6 apps personnalisées</span>
-                                <span style="width: 1px; height: 24px; background: #e5e5e5;"></span>
+                                <span class="tab-sep"></span>
                                 <span>Roadmap prête</span>
                             </div>
                             <div class="features-text" style="display:none;"></div>
-                            <div class="features-visual-single">
-                                <div style="position: relative; display: inline-flex; justify-content: center; transform: translateX(75%);">
+                            <div class="features-visual-single" style="grid-column: 1 / -1; display:flex; justify-content:center; width:100%; max-width:720px; margin:0 auto;">
+                                <div style="position: relative; display: inline-flex; justify-content: center; transform: none; margin: 0 auto; width:100%; max-width:720px;">
                                     <div class="typing-card" style="width: 490px; max-width: 100%; background: #f9f7f4; border: 1px solid #ededed; border-radius: 16px; padding: 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.08); display: flex; flex-direction: column; gap: 14px; transition: filter 0.3s ease;">
                                         <!-- LinkedIn field -->
                                         <div style="background: #ffffff; border: 1px solid #e1e1e1; border-radius: 12px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; min-height: 56px;">
@@ -3248,6 +3817,14 @@
                                 </div>
                             </div>
                             <div style="grid-column: 1 / -1; display:flex; justify-content:center; margin-top: 24px;">
+                                <img src="/Resultmedia.svg" alt="Résultats générés" class="result-media-img" style="width:100%; max-width: 1024px; height:auto; display:block;">
+                            </div>
+                            <div style="grid-column: 1 / -1; display:flex; justify-content:center; margin-top: 12px; padding: 0 16px;">
+                                <p class="subheading" style="max-width: 880px; text-align: center; margin: 0; color:#1F2937 !important; font-size: 18px; line-height: 1.6;">
+                                    Notre générateur d’idées analyse ton profil, identifie tes forces et propose instantanément des idées d’apps monétisables prêtes à tester – des concepts à faible ou moyenne complexité, réalisables en 1 à 2 semaines et taillés pour tes acteurs de marché.
+                                </p>
+                            </div>
+                            <div style="grid-column: 1 / -1; display:flex; justify-content:center; margin-top: 24px;">
                                 <a data-wf--cta--variant="base" data-w-id="80fca3a0-edf5-d428-8d66-8e0936b99ad2" href="/generator"
                                     class="cta w-inline-block">
                                     <div class="cta-wrap">
@@ -3259,6 +3836,22 @@
                                                 loading="lazy" alt="RIght facing arrow" class="cta-arrow is-absolute" /></div>
                                     </div>
                                 </a>
+                            </div>
+                            <div style="grid-column: 1 / -1; margin-top: 28px;">
+                                <div class="stack-logos">
+                                    <div class="stack-marquee">
+                                        <img src="/stack/github.svg" alt="GitHub">
+                                        <img src="/stack/netlify.svg" alt="Netlify">
+                                        <img src="/stack/next.svg" alt="Next.js">
+                                        <img src="/stack/supabase.svg" alt="Supabase">
+                                        <img src="/stack/tailwind.svg" alt="Tailwind">
+                                        <img src="/stack/github.svg" alt="GitHub">
+                                        <img src="/stack/netlify.svg" alt="Netlify">
+                                        <img src="/stack/next.svg" alt="Next.js">
+                                        <img src="/stack/supabase.svg" alt="Supabase">
+                                        <img src="/stack/tailwind.svg" alt="Tailwind">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -3272,6 +3865,38 @@
             </style>
             <script>
                 document.addEventListener('DOMContentLoaded', () => {
+                    // Mobile menu toggle
+                    const nav = document.querySelector('.nav');
+                    const menuBtn = document.querySelector('.nav-menu-btn');
+                    const mobileMenu = document.querySelector('.mobile-menu');
+                    const closeBtn = document.querySelector('.menu-close');
+
+                    const setMenuState = (open) => {
+                        if (!nav || !menuBtn || !mobileMenu) return;
+                        nav.classList.toggle('is-open', open);
+                        menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                        mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+                    };
+
+                    const toggleMenu = () => {
+                        if (!nav || !menuBtn || !mobileMenu) return;
+                        const isOpen = !nav.classList.contains('is-open');
+                        setMenuState(isOpen);
+                    };
+                    if (menuBtn) {
+                        menuBtn.addEventListener('click', toggleMenu);
+                    }
+
+                    if (closeBtn) {
+                        closeBtn.addEventListener('click', () => setMenuState(false));
+                    }
+
+                    if (mobileMenu) {
+                        mobileMenu.addEventListener('click', (e) => {
+                            if (e.target === mobileMenu) setMenuState(false);
+                        });
+                    }
+
                     const typingFields = document.querySelectorAll('#features-2 .typing-field');
                     const card = document.querySelector('#features-2 .typing-card');
                     const spinner = document.querySelector('#features-2 .typing-spinner');
@@ -3313,8 +3938,8 @@
             <section class="section-quotes">
                 <div class="padding-global">
                     <div class="container-large">
-                        <div class="quotes-heading" style="text-align: center; max-width: 820px; margin: 0 auto 40px; padding-top: 14p%;">
-                            <h2 class="heading-2" style="margin: 0;">Passez de freelance débordé à entrepreneur augmenté</h2>
+                        <div class="quotes-heading" style="text-align: center; max-width: 820px; margin: 0 auto 40px; padding-top: 14%; padding-bottom: 0;">
+                                <h2 class="heading-2" style="margin: 0;">Passez de freelance débordé à <span class="underline-brush">entrepreneur augmenté</span></h2>
                             <p class="subheading" style="margin: 10px 0 0;">Nous sommes freelances et aujourd’hui, grâce à l’IA, nous réalisons bien plus.</p>
                         </div>
                         <div class="quotes-carousel">
@@ -3974,12 +4599,11 @@
             box.appendChild(miniApp);
 
             const badges = [
-                { label: 'Administratif', color: '#1c77ff' },
-                { label: 'Emails', color: '#ef4444' },
-                { label: 'Données', color: '#10b981' },
-                { label: 'Automatisation', color: '#0ea5e9' },
-                { label: 'Excel', color: '#ef5a13' },
-                { label: 'CRM', color: '#ef5a13' }
+                { logo: '/stack/stack pills/netlify2.svg', alt: 'Netlify' },
+                { logo: '/stack/stack pills/Supabase2.svg', alt: 'Supabase' },
+                { logo: '/stack/stack pills/Github2.svg', alt: 'GitHub' },
+                { logo: '/stack/stack pills/NEXT2.svg', alt: 'Next.js' },
+                { logo: '/stack/stack pills/tailwind2.svg', alt: 'Tailwind CSS' }
             ];
 
             const state = [];
@@ -4009,14 +4633,27 @@
             const createChip = (badge) => {
                 const chip = document.createElement('div');
                 chip.className = 'badge-chip';
-                const dot = document.createElement('span');
-                dot.className = 'dot';
-                dot.style.color = badge.color;
-                chip.appendChild(dot);
-                chip.appendChild(document.createTextNode(badge.label));
+                const img = document.createElement('img');
+                img.src = badge.logo;
+                img.alt = badge.alt;
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'contain';
+                chip.appendChild(img);
                 box.appendChild(chip);
                 return chip;
             };
+
+            // Désactive l'animation : empile simplement les logos
+            if (box) {
+                box.querySelectorAll('.badge-chip').forEach((el) => el.remove());
+                if (loader) loader.remove();
+                badges.forEach((badge) => {
+                    const el = createChip(badge);
+                    el.style.position = 'static';
+                });
+                return;
+            }
 
             const initBadges = () => {
                 box.querySelectorAll('.badge-chip').forEach((el) => el.remove());
@@ -4675,6 +5312,16 @@
             }
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('hero-video');
+            if (!video) return;
+            const setRate = () => { try { video.playbackRate = 1.50; } catch (e) { /* ignore */ } };
+            video.addEventListener('loadedmetadata', setRate, { once: true });
+            // Fallback if metadata is cached
+            if (video.readyState >= 1) setRate();
+        });
+    </script>
 </body>
 
 </html>
