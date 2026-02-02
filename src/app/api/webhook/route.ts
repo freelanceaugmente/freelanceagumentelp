@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { slidesStore } from "../generate/route";
+import { slidesStore } from "@/lib/stores";
 
 export async function POST(request: NextRequest) {
   try {

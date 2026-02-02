@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 import { GenerationResult, AppIdea, LinkedInProfile } from "@/lib/types";
+import { resultsStore } from "@/lib/stores"; // shared in-memory store (moved out of route to satisfy Next.js exports)
 
 const OPENAI_SYSTEM_PROMPT = `Tu es un expert en génération d'idées d'applications SaaS personnalisées basées sur les profils LinkedIn.
 
@@ -24,9 +25,6 @@ Les idées doivent être:
 4. Avec un potentiel de revenus récurrents
 
 Réponds UNIQUEMENT avec un JSON valide contenant un tableau "apps" de 6 objets.`;
-
-// In-memory store (use database in production)
-export const resultsStore = new Map<string, GenerationResult>();
 
 async function fetchLinkedInProfile(linkedinUrl: string): Promise<LinkedInProfile | null> {
   const UNIPILE_API_KEY = process.env.UNIPILE_API_KEY;
