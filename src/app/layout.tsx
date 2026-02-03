@@ -10,6 +10,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "AppList Generator - Vos idées d'apps pour revenus passifs",
   description: "Générez votre feuille de route personnalisée avec 6 applications à vibecoder pour créer des revenus passifs grâce à l'IA",
+  icons: {
+    icon: "/landing-assets/images/logos/logo-favicon2.svg",
+    apple: "/landing-assets/images/logos/logo-favicon2.svg",
+  },
 };
 
 export default function RootLayout({
