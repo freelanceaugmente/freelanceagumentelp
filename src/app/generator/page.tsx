@@ -52,17 +52,17 @@ export default function Generator() {
         <div className="max-w-4xl mx-auto text-center">
           {/* Main Title */}
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight" style={{ fontFamily: "'Playfair Display', serif", paddingTop: '13%' }}>
-            Générez votre{" "}
+            Trouve ton{" "}
             <span className="text-[#ef5a13]">idée d&apos;app</span>
             <br />
-            personnalisée
+            en 60 secondes
           </h1>
 
           <p
             className="text-base md:text-lg text-[#1F2937] mb-10 max-w-2xl mx-auto"
             style={{ fontFamily: "Garet, 'Manrope', sans-serif" }}
           >
-            Entrez votre profil LinkedIn et recevez 6 idées d&apos;applications personnalisées pour générer des revenus récurrents.
+            Colle ton profil LinkedIn. Notre IA génère 6 idées d&apos;apps adaptées à tes compétences, avec estimation de revenus et roadmap.
           </p>
 
           {/* Form */}
@@ -70,7 +70,7 @@ export default function Generator() {
             <img
               src="/media1.svg"
               alt="Décor"
-              className="absolute -left-10 -top-10 w-36 h-36 drop-shadow-sm opacity-90 pointer-events-none z-0"
+              className="absolute -left-10 -top-10 w-36 h-36 drop-shadow-sm opacity-90 pointer-events-none z-0 hidden md:block"
             />
             <Card className="relative z-10 bg-white border border-dashed border-[#dcdcdc] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-none">
               <CardContent className="px-8 py-6">
@@ -108,7 +108,7 @@ export default function Generator() {
                       ) : (
                         <>
                           <Rocket className="w-5 h-5 mr-2" />
-                          Générer ma feuille de route
+                          Générer mes 6 idées d&apos;apps
                         </>
                       )}
                     </Button>
@@ -124,10 +124,9 @@ export default function Generator() {
               <div className="flex items-center justify-center mb-4 mx-auto">
                 <Search className="w-7 h-7 text-[#ef5a13]" />
               </div>
-              <h3 className="text-lg font-bold mb-2 text-[#1F2937]" style={{ fontFamily: "'Playfair Display', serif" }}>Analyse IA</h3>
+              <h3 className="text-lg font-bold mb-2 text-[#1F2937]" style={{ fontFamily: "'Playfair Display', serif" }}>Analyse de ton profil</h3>
               <p className="text-[#6B7280] text-sm">
-                Notre IA analyse votre profil pour identifier vos forces et
-                compétences uniques.
+                L&apos;IA scanne ton LinkedIn et identifie tes forces, ton expertise et ton marché cible.
               </p>
             </div>
 
@@ -135,10 +134,9 @@ export default function Generator() {
               <div className="flex items-center justify-center mb-4 mx-auto">
                 <BarChart3 className="w-7 h-7 text-[#ef5a13]" />
               </div>
-              <h3 className="text-lg font-bold mb-2 text-[#1F2937]" style={{ fontFamily: "'Playfair Display', serif" }}>6 Apps Personnalisées</h3>
+              <h3 className="text-lg font-bold mb-2 text-[#1F2937]" style={{ fontFamily: "'Playfair Display', serif" }}>6 idées avec MRR estimé</h3>
               <p className="text-[#6B7280] text-sm">
-                Recevez 6 idées d&apos;applications SaaS adaptées à votre profil
-                avec estimation MRR.
+                Reçois 6 concepts d&apos;apps réalisables en 1-2 semaines, avec potentiel de revenus récurrents.
               </p>
             </div>
 
@@ -146,10 +144,9 @@ export default function Generator() {
               <div className="flex items-center justify-center mb-4 mx-auto">
                 <FileText className="w-7 h-7 text-[#ef5a13]" />
               </div>
-              <h3 className="text-lg font-bold mb-2 text-[#1F2937]" style={{ fontFamily: "'Playfair Display', serif" }}>Roadmap Prête</h3>
+              <h3 className="text-lg font-bold mb-2 text-[#1F2937]" style={{ fontFamily: "'Playfair Display', serif" }}>Roadmap de lancement</h3>
               <p className="text-[#6B7280] text-sm">
-                Un plan d&apos;action sur 3 mois pour lancer votre première app
-                et générer des revenus.
+                Un plan d&apos;action concret sur 3 mois pour passer de l&apos;idée aux premiers revenus.
               </p>
             </div>
           </div>
