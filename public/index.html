@@ -1409,9 +1409,13 @@
                     border-radius: 18px;
                     box-shadow: 0 12px 30px rgba(0,0,0,0.06);
                     overflow: hidden;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    width: 100%;
+                }
+
+                @media (max-width: 767px) {
+                    .stack-logos {
+                        background: none !important;
+                    }
                 }
 
                 .stack-marquee {
@@ -1532,6 +1536,25 @@
                 .section-hero .hero-heading strong {
                     color: var(--color-orange-primary) !important;
                     font-weight: 500 !important;
+                }
+
+                /* Hide media1.svg on mobile */
+                @media screen and (max-width: 767px) {
+                    img[src$="/media1.svg"],
+                    img[src$="/landing-assets/images/media/media1.svg"] {
+                        display: none !important;
+                    }
+
+                    /* Constrain long subheading on mobile */
+                    .subheading {
+                        max-width: 90vw !important;
+                        width: 100% !important;
+                        font-size: 16px !important;
+                        line-height: 1.5 !important;
+                        text-wrap: balance;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
                 }
 
                 /* Mobile override (ensures smaller title on narrow screens) */
@@ -3843,7 +3866,7 @@
                                 <img src="/Resultmedia.svg" alt="Résultats générés" class="result-media-img" style="width:100%; max-width: 1024px; height:auto; display:block;">
                             </div>
                             <div style="grid-column: 1 / -1; display:flex; justify-content:center; margin-top: 12px;">
-                                <p class="subheading" style="text-align: center; margin: 0; color:#1F2937 !important; font-size: 18px; line-height: 1.6;">
+                                <p class="subheading" style="max-width: 820px; width: 100%; text-align: center; margin: 0 auto; color:#1F2937 !important; font-size: 18px; line-height: 1.6;">
                                     Arrête de chercher "la bonne idée". Notre IA identifie tes forces et génère des concepts d'apps monétisables – réalisables en 1 à 2 semaines, adaptés à ton marché.
                                 </p>
                             </div>

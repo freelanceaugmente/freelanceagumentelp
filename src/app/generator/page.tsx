@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
 import { Linkedin, Rocket, Loader2, Search, BarChart3, FileText } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
@@ -51,7 +50,7 @@ export default function Generator() {
       <main className="container mx-auto px-6 py-12 md:py-20">
         <div className="max-w-4xl mx-auto text-center">
           {/* Main Title */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight" style={{ fontFamily: "'Playfair Display', serif", paddingTop: '13%' }}>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight generator-title" style={{ fontFamily: "'Playfair Display', serif", paddingTop: '13%' }}>
             Trouve ton{" "}
             <span className="text-[#ef5a13]">idée d&apos;app</span>
             <br />
@@ -71,51 +70,48 @@ export default function Generator() {
               src="/media1.svg"
               alt="Décor"
               className="absolute -left-10 -top-10 w-36 h-36 drop-shadow-sm opacity-90 pointer-events-none z-0 hidden md:block"
+              style={{ transform: "rotate(-60deg) translate(-6px, 4px)", transformOrigin: "center" }}
             />
-            <Card className="relative z-10 bg-white border border-dashed border-[#dcdcdc] shadow-[0_8px_24px_rgba(0,0,0,0.06)] rounded-none">
-              <CardContent className="px-8 py-6">
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="relative">
-                    <Linkedin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#6B7280]" />
-                    <Input
-                      type="url"
-                      placeholder="https://linkedin.com/in/votre-profil"
-                      value={linkedinUrl}
-                      onChange={(e) => setLinkedinUrl(e.target.value)}
-                      className="pl-12 h-14 bg-white border-[#f0e3d6] text-[#1F2937] placeholder:text-[#9CA3AF] focus:border-[#ef5a13] focus:ring-[#ef5a13] rounded-xl"
-                      style={{ backgroundColor: '#ffffff' }}
-                      required
-                    />
-                  </div>
+            <div className="relative z-10 space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="relative">
+                  <Linkedin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#6B7280]" />
+                  <Input
+                    type="url"
+                    placeholder="https://linkedin.com/in/votre-profil"
+                    value={linkedinUrl}
+                    onChange={(e) => setLinkedinUrl(e.target.value)}
+                    className="pl-12 h-14 bg-white border-[#f0e3d6] text-[#1F2937] placeholder:text-[#9CA3AF] focus:border-[#ef5a13] focus:ring-[#ef5a13] rounded-xl shadow-sm"
+                    style={{ backgroundColor: '#ffffff' }}
+                    required
+                  />
+                </div>
 
-                  {/* Name field removed per request */}
+                {error && (
+                  <p className="text-red-500 text-sm text-left">{error}</p>
+                )}
 
-                  {error && (
-                    <p className="text-red-500 text-sm text-left">{error}</p>
-                  )}
-
-                  <div className="flex justify-center" style={{ marginTop: '10%' }}>
-                    <Button
-                      type="submit"
-                      disabled={isLoading}
-                      className="px-8 h-14 bg-gradient-to-r from-[#ef5a13] to-[#e7000e] hover:from-[#e7000e] hover:to-[#ef5a13] text-white font-medium text-lg transition-all duration-300 rounded-[16px] shadow-lg hover:shadow-xl"
-                    >
-                      {isLoading ? (
-                        <>
-                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                          Génération en cours...
-                        </>
-                      ) : (
-                        <>
-                          <Rocket className="w-5 h-5 mr-2" />
-                          Générer mes 6 idées d&apos;apps
-                        </>
-                      )}
-                    </Button>
-                  </div>
-                </form>
-              </CardContent>
-            </Card>
+                <div className="flex justify-center" style={{ marginTop: '10%' }}>
+                  <Button
+                    type="submit"
+                    disabled={isLoading}
+                    className="px-8 h-14 bg-gradient-to-r from-[#ef5a13] to-[#e7000e] hover:from-[#e7000e] hover:to-[#ef5a13] text-white font-medium text-lg transition-all duration-300 rounded-[16px] shadow-lg hover:shadow-xl"
+                  >
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                        Génération en cours...
+                      </>
+                    ) : (
+                      <>
+                        <Rocket className="w-5 h-5 mr-2" />
+                        Générer mes 6 idées d&apos;apps
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </form>
+            </div>
           </div>
 
           {/* Features */}
@@ -175,6 +171,14 @@ export default function Generator() {
           </div>
         </div>
       </footer>
+
+      <style jsx global>{`
+        @media (max-width: 767px) {
+          .generator-title {
+            padding-top: 25% !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

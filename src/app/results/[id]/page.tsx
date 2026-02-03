@@ -3,51 +3,25 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { 
-  DollarSign, Clock, Zap, Users, Loader2, Lightbulb, Rocket,
-  Code, GraduationCap, BarChart3, MessageSquare, Brain, Briefcase,
-  ShoppingCart, Mail, Calendar, Settings, Globe, Camera, Music,
-  Heart, Shield, Cpu, Database, Palette, Gamepad2, Bot
+  DollarSign, Clock, Zap, Users, Loader2, Lightbulb
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { GenerationResult, AppIdea } from "@/lib/types";
 
+function stringToDarkColor(value: string) {
+  let hash = 0;
+  for (let i = 0; i < value.length; i++) {
+    hash = (hash << 5) - hash + value.charCodeAt(i);
+    hash |= 0; // Convert to 32bit integer
+  }
+  const hue = Math.abs(hash) % 360;
+  return `hsl(${hue}, 45%, 28%)`;
+}
+
 function AppCard({ app, index }: { app: AppIdea; index: number }) {
-  // Gradient palette
-  const gradients = [
-    "linear-gradient(135deg, #ff7a18, #af002d 70%)",
-    "linear-gradient(135deg, #36d1dc, #5b86e5)",
-    "linear-gradient(135deg, #f7971e, #ffd200)",
-    "linear-gradient(135deg, #b24592, #f15f79)",
-    "linear-gradient(135deg, #22c1c3, #fdbb2d)",
-    "linear-gradient(135deg, #ff512f, #f09819)",
-  ];
-
-  // Choose icon by keywords (name + description)
-  const getIcon = (name: string, description: string) => {
-    const text = `${name} ${description}`.toLowerCase();
-    if (text.match(/jeu|gaming|ludique|ludo/)) return Gamepad2;
-    if (text.match(/promo|marketing|campagne|ads/)) return BarChart3;
-    if (text.match(/partenariat|crm|client/)) return Briefcase;
-    if (text.match(/code|dev|tech|api/)) return Code;
-    if (text.match(/formation|appren|learning|éducation/)) return GraduationCap;
-    if (text.match(/ia|ai|bot|assistant/)) return Bot;
-    if (text.match(/analyse|data|report|dashboard/)) return BarChart3;
-    if (text.match(/photo|media|image|vidéo/)) return Camera;
-    if (text.match(/santé|bien-être|health/)) return Heart;
-    if (text.match(/sécurité|auth/)) return Shield;
-    if (text.match(/design|graph/)) return Palette;
-    if (text.match(/vente|commerce|boutique|shop/)) return ShoppingCart;
-    if (text.match(/email|newsletter|mail/)) return Mail;
-    if (text.match(/planning|agenda|calend/)) return Calendar;
-    if (text.match(/cloud|base|stockage/)) return Database;
-    if (text.match(/web|site|seo/)) return Globe;
-    if (text.match(/musique|audio|podcast/)) return Music;
-    return Lightbulb;
-  };
-
-  const Icon = getIcon(app.name, app.description);
+  const initial = app.name.trim().charAt(0).toUpperCase();
   const badgeStyle = {
-    backgroundImage: gradients[index % gradients.length],
+    backgroundColor: stringToDarkColor(app.name + index),
   } as const;
 
   return (
@@ -55,11 +29,11 @@ function AppCard({ app, index }: { app: AppIdea; index: number }) {
       {/* Header */}
       <div className="flex items-start gap-3 mb-4">
         <div
-          className="w-12 h-12 rounded-[7px] flex items-center justify-center flex-shrink-0 shadow-md overflow-hidden"
+          className="w-12 h-12 rounded-[11px] flex items-center justify-center flex-shrink-0 shadow-md overflow-hidden"
           style={badgeStyle}
           aria-label={`Logo ${app.name}`}
         >
-          <Icon className="w-6 h-6 text-white" />
+          <span className="app-initial" aria-hidden="true">{initial}</span>
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="font-bold text-[#1F2937] text-[19px] leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
@@ -184,6 +158,8 @@ export default function ResultsPage() {
       style={{ fontFamily: "'Manrope', 'Inter', sans-serif" }}
     >
       <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&display=swap');
+
         .underline-brush {
           position: relative;
           display: inline-block;
@@ -212,6 +188,15 @@ export default function ResultsPage() {
           -webkit-text-fill-color: transparent;
           color: transparent;
           display: inline-block;
+        }
+
+        .app-initial {
+          font-family: 'Baloo 2', cursive;
+          font-size: 38px;
+          font-weight: 700;
+          color: #fff;
+          line-height: 1;
+          letter-spacing: 0.2px;
         }
       `}</style>
       <Navbar />
